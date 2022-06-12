@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomer">
    <children>
       <GridPane layoutY="67.0" prefHeight="416.0" prefWidth="900.0">
@@ -29,7 +28,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="ID">
+            <Label text="Customer ID">
                <GridPane.margin>
                   <Insets left="75.0" />
                </GridPane.margin>
