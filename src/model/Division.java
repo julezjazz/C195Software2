@@ -2,8 +2,8 @@ package model;
 
 public class Division {
 
-    public int divisionId;
-    public String divisionName;
+    private int divisionId;
+    private String divisionName;
 
     public Division(int divisionId, String divisionName){
         this.divisionId = divisionId;
