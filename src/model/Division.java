@@ -4,7 +4,7 @@ public class Division {
 
     private int divisionId;
     private String divisionName;
-
+    /** Class constructor. */
     public Division(int divisionId, String divisionName){
         this.divisionId = divisionId;
         this.divisionName = divisionName;

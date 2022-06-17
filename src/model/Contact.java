@@ -4,7 +4,7 @@ public class Contact {
     private int contactId;
     private String contactName;
     private String email;
-
+    /** Class constructor. */
     public Contact(int contactId, String contactName, String email) {
         this.contactId = contactId;
         this.contactName = contactName;

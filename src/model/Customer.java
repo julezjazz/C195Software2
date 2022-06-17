@@ -9,7 +9,7 @@ public class Customer {
     private String phone;
     private int divisionId;
     private int countryId;
-
+    /** Class constructor. */
     public void Customer(int customerId, String customerName, String address, String postalCode, String phone,
                          int divisionId, int countryId){
         this.customerId = customerId;
