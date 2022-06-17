@@ -1,5 +1,5 @@
 package model;
-/** Represents a contact. */
+/** Represents a contact person for appointments. */
 public class Contact {
     private int contactId;
     private String contactName;
