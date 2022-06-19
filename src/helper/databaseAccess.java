@@ -1,5 +1,5 @@
 package helper;
-/*
+
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +9,7 @@ import model.User;
 import java.sql.*;
 
 public class databaseAccess {
-
+//Need to go back in and redo this so that it doesn't store the password, etc
     String sql = "select * from users";
 
     PreparedStatement ps;
@@ -32,5 +32,5 @@ public class databaseAccess {
         }
 
     }
-} */
+}
 
