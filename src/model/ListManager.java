@@ -27,7 +27,6 @@ public class ListManager {
     /**Outputs list of all appointments. */
     public ObservableList<Appointment> getAllAppointments(){return allAppointments;}
 
-    /** Removes customer from list of customers. */
-    public boolean
+
 }
 
