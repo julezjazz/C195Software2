@@ -28,6 +28,9 @@ public abstract class JDBC {
         }
     }
 
+    public static Connection getConnection(){
+        return connection;
+    }
     public static void closeConnection() {
         try {
             connection.close();

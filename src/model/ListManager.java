@@ -22,9 +22,12 @@ public class ListManager {
     /** Adds new appointment to list of appointments. */
     public void addAppointment(Appointment newAppointment) {allAppointments.add(newAppointment);}
 
-    /** Outputs list of all customers */
+    /** Outputs list of all customers.*/
     public ObservableList<Customer> getAllCustomers(){return allCustomers;}
     /**Outputs list of all appointments. */
     public ObservableList<Appointment> getAllAppointments(){return allAppointments;}
+
+    /** Removes customer from list of customers. */
+    public boolean
 }
 
