@@ -1,5 +1,5 @@
 package helper;
-
+/*
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +24,7 @@ public class databaseAccess {
                 String userName = rs.getString("User_Name");
                 String password = rs.getString("Password");
                 User newUser = new User(userId, userName, password);
+                ListManager.allUsers.add(newUser);
             }
 
         } catch (SQLException throwables) {
@@ -31,5 +32,5 @@ public class databaseAccess {
         }
 
     }
-}
+} */
 

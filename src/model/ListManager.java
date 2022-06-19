@@ -13,7 +13,7 @@ public class ListManager {
     /** List for all objects representing first divisions of countries. */
     public ObservableList<Division> allDivisions = FXCollections.observableArrayList();
     /** List for all objects representing users. */
-    public ObservableList<User> allUsers = FXCollections.observableArrayList();
+    public static ObservableList<User> allUsers = FXCollections.observableArrayList();
     /** List for all objects representing contacts for appointments. */
     public ObservableList<Contact> allContacts = FXCollections.observableArrayList();
 
