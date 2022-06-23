@@ -1,8 +1,5 @@
-package helper;
+package dao;
 
-import helper.JDBC;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.ListManager;
 import model.User;
 
