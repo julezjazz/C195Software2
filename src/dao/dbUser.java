@@ -5,7 +5,7 @@ import model.User;
 
 import java.sql.*;
 
-public class databaseAccess {
+public class dbUser {
 //Need to go back in and redo this so that it doesn't store the password, etc
     String sql = "select * from users";
 
