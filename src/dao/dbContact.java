@@ -5,14 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Contact;
 import model.ListManager;
-import model.User;
+
 
 import java.sql.*;
 
 public class dbContact {
 
-    /** List for all objects representing contacts for appointments. */
-    public ObservableList<Contact> allContacts = FXCollections.observableArrayList();
 
     String sql = "select * from contacts";
 
@@ -26,15 +24,22 @@ public class dbContact {
             while (rs.next()) {
                 int contactId = rs.getInt("Contact_ID");
                 String contactName = rs.getString("Contact_Name");
+                // Do I need email? Can I just delete it from Contact class and from here?
                 String email = rs.getString("Email");
 
                 Contact newContact = new Contact(contactId, contactName, email);
-                allContacts.add(newContact);
+                ListManager.allContacts.add(newContact);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+    }
+// This doesn't work.
+    {
+        for (Contact contacts : ListManager.getAllContacts()) {
+            System.out.println(contacts.getContactName());
+        }
     }
 }

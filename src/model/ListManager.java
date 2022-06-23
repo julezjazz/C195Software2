@@ -14,7 +14,8 @@ public class ListManager {
     public ObservableList<Division> allDivisions = FXCollections.observableArrayList();
     /** List for all objects representing users. */
     public static ObservableList<User> allUsers = FXCollections.observableArrayList();
-
+    /** List for all objects representing contacts for appointments. */
+    public static ObservableList<Contact> allContacts = FXCollections.observableArrayList();
 
     /** Adds new customer to list of customers. */
     public void addCustomer(Customer newCustomer) {allCustomers.add(newCustomer);}
@@ -25,6 +26,9 @@ public class ListManager {
     public ObservableList<Customer> getAllCustomers(){return allCustomers;}
     /**Outputs list of all appointments. */
     public ObservableList<Appointment> getAllAppointments(){return allAppointments;}
+
+
+    public static ObservableList<Contact> getAllContacts(){return allContacts;}
 
 
 }
