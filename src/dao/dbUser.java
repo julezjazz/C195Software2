@@ -20,8 +20,8 @@ public class dbUser {
             while (rs.next()) {
                 int userId = rs.getInt("User_ID");
                 String userName = rs.getString("User_Name");
-                String password = rs.getString("Password");
-                User newUser = new User(userId, userName, password);
+
+                User newUser = new User(userId, userName);
                 ListManager.allUsers.add(newUser);
             }
 
