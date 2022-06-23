@@ -24,10 +24,7 @@ public class dbContact {
             while (rs.next()) {
                 int contactId = rs.getInt("Contact_ID");
                 String contactName = rs.getString("Contact_Name");
-                // Do I need email? Can I just delete it from Contact class and from here?
-                String email = rs.getString("Email");
-
-                Contact newContact = new Contact(contactId, contactName, email);
+                Contact newContact = new Contact(contactId, contactName);
                 ListManager.allContacts.add(newContact);
             }
 
@@ -37,9 +34,10 @@ public class dbContact {
 
     }
 // This doesn't work.
-    {
+   /* public static void printContacts(){
         for (Contact contacts : ListManager.getAllContacts()) {
             System.out.println(contacts.getContactName());
-        }
+            }
+        } */
     }
-}
+
