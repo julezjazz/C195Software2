@@ -7,28 +7,30 @@ import model.User;
 import java.sql.*;
 
 public class dbUser {
-//Need to go back in and redo this so that it doesn't store the password, etc
-    String sql = "select * from users";
 
-    PreparedStatement ps;
+    public static void populateUserList() {
+        String sql = "select * from users";
 
-    {
-        try {
-            ps = JDBC.getConnection().prepareStatement(sql);
+        PreparedStatement ps;
 
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int userId = rs.getInt("User_ID");
-                String userName = rs.getString("User_Name");
+        {
+            try {
+                ps = JDBC.getConnection().prepareStatement(sql);
 
-                User newUser = new User(userId, userName);
-                ListManager.allUsers.add(newUser);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int userId = rs.getInt("User_ID");
+                    String userName = rs.getString("User_Name");
+
+                    User newUser = new User(userId, userName);
+                    ListManager.allUsers.add(newUser);
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-
     }
 }
 
