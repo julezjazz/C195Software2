@@ -34,10 +34,10 @@ public class dbContact {
 
     }
 // This doesn't work.
-   /* public static void printContacts(){
+    public static void printContacts(){
         for (Contact contacts : ListManager.getAllContacts()) {
             System.out.println(contacts.getContactName());
             }
-        } */
+        }
     }
 
