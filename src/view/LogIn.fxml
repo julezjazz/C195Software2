@@ -9,9 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.LogIn">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogIn">
    <children>
       <GridPane layoutX="83.0" layoutY="150.0" prefHeight="100.0" prefWidth="334.0">
         <columnConstraints>
@@ -38,7 +36,7 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="logInButton" layoutX="83.0" layoutY="250.0" mnemonicParsing="false" onAction="#onLogInButton" text="Log In" />
+      <Button fx:id="logInBtn" layoutX="83.0" layoutY="250.0" mnemonicParsing="false" onAction="#onLogInBtn" text="Log In" />
       <Label layoutX="227.0" layoutY="254.0" text="Location" />
    </children>
 </AnchorPane>
