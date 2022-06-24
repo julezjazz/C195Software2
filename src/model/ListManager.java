@@ -1,5 +1,6 @@
 package model;
 
+import dao.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 /** Creates and manages lists for other class objects.*/
@@ -26,6 +27,10 @@ public class ListManager {
     public ObservableList<Customer> getAllCustomers(){return allCustomers;}
     /**Outputs list of all appointments. */
     public ObservableList<Appointment> getAllAppointments(){return allAppointments;}
+
+    public static ObservableList<User> getAllUsers(){
+        UserDao.populateUserList();
+        return allUsers;}
 
 
     public static ObservableList<Contact> getAllContacts(){return allContacts;}

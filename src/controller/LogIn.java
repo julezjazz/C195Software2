@@ -1,13 +1,21 @@
 package controller;
 
+import dao.UserDao;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import model.User;
+import model.ListManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
 public class LogIn {
-    /* TESTING - NEED TO FIX
-    dbUser.populateUserList();
-     public void onLogInBtn(ActionEvent actionEvent) {
-         for (User users : ListManager.allUsers) {
-             System.out.println(users.getUserName());
-         }
 
+    public TextField userNameTxt;
 
-    } */
+    public void onLogInBtn(ActionEvent actionEvent) {
+       /* //DELETE Testing  for (User users : ListManager.getAllUsers()) {
+           System.out.println(users.getUserName());
+        } */
+    }
 }
