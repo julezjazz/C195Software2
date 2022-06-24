@@ -6,7 +6,7 @@ import model.User;
 
 import java.sql.*;
 
-public class dbUser {
+public class UserDao {
 
     public static void populateUserList() {
         String sql = "select * from users";

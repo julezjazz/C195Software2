@@ -9,7 +9,7 @@ import model.ListManager;
 
 import java.sql.*;
 
-public class dbContact {
+public class ContactDao {
 
 
     String sql = "select * from contacts";

@@ -1,10 +1,5 @@
 package controller;
 
-import javafx.event.ActionEvent;
-import dao.dbUser;
-import model.ListManager;
-import model.User;
-
 public class LogIn {
     /* TESTING - NEED TO FIX
     dbUser.populateUserList();
