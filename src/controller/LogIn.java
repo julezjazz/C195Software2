@@ -21,6 +21,10 @@ public class LogIn {
     public String tempPassword;
 
     public void onLogInBtn(ActionEvent actionEvent) {
+        tempUsername = userNameTxt.getText();
+        tempPassword = passwordTxt.getText();
+
+
 
 
        /* //DELETE Testing  for (User users : ListManager.getAllUsers()) {

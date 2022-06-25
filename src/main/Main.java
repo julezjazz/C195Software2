@@ -27,9 +27,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.openConnection();
-      /*  ResourceBundle rb = ResourceBundle.getBundle("main/Lang", Locale.getDefault());
+        /* THIS SHOULD BE MOVED AND FIXED. DOES NOT WORK.
+        ResourceBundle rb = ResourceBundle.getBundle("main/Lang", Locale.getDefault());
         if(Locale.getDefault().getLanguage().equals("fr")){
-            System.out.println(rb.getString());
+            System.out.println(rb.getString("Log In"));
         } */
         launch(args);
         JDBC.closeConnection();
