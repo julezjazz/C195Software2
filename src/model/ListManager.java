@@ -35,24 +35,25 @@ public class ListManager {
 
     /** Outputs list of all users. */
     public static ObservableList<User> getAllUsers(){
-        //DELETE NEXT LINE?
+        allUsers.clear();
         UserDao.populateUserList();
         return allUsers;
     }
     /** Outputs list of all contacts. */
     public static ObservableList<Contact> getAllContacts(){
-        //DELETE NEXT LINE?
+        allContacts.clear();
         ContactDao.populateContactList();
         return allContacts;
     }
     /** Outputs list of all countries. */
     public static ObservableList<Country> getAllCountries() {
-        //DELETE NEXT LINE?
+        allCountries.clear();
         CountryDao.populateCountryList();
         return allCountries;
     }
     /** Outputs list of all divisions. */
     public static ObservableList<Division> getAllDivisions() {
+        allDivisions.clear();
       // DivisionDao.populateDivisionList();
         return allDivisions;
     }
