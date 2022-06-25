@@ -33,10 +33,10 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="passwordTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="logInBtn" layoutX="83.0" layoutY="250.0" mnemonicParsing="false" onAction="#onLogInBtn" text="Log In" />
-      <Label layoutX="227.0" layoutY="254.0" text="Location" />
+      <Label fx:id="locationLbl" layoutX="227.0" layoutY="254.0" text="Location" />
    </children>
 </AnchorPane>

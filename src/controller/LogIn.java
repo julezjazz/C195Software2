@@ -2,6 +2,8 @@ package controller;
 
 import dao.UserDao;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.*;
 import javafx.collections.FXCollections;
@@ -11,8 +13,16 @@ import javafx.collections.ObservableList;
 public class LogIn {
 
     public TextField userNameTxt;
+    public TextField passwordTxt;
+    public Button logInBtn;
+    public Label locationLbl;
+
+    public String tempUsername;
+    public String tempPassword;
 
     public void onLogInBtn(ActionEvent actionEvent) {
+
+
        /* //DELETE Testing  for (User users : ListManager.getAllUsers()) {
            System.out.println(users.getUserName());
         }

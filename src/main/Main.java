@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 
 /** This class creates an app that displays screens. */
 public class Main extends Application {
@@ -24,6 +27,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.openConnection();
+      /*  ResourceBundle rb = ResourceBundle.getBundle("main/Lang", Locale.getDefault());
+        if(Locale.getDefault().getLanguage().equals("fr")){
+            System.out.println(rb.getString());
+        } */
         launch(args);
         JDBC.closeConnection();
     }

@@ -9,7 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DivisionDao {
-   /* public static void populateDivisionList() {
+   /* LOOK INTO Foreign Key and see what is going wrong with this code
+    public static void populateDivisionList() {
 
         String sql = "select * from first-level divisions";
 
