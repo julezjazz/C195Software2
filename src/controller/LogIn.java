@@ -24,6 +24,8 @@ public class LogIn {
         tempUsername = userNameTxt.getText();
         tempPassword = passwordTxt.getText();
 
+        UserDao.verifyLogIn(tempUsername, tempPassword);
+
 
 
 
