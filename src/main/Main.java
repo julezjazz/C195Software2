@@ -1,5 +1,6 @@
 package main;
 
+import dao.ContactDao;
 import dao.UserDao;
 import helper.JDBC;
 import javafx.application.Application;
@@ -36,6 +37,7 @@ public class Main extends Application {
         }
         JDBC.openConnection();
         UserDao.populateUserList();
+        ContactDao.populateContactList();
         launch(args);
         JDBC.closeConnection();
     }

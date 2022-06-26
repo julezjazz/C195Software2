@@ -33,29 +33,29 @@ public class ListManager {
 
 
 
-    /** Outputs list of all users. */
-    public static ObservableList<User> getAllUsers(){
-        allUsers.clear();
-        UserDao.populateUserList();
-        return allUsers;
-    }
-    /** Outputs list of all contacts. */
-    public static ObservableList<Contact> getAllContacts(){
-        allContacts.clear();
-        ContactDao.populateContactList();
-        return allContacts;
-    }
-    /** Outputs list of all countries. */
-    public static ObservableList<Country> getAllCountries() {
-        allCountries.clear();
-        CountryDao.populateCountryList();
-        return allCountries;
-    }
-    /** Outputs list of all divisions. */
-    public static ObservableList<Division> getAllDivisions() {
-        allDivisions.clear();
+  //  /** Outputs list of all users. */
+    //public static ObservableList<User> getAllUsers(){
+      //  allUsers.clear();
+        //UserDao.populateUserList();
+        //return allUsers;
+    //}
+//    /** Outputs list of all contacts. */
+  //  public static ObservableList<Contact> getAllContacts(){
+    //    allContacts.clear();
+      //  ContactDao.populateContactList();
+        //return allContacts;
+    //}
+//    /** Outputs list of all countries. */
+  //  public static ObservableList<Country> getAllCountries() {
+    //    allCountries.clear();
+      //  CountryDao.populateCountryList();
+        //return allCountries;
+    //}
+//    /** Outputs list of all divisions. */
+  //  public static ObservableList<Division> getAllDivisions() {
+    //    allDivisions.clear();
       // DivisionDao.populateDivisionList();
-        return allDivisions;
-    }
+      //  return allDivisions;
+    //}
 }
 
