@@ -53,7 +53,7 @@ public class LogIn implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             userNameLbl.setText(Main.rb.getString("Username"));
-         //   logInBtn.setText(Main.rb.getString("Log In"));
+            logInBtn.setText(Main.rb.getString("Login"));
             passwordLbl.setText(Main.rb.getString("Password"));
 
 
