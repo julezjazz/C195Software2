@@ -1,5 +1,6 @@
 package main;
 
+import dao.UserDao;
 import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +9,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 
 /** This class creates an app that displays screens. */
 public class Main extends Application {
+    public static ResourceBundle rb;
 
 
     @Override
@@ -26,12 +29,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        //Locale.setDefault(Locale.CANADA);
+        try {rb = ResourceBundle.getBundle("main/Lang", Locale.getDefault());}
+        catch (MissingResourceException e){
+            System.out.println("No resource bundle available for " + Locale.getDefault().getDisplayCountry());
+        }
         JDBC.openConnection();
-        /* THIS SHOULD BE MOVED AND FIXED. DOES NOT WORK.
-        ResourceBundle rb = ResourceBundle.getBundle("main/Lang", Locale.getDefault());
-        if(Locale.getDefault().getLanguage().equals("fr")){
-            System.out.println(rb.getString("Log In"));
-        } */
+        UserDao.populateUserList();
         launch(args);
         JDBC.closeConnection();
     }

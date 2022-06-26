@@ -2,20 +2,27 @@ package controller;
 
 import dao.UserDao;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import main.Main;
 import model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LogIn {
+
+public class LogIn implements Initializable {
+
 
     public TextField userNameTxt;
     public TextField passwordTxt;
     public Button logInBtn;
     public Label locationLbl;
+    public Label userNameLbl;
 
     public String tempUsername;
     public String tempPassword;
@@ -24,7 +31,10 @@ public class LogIn {
         tempUsername = userNameTxt.getText();
         tempPassword = passwordTxt.getText();
 
-        UserDao.verifyLogIn(tempUsername, tempPassword);
+
+        // UserDao.verifyLogIn(tempUsername, tempPassword);
+
+        // DELETE test for variable System.out.println(tempUsername);
 
 
 
@@ -47,4 +57,12 @@ public class LogIn {
         } */
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            userNameLbl.setText(Main.rb.getString("Username"));
+        } catch (NullPointerException e) {
+
+        }
+    }
 }

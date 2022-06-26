@@ -23,7 +23,7 @@
         </rowConstraints>
          <children>
             <TextField fx:id="userNameTxt" GridPane.columnIndex="1" />
-            <Label text="Username">
+            <Label fx:id="userNameLbl" text="Username">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
