@@ -28,7 +28,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Password" GridPane.rowIndex="1">
+            <Label fx:id="passwordLbl" text="Password" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

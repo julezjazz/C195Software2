@@ -23,6 +23,7 @@ public class LogIn implements Initializable {
     public Button logInBtn;
     public Label locationLbl;
     public Label userNameLbl;
+    public Label passwordLbl;
 
     public String tempUsername;
     public String tempPassword;
@@ -33,25 +34,16 @@ public class LogIn implements Initializable {
 
 
         // UserDao.verifyLogIn(tempUsername, tempPassword);
-
         // DELETE test for variable System.out.println(tempUsername);
-
-
-
-
        /* //DELETE Testing  for (User users : ListManager.getAllUsers()) {
            System.out.println(users.getUserName());
         }
-
         for (Contact contacts : ListManager.getAllContacts()) {
             System.out.println(contacts.getContactName());
-
         }
-
         for (Country countries : ListManager.getAllCountries()) {
             System.out.println(countries.getCountryName());
         }
-
         for (Division division : ListManager.getAllDivisions()) {
             System.out.println(division.getDivisionName());
         } */
@@ -61,6 +53,11 @@ public class LogIn implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             userNameLbl.setText(Main.rb.getString("Username"));
+         //   logInBtn.setText(Main.rb.getString("Log In"));
+            passwordLbl.setText(Main.rb.getString("Password"));
+
+
+
         } catch (NullPointerException e) {
 
         }
