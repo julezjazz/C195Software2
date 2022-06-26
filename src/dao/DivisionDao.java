@@ -9,8 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DivisionDao {
-   /* LOOK INTO Foreign Key and see what is going wrong with this code
-    public static void populateDivisionList() {
+   // LOOK INTO Foreign Key and see what is going wrong with this code
+    //Probably need a join statement here or a where clause based on the country
+   /* public static void populateDivisionList() {
 
         String sql = "select * from first-level divisions";
 
@@ -34,5 +35,5 @@ public class DivisionDao {
             }
 
         }
-    }*/
+    } */
 }

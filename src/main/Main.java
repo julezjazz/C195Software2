@@ -1,6 +1,8 @@
 package main;
 
 import dao.ContactDao;
+import dao.CountryDao;
+import dao.DivisionDao;
 import dao.UserDao;
 import helper.JDBC;
 import javafx.application.Application;
@@ -9,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Contact;
+import model.Country;
+import model.Division;
 import model.ListManager;
 
 import java.util.Locale;
@@ -40,10 +44,16 @@ public class Main extends Application {
         JDBC.openConnection();
         UserDao.populateUserList();
         ContactDao.populateContactList();
+        CountryDao.populateCountryList();
+        //DivisionDao.populateDivisionList();
         /* DELETE Test Data
         for (Contact contact : ListManager.allContacts){
             System.out.println(contact.getContactName());
         } */
+        // DELETE Test Data
+       /* for (Country country : ListManager.allCountries){
+            System.out.println(country.getCountryName());
+        }*/
         launch(args);
         JDBC.closeConnection();
     }
