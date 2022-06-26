@@ -33,8 +33,15 @@ public class LogIn implements Initializable {
         tempUsername = userNameTxt.getText();
         tempPassword = passwordTxt.getText();
 
+        //Add code here to have an error message present if false
+        //Delete test sout statement
+       if (UserDao.verifyPassword(tempUsername, tempPassword) == true) {
+           System.out.println("YOU SOLVED IT");
+       }
 
-        // UserDao.verifyLogIn(tempUsername, tempPassword);
+
+
+
         // DELETE test for variable System.out.println(tempUsername);
        /* //DELETE Testing  for (User users : ListManager.getAllUsers()) {
            System.out.println(users.getUserName());

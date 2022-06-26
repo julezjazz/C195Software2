@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Contact;
-import model.Country;
-import model.Division;
-import model.ListManager;
+import model.*;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -46,8 +43,13 @@ public class Main extends Application {
         ContactDao.populateContactList();
         CountryDao.populateCountryList();
         //DivisionDao.populateDivisionList();
-        /* DELETE Test Data
-        for (Contact contact : ListManager.allContacts){
+        // DELETE Test Data
+       /* for (User user : ListManager.allUsers) {
+            System.out.println(user.getUserName());
+            System.out.println(user.getPassword());
+        } */
+
+        /* for (Contact contact : ListManager.allContacts){
             System.out.println(contact.getContactName());
         } */
         // DELETE Test Data
