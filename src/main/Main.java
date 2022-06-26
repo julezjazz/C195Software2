@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Contact;
+import model.ListManager;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -38,6 +40,10 @@ public class Main extends Application {
         JDBC.openConnection();
         UserDao.populateUserList();
         ContactDao.populateContactList();
+        /* DELETE Test Data
+        for (Contact contact : ListManager.allContacts){
+            System.out.println(contact.getContactName());
+        } */
         launch(args);
         JDBC.closeConnection();
     }
