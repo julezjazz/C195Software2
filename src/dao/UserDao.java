@@ -34,7 +34,7 @@ public class UserDao {
         }
     }
 
-    //Delete sout test statements
+    //DELETE sout test statements
     public static boolean verifyPassword(String username, String password) {
         for (User user : ListManager.allUsers) {
             if (user.getUserName().equals(username)){

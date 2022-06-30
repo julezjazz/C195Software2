@@ -42,6 +42,8 @@ public class LogIn implements Initializable {
 
 
 
+
+
         // DELETE test for variable System.out.println(tempUsername);
        /* //DELETE Testing  for (User users : ListManager.getAllUsers()) {
            System.out.println(users.getUserName());
