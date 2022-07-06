@@ -34,9 +34,11 @@ public class LogIn implements Initializable {
         tempPassword = passwordTxt.getText();
 
         //Add code here to have an error message present if false
-        //Delete test sout statement
+        //Delete test sout statements
        if (UserDao.verifyPassword(tempUsername, tempPassword) == true) {
            System.out.println("YOU SOLVED IT");
+       } else {
+           System.out.println("Username or Password is incorrect");
        }
 
 
