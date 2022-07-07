@@ -39,7 +39,7 @@
       </GridPane>
       <Button fx:id="logInBtn" layoutX="83.0" layoutY="250.0" mnemonicParsing="false" onAction="#onLogInBtn" text="Log In" />
       <Label fx:id="locationLbl" layoutX="227.0" layoutY="254.0" text="Location" />
-      <Label layoutX="83.0" layoutY="87.0">
+      <Label fx:id="errorLbl" layoutX="83.0" layoutY="87.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

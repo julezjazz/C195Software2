@@ -25,6 +25,7 @@ public class LogIn implements Initializable {
     public Label locationLbl;
     public Label userNameLbl;
     public Label passwordLbl;
+    public Label errorLbl;
 
     public String tempUsername;
     public String tempPassword;
@@ -38,7 +39,7 @@ public class LogIn implements Initializable {
        if (UserDao.verifyPassword(tempUsername, tempPassword) == true) {
            System.out.println("YOU SOLVED IT");
        } else {
-           System.out.println("Username or Password is incorrect");
+           errorLbl.setText("Error: The username or password you entered is incorrect. ");
        }
 
 
