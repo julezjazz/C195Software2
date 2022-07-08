@@ -39,12 +39,10 @@ public class UserDao {
         for (User user : ListManager.allUsers) {
             if (user.getUserName().equals(username)){
                 if (user.getPassword().equals(password)) {
-                    System.out.println("SUCCESS");
                     return true;
                 }
             }
         }
-        System.out.println("FAIL");
         return false;
     }
 }

@@ -39,7 +39,6 @@ public class LogIn implements Initializable {
             System.out.println("YOU SOLVED IT");
         } else {
             errorLbl.setText(Main.rb.getString("ErrorMessage"));
-            //errorLbl.setText("Error: The username or password you entered is incorrect. ");
         }
     }
 
