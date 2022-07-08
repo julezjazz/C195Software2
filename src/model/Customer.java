@@ -10,7 +10,7 @@ public class Customer {
     private int divisionId;
 
     /** Class constructor. */
-    public void Customer(int customerId, String customerName, String address, String postalCode, String phone,
+    public Customer(int customerId, String customerName, String address, String postalCode, String phone,
                          int divisionId){
         this.customerId = customerId;
         this.customerName = customerName;
