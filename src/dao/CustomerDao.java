@@ -7,6 +7,7 @@ import model.ListManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CustomerDao {
     public static void populateCustomerList() {
@@ -19,6 +20,7 @@ public class CustomerDao {
                 ps = JDBC.getConnection().prepareStatement(sql);
 
                 ResultSet rs = ps.executeQuery();
+                ListManager.allCustomers.clear();
                 while (rs.next()) {
                     int customerId = rs.getInt("Customer_ID");
                     String customerName = rs.getString("Customer_Name");

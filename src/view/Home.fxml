@@ -43,15 +43,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutY="10.0" prefHeight="485.0" prefWidth="900.0">
+                        <TableView fx:id="customersTable" layoutY="10.0" prefHeight="485.0" prefWidth="900.0">
                            <columns>
-                              <TableColumn prefWidth="84.00000154972076" text="Customer ID" />
-                              <TableColumn prefWidth="116.80001068115234" text="Name" />
-                              <TableColumn prefWidth="242.4000244140625" text="Address" />
-                              <TableColumn prefWidth="112.80001831054688" text="State/Province" />
-                              <TableColumn prefWidth="95.199951171875" text="Postal Code" />
-                              <TableColumn prefWidth="97.5999755859375" text="Country" />
-                              <TableColumn prefWidth="158.4000244140625" text="Phone Number" />
+                              <TableColumn fx:id="customerCol" prefWidth="84.00000154972076" text="Customer ID" />
+                              <TableColumn fx:id="nameCol" prefWidth="116.80001068115234" text="Name" />
+                              <TableColumn fx:id="addressCol" prefWidth="242.4000244140625" text="Address" />
+                              <TableColumn fx:id="stateCol" prefWidth="112.80001831054688" text="State/Province" />
+                              <TableColumn fx:id="postalCol" prefWidth="95.199951171875" text="Postal Code" />
+                              <TableColumn fx:id="countryCol" prefWidth="97.5999755859375" text="Country" />
+                              <TableColumn fx:id="phoneCol" prefWidth="158.4000244140625" text="Phone Number" />
                            </columns>
                         </TableView>
                         <Button layoutX="14.0" layoutY="517.0" mnemonicParsing="false" text="Delete Customer" />
