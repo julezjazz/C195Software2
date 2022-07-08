@@ -34,14 +34,14 @@ public class LogIn implements Initializable {
         tempUsername = userNameTxt.getText();
         tempPassword = passwordTxt.getText();
 
-        //Add code here to have an error message present if false
         //Delete test sout statements
-       if (UserDao.verifyPassword(tempUsername, tempPassword) == true) {
-           System.out.println("YOU SOLVED IT");
-       } else {
-           errorLbl.setText("Error: The username or password you entered is incorrect. ");
-       }
-
+        if (UserDao.verifyPassword(tempUsername, tempPassword) == true) {
+            System.out.println("YOU SOLVED IT");
+        } else {
+            errorLbl.setText(Main.rb.getString("ErrorMessage"));
+            //errorLbl.setText("Error: The username or password you entered is incorrect. ");
+        }
+    }
 
 
 
@@ -60,7 +60,7 @@ public class LogIn implements Initializable {
         for (Division division : ListManager.getAllDivisions()) {
             System.out.println(division.getDivisionName());
         } */
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,6 +69,7 @@ public class LogIn implements Initializable {
             logInBtn.setText(Main.rb.getString("Login"));
             passwordLbl.setText(Main.rb.getString("Password"));
             locationLbl.setText(Locale.getDefault().getDisplayCountry());
+
 
 
 
