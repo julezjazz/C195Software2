@@ -30,8 +30,8 @@
                               <TableColumn prefWidth="131.2000732421875" text="User ID" />
                           </columns>
                         </TableView>
-                        <Button layoutX="294.0" layoutY="500.0" mnemonicParsing="false" text="Add Appointment" />
-                        <Button layoutX="155.0" layoutY="500.0" mnemonicParsing="false" text="Modify Appointment" />
+                        <Button layoutX="294.0" layoutY="500.0" mnemonicParsing="false" onAction="#onAddAppointmentBtn" text="Add Appointment" />
+                        <Button layoutX="155.0" layoutY="500.0" mnemonicParsing="false" onAction="#onModAppointmentBtn" text="Modify Appointment" />
                         <Button layoutX="14.0" layoutY="500.0" mnemonicParsing="false" text="Delete Appointment" />
                         <RadioButton layoutX="40.0" layoutY="24.0" mnemonicParsing="false" text="Week View" />
                         <RadioButton layoutX="132.0" layoutY="24.0" mnemonicParsing="false" text="Month View" />
@@ -55,8 +55,8 @@
                            </columns>
                         </TableView>
                         <Button layoutX="14.0" layoutY="517.0" mnemonicParsing="false" text="Delete Customer" />
-                        <Button layoutX="129.0" layoutY="517.0" mnemonicParsing="false" text="Add Customer" />
-                        <Button layoutX="231.0" layoutY="517.0" mnemonicParsing="false" text="Modify Customer" />
+                        <Button layoutX="129.0" layoutY="517.0" mnemonicParsing="false" onAction="#onAddCustomerBtn" text="Add Customer" />
+                        <Button layoutX="231.0" layoutY="517.0" mnemonicParsing="false" onAction="#onModCustomerBtn" text="Modify Customer" />
                      </children></AnchorPane>
             </content>
           </Tab>

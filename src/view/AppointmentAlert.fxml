@@ -31,7 +31,7 @@
                   <Insets />
                </VBox.margin>
             </TableView>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Okay" textAlignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onOkayBtn" text="Okay" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
