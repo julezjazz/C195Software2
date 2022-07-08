@@ -63,7 +63,7 @@ public class LogIn implements Initializable {
 
 
 
-
+    //I'M UNSURE of what should be done with this catch, since the text should not be null, as it's not being provided by the user.
         } catch (NullPointerException e) {
 
         }
