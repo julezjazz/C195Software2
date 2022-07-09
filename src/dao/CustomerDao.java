@@ -1,16 +1,20 @@
 package dao;
 
 import helper.JDBC;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Customer;
-import model.ListManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 public class CustomerDao {
-    public static void populateCustomerList() {
+
+    /** List for all objects representing customers. */
+    public static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+
+    public static ObservableList<Customer> populateCustomerList() {
         String sql = "select * from customers";
 
         PreparedStatement ps;
@@ -20,7 +24,7 @@ public class CustomerDao {
                 ps = JDBC.getConnection().prepareStatement(sql);
 
                 ResultSet rs = ps.executeQuery();
-                ListManager.allCustomers.clear();
+                allCustomers.clear();
                 while (rs.next()) {
                     int customerId = rs.getInt("Customer_ID");
                     String customerName = rs.getString("Customer_Name");
@@ -29,13 +33,15 @@ public class CustomerDao {
                     String phone = rs.getString("Phone");
                     int divisionId = rs.getInt("Division_ID");
                     Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId);
-                    ListManager.allCustomers.add(newCustomer);
+                    allCustomers.add(newCustomer);
                 }
+                return allCustomers;
 
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
 
         }
+        return null;
     }
 }

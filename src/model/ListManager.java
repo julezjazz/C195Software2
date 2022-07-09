@@ -8,8 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 /** Creates and manages lists for other class objects.*/
 public class ListManager {
-    /** List for all objects representing customers. */
-   public static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+
     ///** List for all objects representing appointments. */
     //public ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
     /** List for all objects representing countries. */
