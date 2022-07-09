@@ -1,9 +1,6 @@
 package main;
 
-import dao.ContactDao;
-import dao.CountryDao;
-import dao.DivisionDao;
-import dao.UserDao;
+import dao.*;
 import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +39,7 @@ public class Main extends Application {
         UserDao.populateUserList();
         ContactDao.populateContactList();
         CountryDao.populateCountryList();
+
         //DivisionDao.populateDivisionList();
         // DELETE Test Data
        /* for (User user : ListManager.allUsers) {

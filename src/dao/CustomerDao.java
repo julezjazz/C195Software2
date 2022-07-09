@@ -14,7 +14,8 @@ public class CustomerDao {
     /** List for all objects representing customers. */
     public static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
-    public static ObservableList<Customer> populateCustomerList() {
+    public static ObservableList<Customer> populateCustomerList(){
+    //public static void populateCustomerList(){
         String sql = "select * from customers";
 
         PreparedStatement ps;
@@ -34,7 +35,10 @@ public class CustomerDao {
                     int divisionId = rs.getInt("Division_ID");
                     Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId);
                     allCustomers.add(newCustomer);
-                }
+                } //DELETE TEST LOOP BELOW
+               // for(Customer customer : allCustomers) {
+                 //   System.out.println(customer.getCustomerName());
+                //}
                 return allCustomers;
 
             } catch (SQLException throwables) {

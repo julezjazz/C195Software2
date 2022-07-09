@@ -1,5 +1,6 @@
 package controller;
 
+import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,8 +10,9 @@ import javafx.scene.Scene;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.ListManager;
+import dao.CustomerDao;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +27,6 @@ public class Home implements Initializable {
     public TableColumn countryCol;
     public TableColumn phoneCol;
 
-    //???? I TRIED TO CALL CUSTOMERDAO.POPULATECUSTOMERLIST HERE BUT IT DID NOT WORK
 
     public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyAppointment.fxml"));
@@ -67,6 +68,16 @@ public class Home implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customersTable.setItems(CustomerDao.populateCustomerList());
+        //CustomerDao.populateCustomerList();
+        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
 
     }
 }
