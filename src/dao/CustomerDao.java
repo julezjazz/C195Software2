@@ -16,7 +16,7 @@ public class CustomerDao {
 
     public static ObservableList<Customer> populateCustomerList(){
     //public static void populateCustomerList(){
-        String sql = "select * from customers";
+        String sql = "select * from customers left join first_level_divisions on customers.division_id = first_level_divisions.division_id";
 
         PreparedStatement ps;
 
@@ -33,7 +33,8 @@ public class CustomerDao {
                     String postalCode = rs.getString("Postal_Code");
                     String phone = rs.getString("Phone");
                     int divisionId = rs.getInt("Division_ID");
-                    Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId);
+                    String division = rs.getString("Division");
+                    Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId, division);
                     allCustomers.add(newCustomer);
                 } //DELETE TEST LOOP BELOW
                // for(Customer customer : allCustomers) {

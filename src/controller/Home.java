@@ -24,7 +24,6 @@ public class Home implements Initializable {
     public TableColumn addressCol;
     public TableColumn stateCol;
     public TableColumn postalCol;
-    public TableColumn countryCol;
     public TableColumn phoneCol;
 
 
@@ -73,9 +72,8 @@ public class Home implements Initializable {
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        stateCol.setCellValueFactory(new PropertyValueFactory<>("divisionId"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        countryCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
 

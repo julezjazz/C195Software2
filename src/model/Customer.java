@@ -8,16 +8,18 @@ public class Customer {
     private String postalCode;
     private String phone;
     private int divisionId;
+    private String division;
 
     /** Class constructor. */
     public Customer(int customerId, String customerName, String address, String postalCode, String phone,
-                         int divisionId){
+                         int divisionId, String division){
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
         this.divisionId = divisionId;
+        this.division = division;
     }
 
     public void setCustomerId(int customerId) {
@@ -44,6 +46,10 @@ public class Customer {
         this.divisionId = divisionId;
     }
 
+    public void setDivision(String division) {
+        this.division = division;
+    }
+
     public int getCustomerId() {
         return customerId;
     }
@@ -66,5 +72,9 @@ public class Customer {
 
     public int getDivisionId() {
         return divisionId;
+    }
+
+    public String getDivision() {
+        return division;
     }
 }
