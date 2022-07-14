@@ -41,6 +41,7 @@ public class AppointmentDao {
                             startDateTime, endDateTime, customerId, userId, contactName);
                     allAppointments.add(newAppointment);
                 }
+
                 return allAppointments;
 
             } catch (SQLException throwables) {

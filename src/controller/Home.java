@@ -90,19 +90,17 @@ public class Home implements Initializable {
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        /*
-
         appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTimeDate"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTimeDate"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId")); */
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
 
 
