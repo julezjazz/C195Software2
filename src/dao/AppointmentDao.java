@@ -14,7 +14,7 @@ public class AppointmentDao {
     public static ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
 
     public static ObservableList<Appointment> populateAppointmentList(){
-        String sql = "select * from client_schedule.appointments left join client_schedule.contacts" +
+        String sql = "select * from appointments left join contacts " +
                 "on appointments.contact_id = contacts.contact_id";
 
         PreparedStatement ps;
@@ -36,9 +36,9 @@ public class AppointmentDao {
                     String endDateTime = rs.getString("End");
                     int customerId = rs.getInt("Customer_ID");
                     int userId = rs.getInt("User_ID");
-                    String contact = rs.getString("Contact");
+                    String contactName = rs.getString("Contact_Name");
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
-                            startDateTime, endDateTime, customerId, userId, contact);
+                            startDateTime, endDateTime, customerId, userId, contactName);
                     allAppointments.add(newAppointment);
                 }
                 return allAppointments;
