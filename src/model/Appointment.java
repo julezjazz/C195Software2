@@ -10,10 +10,10 @@ public class Appointment {
     private String endDateTime;
     private int customerId;
     private int userId;
-    private int contactId;
+    private String contact;
 /** Class constructor. */
     public Appointment(int appointmentId, String title, String description, String location, String type,
-                       String startDateTime, String endDateTime, int customerId, int userId, int contactId) {
+                       String startDateTime, String endDateTime, int customerId, int userId, String contact) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -23,7 +23,7 @@ public class Appointment {
         this.endDateTime = endDateTime;
         this.customerId = customerId;
         this.userId = userId;
-        this.contactId = contactId;
+        this.contact = contact;
     }
 /** Setter for appointment ID. */
     public void setAppointmentId(int appointmentId) {
@@ -62,8 +62,8 @@ public class Appointment {
         this.userId = userId;
     }
     /** Setter for appointment contact ID. */
-    public void setContactId(int contactId) {
-        this.contactId = contactId;
+    public void setContactId(String contact) {
+        this.contact = contact;
     }
     /** Getter for appointment ID. */
     public int getAppointmentId() {
@@ -102,7 +102,7 @@ public class Appointment {
         return userId;
     }
     /** Getter for appointment contact ID. */
-    public int getContactId() {
-        return contactId;
+    public String getContactId() {
+        return contact;
     }
 }
