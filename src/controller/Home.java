@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Home implements Initializable {
+   //Customers Tab
     public TableView customersTable;
     public TableColumn customerCol;
     public TableColumn nameCol;
@@ -25,6 +26,19 @@ public class Home implements Initializable {
     public TableColumn stateCol;
     public TableColumn postalCol;
     public TableColumn phoneCol;
+    //Appointments Tab
+    public TableView appointmentsTable;
+    public TableColumn appointmentIdCol;
+    public TableColumn titleCol;
+    public TableColumn descriptionCol;
+    public TableColumn locationCol;
+    public TableColumn contactCol;
+    public TableColumn typeCol;
+    public TableColumn startTimeCol;
+    public TableColumn endTimeCol;
+    public TableColumn customerIdCol;
+    public TableColumn userIdCol;
+
 
 
     public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
@@ -68,13 +82,14 @@ public class Home implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customersTable.setItems(CustomerDao.populateCustomerList());
-        //CustomerDao.populateCustomerList();
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+
 
 
     }

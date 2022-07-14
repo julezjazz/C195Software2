@@ -16,7 +16,8 @@ public class CustomerDao {
 
     public static ObservableList<Customer> populateCustomerList(){
     //public static void populateCustomerList(){
-        String sql = "select * from customers left join first_level_divisions on customers.division_id = first_level_divisions.division_id";
+        String sql = "select * from customers left join first_level_divisions on customers.division_id = " +
+                "first_level_divisions.division_id";
 
         PreparedStatement ps;
 
