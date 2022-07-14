@@ -37,10 +37,7 @@ public class CustomerDao {
                     String division = rs.getString("Division");
                     Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId, division);
                     allCustomers.add(newCustomer);
-                } //DELETE TEST LOOP BELOW
-               // for(Customer customer : allCustomers) {
-                 //   System.out.println(customer.getCustomerName());
-                //}
+                }
                 return allCustomers;
 
             } catch (SQLException throwables) {

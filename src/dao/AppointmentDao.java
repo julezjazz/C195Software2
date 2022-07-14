@@ -41,10 +41,7 @@ public class AppointmentDao {
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
                             startDateTime, endDateTime, customerId, userId, contact);
                     allAppointments.add(newAppointment);
-                } //DELETE TEST LOOP BELOW
-                // for(Customer customer : allCustomers) {
-                //   System.out.println(customer.getCustomerName());
-                //}
+                }
                 return allAppointments;
 
             } catch (SQLException throwables) {
