@@ -8,6 +8,11 @@ import model.Appointment;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AppointmentDao {
 
@@ -40,6 +45,17 @@ public class AppointmentDao {
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
                             startDateTime, endDateTime, customerId, userId, contactName);
                     allAppointments.add(newAppointment);
+                    //DELETE BELOW SOUT
+                    ZoneId utcZi = ZoneId.of("UTC");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    ZonedDateTime appointmentStartZdt = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZi));
+                   // LocalDateTime appointmentLdt = LocalDateTime.parse(startDateTime, formatter);
+                   // System.out.println(appointmentStartZdt);
+                    System.out.println(appointmentStartZdt);
+                    System.out.println(appointmentStartZdt.toLocalDate());
+                    System.out.println(appointmentStartZdt.toLocalTime());
+                   // ZoneId localZid = ZoneId.systemDefault();
+                    // ZonedDateTime localZdt = ZonedDateTime.ofInstant(appointmentLdt.toInstant(), localZid);
                 }
 
                 return allAppointments;
