@@ -6,21 +6,26 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private String startDateTime;
-    private String endDateTime;
+    private String startDate;
+    private String startTime;
+    private String endDate;
+    private String endTime;
     private int customerId;
     private int userId;
     private String contactName;
 /** Class constructor. */
     public Appointment(int appointmentId, String title, String description, String location, String type,
-                       String startDateTime, String endDateTime, int customerId, int userId, String contactName) {
+                       String startDate, String startTime, String endDate, String endTime, int customerId,
+                       int userId, String contactName) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
         this.type = type;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
         this.customerId = customerId;
         this.userId = userId;
         this.contactName = contactName;
@@ -45,14 +50,21 @@ public class Appointment {
     public void setType(String type) {
         this.type = type;
     }
-    /** Setter for appointment start date and start time. */
-    public void setStartDateTime(String startDateTime) {
-        this.startDateTime = startDateTime;
+    /** Setter for appointment start date. */
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
-    /** Setter for appointment end date and end time. */
-    public void setEndDateTime(String endDateTime) {
-        this.endDateTime = endDateTime;
+    /** Setter for appointment start time. */
+    public void setStartTime(String startTime) {this.startTime = startTime;}
+    /** Setter for appointment end date. */
+    public void setEndDate(String endDateTime) {
+        this.endDate = endDate;
     }
+    /** Setter for appointment end time */
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     /** Setter for customer ID. */
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
@@ -85,14 +97,23 @@ public class Appointment {
     public String getType() {
         return type;
     }
-    /** Getter for appointment start time and start date. */
-    public String getStartDateTime() {
-        return startDateTime;
+    /** Getter for appointment start date. */
+    public String getStartDate() {
+        return startDate;
+    }
+    /** Getter for appointment start time. */
+    public String getStartTime() {
+        return startTime;
     }
     /** Getter for appointment end time and end date. */
-    public String getEndDateTime() {
-        return endDateTime;
+    public String getEndDate() {
+        return endDate;
     }
+    /** Getter for appointment end time. */
+    public String getEndTime() {
+        return endTime;
+    }
+
     /** Getter for customer ID. */
     public int getCustomerId() {
         return customerId;

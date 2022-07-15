@@ -42,35 +42,38 @@ public class AppointmentDao {
                     int customerId = rs.getInt("Customer_ID");
                     int userId = rs.getInt("User_ID");
                     String contactName = rs.getString("Contact_Name");
-                    Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
-                            startDateTime, endDateTime, customerId, userId, contactName);
-                    allAppointments.add(newAppointment);
-                    //DELETE BELOW SOUT
+
                     ZoneId utcZi = ZoneId.of("UTC");
                     ZoneId userZi = ZoneId.systemDefault();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
                     ZonedDateTime appointmentStartZdt = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZi));
 
-                    System.out.println(appointmentStartZdt);
-
                     LocalDateTime appointmentStartLdt = appointmentStartZdt.toLocalDateTime();
                     ZonedDateTime utcStartZdt = ZonedDateTime.of(appointmentStartLdt, utcZi);
                     appointmentStartZdt = ZonedDateTime.ofInstant(utcStartZdt.toInstant(), userZi);
-                    //appointmentStartZdt = ZonedDateTime.ofInstant(appointmentStartLdt.toInstant(), userZi);
-                   // LocalDateTime appointmentLdt = LocalDateTime.parse(startDateTime, formatter);
-                   // System.out.println(appointmentStartZdt);
-                   // System.out.println(appointmentStartZdt);
-                  //  System.out.println(appointmentStartZdt.toLocalDate());
-                    //System.out.println(appointmentStartZdt.toLocalTime());
-                   // System.out.println(appointmentStartLdt);
-                    System.out.println(appointmentStartZdt);
-                    System.out.println(appointmentStartZdt.toLocalTime());
 
-                    //FAIL System.out.println(finalStartZdt);
-                  //FAIL  System.out.println(finalStartZdt.toLocalTime());
-                   // ZoneId localZid = ZoneId.systemDefault();
-                    // ZonedDateTime localZdt = ZonedDateTime.ofInstant(appointmentLdt.toInstant(), localZid);
+                    String startDate = appointmentStartZdt.toLocalDate().toString();
+                    String startTime = appointmentStartZdt.toLocalTime().toString();
+
+
+                    ZonedDateTime appointmentEndZdt = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZi));
+
+
+                    LocalDateTime appointmentEndLdt = appointmentEndZdt.toLocalDateTime();
+                    ZonedDateTime utcEndZdt = ZonedDateTime.of(appointmentEndLdt, utcZi);
+                    appointmentEndZdt = ZonedDateTime.ofInstant(utcEndZdt.toInstant(), userZi);
+
+                    String endDate = appointmentEndZdt.toLocalDate().toString();
+                    String endTime = appointmentEndZdt.toLocalTime().toString();
+
+
+
+                    Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
+                            startDate, startTime, endDate, endTime, customerId, userId, contactName);
+                    allAppointments.add(newAppointment);
+
+
                 }
 
                 return allAppointments;
