@@ -47,13 +47,28 @@ public class AppointmentDao {
                     allAppointments.add(newAppointment);
                     //DELETE BELOW SOUT
                     ZoneId utcZi = ZoneId.of("UTC");
+                    ZoneId userZi = ZoneId.systemDefault();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
                     ZonedDateTime appointmentStartZdt = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZi));
+
+                    System.out.println(appointmentStartZdt);
+
+                    LocalDateTime appointmentStartLdt = appointmentStartZdt.toLocalDateTime();
+                    ZonedDateTime utcStartZdt = ZonedDateTime.of(appointmentStartLdt, utcZi);
+                    appointmentStartZdt = ZonedDateTime.ofInstant(utcStartZdt.toInstant(), userZi);
+                    //appointmentStartZdt = ZonedDateTime.ofInstant(appointmentStartLdt.toInstant(), userZi);
                    // LocalDateTime appointmentLdt = LocalDateTime.parse(startDateTime, formatter);
                    // System.out.println(appointmentStartZdt);
+                   // System.out.println(appointmentStartZdt);
+                  //  System.out.println(appointmentStartZdt.toLocalDate());
+                    //System.out.println(appointmentStartZdt.toLocalTime());
+                   // System.out.println(appointmentStartLdt);
                     System.out.println(appointmentStartZdt);
-                    System.out.println(appointmentStartZdt.toLocalDate());
                     System.out.println(appointmentStartZdt.toLocalTime());
+
+                    //FAIL System.out.println(finalStartZdt);
+                  //FAIL  System.out.println(finalStartZdt.toLocalTime());
                    // ZoneId localZid = ZoneId.systemDefault();
                     // ZonedDateTime localZdt = ZonedDateTime.ofInstant(appointmentLdt.toInstant(), localZid);
                 }
