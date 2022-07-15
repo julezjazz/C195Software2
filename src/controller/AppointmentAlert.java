@@ -20,7 +20,7 @@ public class AppointmentAlert implements Initializable {
     public void onOkayBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root, 1000, 600);
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();

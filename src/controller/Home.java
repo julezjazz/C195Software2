@@ -35,7 +35,9 @@ public class Home implements Initializable {
     public TableColumn locationCol;
     public TableColumn contactCol;
     public TableColumn typeCol;
+    public TableColumn startDateCol;
     public TableColumn startTimeCol;
+    public TableColumn endDateCol;
     public TableColumn endTimeCol;
     public TableColumn customerIdCol;
     public TableColumn userIdCol;
@@ -97,8 +99,10 @@ public class Home implements Initializable {
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
 

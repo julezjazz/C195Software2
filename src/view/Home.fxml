@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home">
    <children>
-      <TabPane prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab closable="false" text="Appointments">
             <content>
@@ -19,15 +19,17 @@
                         <TableView fx:id="appointmentsTable" prefHeight="445.0" prefWidth="900.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
                           <columns>
                             <TableColumn fx:id="appointmentIdCol" prefWidth="99.20001375675201" text="Appointment ID" />
-                            <TableColumn fx:id="titleCol" prefWidth="51.199974060058594" text="Title" />
-                              <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="Description" />
+                            <TableColumn fx:id="titleCol" prefWidth="74.0" text="Title" />
+                              <TableColumn fx:id="descriptionCol" text="Description" />
                               <TableColumn fx:id="locationCol" prefWidth="75.0" text="Location" />
-                              <TableColumn fx:id="contactCol" prefWidth="75.0" text="Contact" />
-                              <TableColumn fx:id="typeCol" prefWidth="75.0" text="Type" />
-                              <TableColumn fx:id="startTimeCol" prefWidth="115.99996948242188" text="Start Date &amp; Time" />
-                              <TableColumn fx:id="endTimeCol" prefWidth="106.39996337890625" text="End Date &amp; Time" />
-                              <TableColumn fx:id="customerIdCol" minWidth="4.0" prefWidth="92.00006103515625" text="Customer ID" />
-                              <TableColumn fx:id="userIdCol" prefWidth="131.2000732421875" text="User ID" />
+                              <TableColumn fx:id="contactCol" prefWidth="99.0" text="Contact" />
+                              <TableColumn fx:id="typeCol" prefWidth="108.0" text="Type" />
+                              <TableColumn fx:id="startDateCol" prefWidth="81.0" text="Start Date" />
+                              <TableColumn fx:id="startTimeCol" prefWidth="84.0" text="Start Time" />
+                              <TableColumn fx:id="endDateCol" prefWidth="76.0" text="End Date" />
+                              <TableColumn fx:id="endTimeCol" prefWidth="68.0" text="End Time" />
+                              <TableColumn fx:id="customerIdCol" minWidth="4.0" prefWidth="95.0" text="Customer ID" />
+                              <TableColumn fx:id="userIdCol" prefWidth="59.0" text="User ID" />
                           </columns>
                         </TableView>
                         <Button layoutX="294.0" layoutY="500.0" mnemonicParsing="false" onAction="#onAddAppointmentBtn" text="Add Appointment" />
