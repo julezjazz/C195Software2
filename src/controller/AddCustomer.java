@@ -66,18 +66,7 @@ public class AddCustomer implements Initializable {
             }
         }
 
-        int rowsAffected = CustomerDao.insert(customerName, address, postalCode, phone, divisionId);
-
-        if(rowsAffected > 0){
-            System.out.println("insert successful");
-        }
-        else{
-            System.out.println("Insert failed");
-        }
-
-
-
-
+        CustomerDao.insert(customerName, address, postalCode, phone, divisionId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

@@ -47,7 +47,7 @@ public class CustomerDao {
         return null;
     }
 
-     public static int insert(String customerName, String address, String postalCode, String phone,
+     public static void insert(String customerName, String address, String postalCode, String phone,
                              int divisionId) throws SQLException {
         String sql = "insert into customers (customer_name, address, postal_code, phone, division_id) values(?, ?, ?, " +
                 "?, ?)";
@@ -58,9 +58,6 @@ public class CustomerDao {
         ps.setString(4, phone);
         ps.setInt(5, divisionId);
 
-        int rowsAffected = ps.executeUpdate();
-        return rowsAffected;
-
-
+        ps.execute();
     }
 }
