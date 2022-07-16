@@ -47,8 +47,20 @@ public class CustomerDao {
         return null;
     }
 
-     /*public static int insert(int customerId, String customerName, String address, String postalCode, String phone,
-                             int divisionId) {
-        String sql = "insert into customer ()"
-    } */
+     public static int insert(String customerName, String address, String postalCode, String phone,
+                             int divisionId) throws SQLException {
+        String sql = "insert into customers (customer_name, address, postal_code, phone, division_id) values(?, ?, ?, " +
+                "?, ?)";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1,customerName);
+        ps.setString(2, address);
+        ps.setString(3, postalCode);
+        ps.setString(4, phone);
+        ps.setInt(5, divisionId);
+
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+
+
+    }
 }

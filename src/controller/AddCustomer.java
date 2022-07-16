@@ -1,5 +1,7 @@
 package controller;
 
+import dao.CustomerDao;
+import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,7 +27,6 @@ public class AddCustomer implements Initializable {
     public ComboBox countryCB;
     public ComboBox stateProvCB;
 
-    public int tempCustomerId;
     public String customerName;
     public String address;
     public String postalCode;
@@ -53,7 +54,6 @@ public class AddCustomer implements Initializable {
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
 
-        tempCustomerId = 0;
         customerName = nameTF.getText();
         address = addressTF.getText();
         postalCode = postalCodeTF.getText();
@@ -66,10 +66,18 @@ public class AddCustomer implements Initializable {
             }
         }
 
-        Customer newCustomer = new Customer(tempCustomerId, customerName, address, postalCode, phone, divisionId,
-                divisionName);
+        int rowsAffected = CustomerDao.insert(customerName, address, postalCode, phone, divisionId);
 
-        System.out.println(newCustomer.getCustomerId());
+        if(rowsAffected > 0){
+            System.out.println("insert successful");
+        }
+        else{
+            System.out.println("Insert failed");
+        }
+
+
+
+
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
