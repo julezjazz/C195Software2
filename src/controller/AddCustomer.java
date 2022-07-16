@@ -50,9 +50,6 @@ public class AddCustomer implements Initializable {
         stage.show();
     }
 
-    public void onSaveBtn(ActionEvent actionEvent) {
-    }
-
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

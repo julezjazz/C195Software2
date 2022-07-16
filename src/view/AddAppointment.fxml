@@ -135,8 +135,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="33.0" layoutY="538.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="93.0" layoutY="538.0" mnemonicParsing="false" onAction="#onSaveReturnBtn" text="Save and Return" />
+      <Button layoutX="33.0" layoutY="538.0" mnemonicParsing="false" onAction="#onSaveReturnBtn" text="Save and Return" />
       <Button layoutX="693.0" layoutY="538.0" mnemonicParsing="false" onAction="#onCancelBtn" text="Cancel" />
    </children>
 </AnchorPane>
