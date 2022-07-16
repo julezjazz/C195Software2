@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class AddCustomer implements Initializable {
 
-    public TextField customerIdTF;
     public TextField nameTF;
     public TextField addressTF;
     public TextField postalCodeTF;
@@ -26,7 +25,7 @@ public class AddCustomer implements Initializable {
     public ComboBox countryCB;
     public ComboBox stateProvCB;
 
-    public int customerId;
+    public int tempCustomerId;
     public String customerName;
     public String address;
     public String postalCode;
@@ -54,7 +53,7 @@ public class AddCustomer implements Initializable {
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
 
-        customerId = Integer.parseInt(customerIdTF.getText());
+        tempCustomerId = 0;
         customerName = nameTF.getText();
         address = addressTF.getText();
         postalCode = postalCodeTF.getText();
@@ -67,7 +66,7 @@ public class AddCustomer implements Initializable {
             }
         }
 
-        Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId,
+        Customer newCustomer = new Customer(tempCustomerId, customerName, address, postalCode, phone, divisionId,
                 divisionName);
 
         System.out.println(newCustomer.getCustomerId());
