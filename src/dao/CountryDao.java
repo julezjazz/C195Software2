@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CountryDao {
-    public static void populateCountryList() {
+    public static void populateCountryLists() {
 
         String sql = "select * from countries";
 
@@ -25,6 +25,7 @@ public class CountryDao {
                     String countryName = rs.getString("Country");
                     Country newCountry = new Country(countryId, countryName);
                     ListManager.allCountries.add(newCountry);
+                    ListManager.allCountryNames.add(countryName);
                 }
 
             } catch (SQLException throwables) {
@@ -33,6 +34,8 @@ public class CountryDao {
 
         }
     }
+
+   // public static void populateCountryNameList
 
 
 }

@@ -34,6 +34,9 @@ public class AddCustomer implements Initializable {
         stage.show();
     }
 
+    public void onSaveBtn(ActionEvent actionEvent) {
+    }
+
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -45,7 +48,10 @@ public class AddCustomer implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        countryCB.setItems(ListManager.allCountries);
+
+        countryCB.setItems(ListManager.allCountryNames);
 
     }
+
+
 }
