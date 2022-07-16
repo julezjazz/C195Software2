@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Customer;
+import model.Division;
 import model.ListManager;
 
 import java.net.URL;
@@ -23,7 +25,16 @@ public class AddCustomer implements Initializable {
     public TextField phoneTF;
     public ComboBox countryCB;
     public ComboBox stateProvCB;
-    // NOT SURE WHY THE BELOW DOES NOT WORK
+
+    public int customerId;
+    public String customerName;
+    public String address;
+    public String postalCode;
+    public String phone;
+    public int divisionId;
+    public String divisionName;
+
+
     public void onCountrySelect(ActionEvent actionEvent) throws Exception {
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
         if(countrySelection.equals("U.S")) {
@@ -42,6 +53,25 @@ public class AddCustomer implements Initializable {
 
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
+
+        customerId = Integer.parseInt(customerIdTF.getText());
+        customerName = nameTF.getText();
+        address = addressTF.getText();
+        postalCode = postalCodeTF.getText();
+        phone = phoneTF.getText();
+        divisionName = stateProvCB.getSelectionModel().getSelectedItem().toString();
+
+        for(Division division : ListManager.allDivisions) {
+            if (division.getDivisionName().equals(divisionName)){
+                divisionId = division.getDivisionId();
+            }
+        }
+
+        Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId,
+                divisionName);
+
+        System.out.println(newCustomer.getCustomerId());
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);

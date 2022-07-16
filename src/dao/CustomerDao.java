@@ -46,4 +46,9 @@ public class CustomerDao {
         }
         return null;
     }
+
+     /*public static int insert(int customerId, String customerName, String address, String postalCode, String phone,
+                             int divisionId) {
+        String sql = "insert into customer ()"
+    } */
 }
