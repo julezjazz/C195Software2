@@ -28,7 +28,7 @@ public class AddCustomer implements Initializable {
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root, 1000, 600);
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
@@ -37,7 +37,7 @@ public class AddCustomer implements Initializable {
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene = new Scene(root, 1000, 600);
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
