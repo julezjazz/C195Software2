@@ -63,36 +63,36 @@
                   <Insets left="75.0" />
                </GridPane.margin>
             </Label>
-            <TextField prefHeight="26.0" prefWidth="431.0" GridPane.columnIndex="1">
+            <TextField fx:id="customerIdTF" prefHeight="26.0" prefWidth="431.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="400.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="nameTF" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="400.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="addressTF" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="400.0" />
                </GridPane.margin>
             </TextField>
-            <TextField layoutX="205.0" layoutY="146.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="postalCodeTF" layoutX="205.0" layoutY="146.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="400.0" />
                </GridPane.margin>
             </TextField>
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <ComboBox fx:id="countryCB" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="stateProvCB" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="phoneTF" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets right="400.0" />
                </GridPane.margin>
             </TextField>
          </children>
       </GridPane>
-      <Button layoutX="44.0" layoutY="520.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="44.0" layoutY="520.0" mnemonicParsing="false" onAction="#onSaveBtn" text="Save" />
       <Button layoutX="97.0" layoutY="520.0" mnemonicParsing="false" onAction="#onSaveReturnBtn" text="Save and Return" />
       <Button layoutX="698.0" layoutY="520.0" mnemonicParsing="false" onAction="#onCancelBtn" text="Cancel" />
       <Label layoutX="30.0" layoutY="14.0" text="Add Customer">
