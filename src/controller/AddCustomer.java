@@ -23,6 +23,22 @@ public class AddCustomer implements Initializable {
     public TextField phoneTF;
     public ComboBox countryCB;
     public ComboBox stateProvCB;
+    // NOT SURE WHY THE BELOW DOES NOT WORK
+    public void onCountrySelect(ActionEvent actionEvent) throws Exception {
+        String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
+        if(countrySelection.equals("U.S")) {
+            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
+            stateProvCB.getSelectionModel().selectFirst();
+        }
+        if(countrySelection.equals("UK")) {
+            stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
+            stateProvCB.getSelectionModel().selectFirst();
+        }
+        if(countrySelection.equals("Canada")) {
+            stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
+            stateProvCB.getSelectionModel().selectFirst();
+        }
+    }
 
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
@@ -51,6 +67,9 @@ public class AddCustomer implements Initializable {
 
         countryCB.setItems(ListManager.allCountryNames);
         countryCB.getSelectionModel().selectFirst();
+
+        stateProvCB.setItems(ListManager.usDivisionNames.sorted());
+        stateProvCB.getSelectionModel().selectFirst();
 
     }
 

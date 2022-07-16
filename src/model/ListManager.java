@@ -15,6 +15,10 @@ public class ListManager {
     public static ObservableList<String> allCountryNames = FXCollections.observableArrayList();
     /** List for all objects representing first divisions of countries. */
     public static ObservableList<Division> allDivisions = FXCollections.observableArrayList();
+    public static ObservableList<String> usDivisionNames = FXCollections.observableArrayList();
+    public static ObservableList<String> ukDivisionNames = FXCollections.observableArrayList();
+    public static ObservableList<String> canadaDivisionNames = FXCollections.observableArrayList();
+
     /** List for all objects representing users. */
     public static ObservableList<User> allUsers = FXCollections.observableArrayList();
     /** List for all objects representing contacts for appointments. */

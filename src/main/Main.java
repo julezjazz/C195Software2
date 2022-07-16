@@ -38,8 +38,7 @@ public class Main extends Application {
         UserDao.populateUserList();
         ContactDao.populateContactList();
         CountryDao.populateCountryLists();
-
-        //DivisionDao.populateDivisionList();
+        DivisionDao.populateDivisionList();
         // DELETE Test Data
        /* for (User user : ListManager.allUsers) {
             System.out.println(user.getUserName());

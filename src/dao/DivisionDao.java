@@ -9,11 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DivisionDao {
-   // LOOK INTO Foreign Key and see what is going wrong with this code
-    //Probably need a join statement here or a where clause based on the country
-   /* public static void populateDivisionList() {
+   public static void populateDivisionList() {
 
-        String sql = "select * from first-level divisions";
+        String sql = "select * from first_level_divisions";
 
         PreparedStatement ps;
 
@@ -28,6 +26,15 @@ public class DivisionDao {
                     int countryId = rs.getInt("Country_ID");
                     Division newDivision = new Division(divisionId, divisionName, countryId);
                     ListManager.allDivisions.add(newDivision);
+                    if(countryId == 1) {
+                        ListManager.usDivisionNames.add(divisionName);
+                    }
+                    if(countryId == 2) {
+                        ListManager.ukDivisionNames.add(divisionName);
+                    }
+                    if(countryId == 3) {
+                        ListManager.canadaDivisionNames.add(divisionName);
+                    }
                 }
 
             } catch (SQLException throwables) {
@@ -35,5 +42,5 @@ public class DivisionDao {
             }
 
         }
-    } */
+    }
 }
