@@ -50,6 +50,7 @@ public class AddCustomer implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         countryCB.setItems(ListManager.allCountryNames);
+        countryCB.getSelectionModel().selectFirst();
 
     }
 
