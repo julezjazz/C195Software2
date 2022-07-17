@@ -6,12 +6,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddAppointment implements Initializable {
+
+    public TextField titleTF;
+    public TextField descriptionTF;
+    public TextField locationTF;
+    public ComboBox contactCB;
+    public TextField typeTF;
+    public TextField startTF;
+    public TextField endTF;
+    public TextField customerIdTF;
+    public TextField userIdTF;
+
+    public
+
+
+
+
+
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
@@ -34,6 +54,7 @@ public class AddAppointment implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
     }
 }
