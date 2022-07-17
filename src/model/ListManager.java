@@ -23,6 +23,7 @@ public class ListManager {
     public static ObservableList<User> allUsers = FXCollections.observableArrayList();
     /** List for all objects representing contacts for appointments. */
     public static ObservableList<Contact> allContacts = FXCollections.observableArrayList();
+    public static ObservableList<String> allContactNames = FXCollections.observableArrayList();
 
 
 
