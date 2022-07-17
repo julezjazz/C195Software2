@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -22,8 +23,12 @@ public class AddAppointment implements Initializable {
     public TextField locationTF;
     public ComboBox contactCB;
     public TextField typeTF;
-    public TextField startTF;
-    public TextField endTF;
+    public DatePicker startDateDP;
+    public ComboBox startHourCB;
+    public ComboBox startMinuteCB;
+    public DatePicker endDateDP;
+    public ComboBox endHourCB;
+    public ComboBox endMinuteCB;
     public TextField customerIdTF;
     public TextField userIdTF;
 
@@ -31,6 +36,8 @@ public class AddAppointment implements Initializable {
     public String description;
     public String location;
     public String type;
+    public String startDate;
+    public String endDate;
     //insert start DATETIME here
     //insert end DATETIME here
     public String createdBy;
