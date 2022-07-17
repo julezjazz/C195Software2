@@ -50,6 +50,8 @@ public class AddAppointment implements Initializable {
         contactCB.setItems(ListManager.allContactNames);
         startHourCB.setItems(ListManager.hours);
         endHourCB.setItems(ListManager.hours);
+        startMinuteCB.setItems(ListManager.minutes);
+        endMinuteCB.setItems(ListManager.minutes);
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
