@@ -60,7 +60,7 @@ public class CustomerDao {
 
         ps.execute();
     }
- /*
+
     public static void update(String customerName, String address, String postalCode, String phone, int
                               divisionId, int customerId) throws SQLException {
         String sql = "update customers set customer_name = ?, address = ?, postal_code = ?, phone = ?, division_id = ? " +
@@ -72,5 +72,7 @@ public class CustomerDao {
         ps.setString(4, phone);
         ps.setInt(5, divisionId);
         ps.setInt(6, customerId);
-    } */
+
+        ps.execute();
+    }
 }

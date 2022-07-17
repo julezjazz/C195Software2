@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import dao.CustomerDao;
+import model.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +43,33 @@ public class Home implements Initializable {
     public TableColumn customerIdCol;
     public TableColumn userIdCol;
 
+    public static Customer selectedCustomer;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        customersTable.setItems(CustomerDao.populateCustomerList());
+        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
+        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+        appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
+        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+    }
 
     public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyAppointment.fxml"));
@@ -72,6 +99,9 @@ public class Home implements Initializable {
     }
 
     public void onModCustomerBtn(ActionEvent actionEvent) throws Exception {
+
+        selectedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyCustomer.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 600);
@@ -82,31 +112,5 @@ public class Home implements Initializable {
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        customersTable.setItems(CustomerDao.populateCustomerList());
-        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
-        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
-        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
-        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
-
-
-
-    }
 }
