@@ -15,6 +15,7 @@ import model.Division;
 import model.ListManager;
 
 import static controller.Home.*;
+import static controller.LogIn.currentUser;
 
 
 import java.net.URL;
@@ -35,6 +36,7 @@ public class ModifyCustomer implements Initializable {
     public String address;
     public String postalCode;
     public String phone;
+    public String updatedBy;
     public int divisionId;
     public String divisionName;
 
@@ -93,6 +95,7 @@ public class ModifyCustomer implements Initializable {
         address = addressTF.getText();
         postalCode = postalCodeTF.getText();
         phone = phoneTF.getText();
+        updatedBy = currentUser;
         divisionName = stateProvCB.getSelectionModel().getSelectedItem().toString();
 
         for(Division division : ListManager.allDivisions) {
@@ -101,7 +104,7 @@ public class ModifyCustomer implements Initializable {
             }
         }
 
-        CustomerDao.update(customerName, address, postalCode, phone, divisionId, customerId);
+        CustomerDao.update(customerName, address, postalCode, phone, updatedBy, divisionId, customerId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

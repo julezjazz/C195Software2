@@ -18,6 +18,8 @@ import model.ListManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static controller.LogIn.currentUser;
+
 public class AddCustomer implements Initializable {
 
     public TextField nameTF;
@@ -31,6 +33,7 @@ public class AddCustomer implements Initializable {
     public String address;
     public String postalCode;
     public String phone;
+    public String createdBy;
     public int divisionId;
     public String divisionName;
 
@@ -58,6 +61,7 @@ public class AddCustomer implements Initializable {
         address = addressTF.getText();
         postalCode = postalCodeTF.getText();
         phone = phoneTF.getText();
+        createdBy = currentUser;
         divisionName = stateProvCB.getSelectionModel().getSelectedItem().toString();
 
         for(Division division : ListManager.allDivisions) {
@@ -66,7 +70,7 @@ public class AddCustomer implements Initializable {
             }
         }
 
-        CustomerDao.insert(customerName, address, postalCode, phone, divisionId);
+        CustomerDao.insert(customerName, address, postalCode, phone, createdBy, divisionId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

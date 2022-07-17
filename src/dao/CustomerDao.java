@@ -48,30 +48,33 @@ public class CustomerDao {
     }
 
      public static void insert(String customerName, String address, String postalCode, String phone,
-                             int divisionId) throws SQLException {
-        String sql = "insert into customers (customer_name, address, postal_code, phone, division_id) values(?, ?, ?, " +
-                "?, ?)";
+                               String createdBy, int divisionId) throws SQLException {
+
+        String sql = "insert into customers (customer_name, address, postal_code, phone, create_date, created_by, " +
+                "division_id) values(?, ?, ?, ?, NOW(), ?, ?)";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setString(1,customerName);
         ps.setString(2, address);
         ps.setString(3, postalCode);
         ps.setString(4, phone);
-        ps.setInt(5, divisionId);
+        ps.setString(5, createdBy);
+        ps.setInt(6, divisionId);
 
         ps.execute();
     }
 
-    public static void update(String customerName, String address, String postalCode, String phone, int
-                              divisionId, int customerId) throws SQLException {
-        String sql = "update customers set customer_name = ?, address = ?, postal_code = ?, phone = ?, division_id = ? " +
-                "where customer_id = ?";
+    public static void update(String customerName, String address, String postalCode, String phone, String updatedBy,
+                              int divisionId, int customerId) throws SQLException {
+        String sql = "update customers set customer_name = ?, address = ?, postal_code = ?, phone = ?, " +
+                "last_update = NOW(), last_updated_by = ?, division_id = ? where customer_id = ?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setString(1,customerName);
         ps.setString(2, address);
         ps.setString(3, postalCode);
         ps.setString(4, phone);
-        ps.setInt(5, divisionId);
-        ps.setInt(6, customerId);
+        ps.setString(5, updatedBy);
+        ps.setInt(6, divisionId);
+        ps.setInt(7, customerId);
 
         ps.execute();
     }

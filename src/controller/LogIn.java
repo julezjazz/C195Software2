@@ -36,12 +36,17 @@ public class LogIn implements Initializable {
     public String tempUsername;
     public String tempPassword;
 
+    public static String currentUser;
+
     public void onLogInBtn(ActionEvent actionEvent) throws IOException {
         tempUsername = userNameTxt.getText();
         tempPassword = passwordTxt.getText();
 
 
         if (UserDao.verifyPassword(tempUsername, tempPassword)) {
+            tempPassword = " ";
+            currentUser = tempUsername;
+
             Parent root = FXMLLoader.load(getClass().getResource("../view/AppointmentAlert.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root, 350, 300);
