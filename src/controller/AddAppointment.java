@@ -37,6 +37,12 @@ public class AddAppointment implements Initializable {
     public int userId;
     public int contactId;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+    }
+
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -53,12 +59,5 @@ public class AddAppointment implements Initializable {
         stage.setTitle("Home");
         stage.setScene(scene);
         stage.show();
-    }
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
     }
 }
