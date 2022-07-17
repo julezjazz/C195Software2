@@ -8,6 +8,7 @@ import model.Appointment;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -72,8 +73,6 @@ public class AppointmentDao {
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
                             startDate, startTime, endDate, endTime, customerId, userId, contactName);
                     allAppointments.add(newAppointment);
-
-
                 }
 
                 return allAppointments;
@@ -81,8 +80,27 @@ public class AppointmentDao {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
         return null;
+    }
+
+    public static void insert(String title, String description, String location,
+                              String type, Timestamp start, Timestamp end, String createdBy, int customerId,
+                              int userId, int contactId) throws SQLException {
+        String sql = "insert into appointments (title, description, location, type, start, end, create_date, " +
+                "created_by, customer_id, user_id, contact_id) values(?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?, ?)";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, title);
+        ps.setString(2, description);
+        ps.setString(3, location);
+        ps.setString(4, type);
+        ps.setTimestamp(5, start);
+        ps.setTimestamp(6, end);
+        ps.setString(7, createdBy);
+        ps.setInt(8, customerId);
+        ps.setInt(9, userId);
+        ps.setInt(10, contactId);
+
+        ps.execute();
     }
 }
