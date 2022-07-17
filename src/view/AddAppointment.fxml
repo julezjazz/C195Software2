@@ -119,14 +119,14 @@
                   <Insets left="75.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="startHourCB" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="startMinuteCB" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <ComboBox fx:id="startHourCB" prefHeight="25.0" prefWidth="64.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="startMinuteCB" prefHeight="25.0" prefWidth="64.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets left="70.0" />
                </GridPane.margin>
             </ComboBox>
-            <ComboBox fx:id="endHourCB" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox fx:id="endMinuteCB" prefHeight="25.0" prefWidth="55.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <ComboBox fx:id="endHourCB" prefHeight="25.0" prefWidth="64.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="endMinuteCB" prefHeight="25.0" prefWidth="64.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets left="70.0" />
                </GridPane.margin>
