@@ -26,12 +26,16 @@ public class AddAppointment implements Initializable {
     public TextField customerIdTF;
     public TextField userIdTF;
 
-    public
-
-
-
-
-
+    public String title;
+    public String description;
+    public String location;
+    public String type;
+    //insert start DATETIME here
+    //insert end DATETIME here
+    public String createdBy;
+    public int customerId;
+    public int userId;
+    public int contactId;
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
