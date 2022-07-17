@@ -49,6 +49,7 @@ public class AddAppointment implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCB.setItems(ListManager.allContactNames);
         startHourCB.setItems(ListManager.hours);
+        endHourCB.setItems(ListManager.hours);
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
