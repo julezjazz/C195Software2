@@ -48,6 +48,7 @@ public class AddAppointment implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCB.setItems(ListManager.allContactNames);
+        startHourCB.setItems(ListManager.hours);
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
