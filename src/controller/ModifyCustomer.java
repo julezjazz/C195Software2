@@ -38,6 +38,54 @@ public class ModifyCustomer implements Initializable {
     public int divisionId;
     public String divisionName;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerIdTF.setText(String.valueOf(selectedCustomer.getCustomerId()));
+        nameTF.setText(selectedCustomer.getCustomerName());
+        addressTF.setText(selectedCustomer.getAddress());
+        postalCodeTF.setText(selectedCustomer.getPostalCode());
+        phoneTF.setText(selectedCustomer.getPhone());
+        countryCB.setItems(ListManager.allCountryNames);
+
+        if(selectedCustomer.getDivisionId() < 55){
+            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
+            stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
+            countryCB.getSelectionModel().select("U.S");
+        }
+        if(selectedCustomer.getDivisionId() >= 60){
+            if(selectedCustomer.getDivisionId() <= 72) {
+                stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
+                stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
+                countryCB.getSelectionModel().select("Canada");
+            }
+        }
+        if(selectedCustomer.getDivisionId() >= 101){
+            if(selectedCustomer.getDivisionId() <= 104) {
+                stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
+                stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
+                countryCB.getSelectionModel().select("UK");
+            }
+        }
+    }
+
+    public void onSelectCountry(ActionEvent actionEvent) throws Exception {
+
+        String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
+
+        if(countrySelection.equals("U.S")) {
+            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
+            stateProvCB.getSelectionModel().selectFirst();
+        }
+        if(countrySelection.equals("UK")) {
+            stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
+            stateProvCB.getSelectionModel().selectFirst();
+        }
+        if(countrySelection.equals("Canada")) {
+            stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
+            stateProvCB.getSelectionModel().selectFirst();
+        }
+    }
+
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
 
         customerId = selectedCustomer.getCustomerId();
@@ -72,34 +120,5 @@ public class ModifyCustomer implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        customerIdTF.setText(String.valueOf(selectedCustomer.getCustomerId()));
-        nameTF.setText(selectedCustomer.getCustomerName());
-        addressTF.setText(selectedCustomer.getAddress());
-        postalCodeTF.setText(selectedCustomer.getPostalCode());
-        phoneTF.setText(selectedCustomer.getPhone());
-        countryCB.setItems(ListManager.allCountryNames);
 
-        if(selectedCustomer.getDivisionId() < 55){
-            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-            stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
-            countryCB.getSelectionModel().select("U.S");
-        }
-        if(selectedCustomer.getDivisionId() >= 60){
-            if(selectedCustomer.getDivisionId() <= 72) {
-                stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-                stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
-                countryCB.getSelectionModel().select("Canada");
-            }
-        }
-        if(selectedCustomer.getDivisionId() >= 101){
-            if(selectedCustomer.getDivisionId() <= 104) {
-                stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-                stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
-                countryCB.getSelectionModel().select("UK");
-            }
-        }
-
-    }
 }

@@ -35,7 +35,7 @@ public class AddCustomer implements Initializable {
     public String divisionName;
 
 
-    public void onCountrySelect(ActionEvent actionEvent) throws Exception {
+    public void onSelectCountry(ActionEvent actionEvent) throws Exception {
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
         if(countrySelection.equals("U.S")) {
             stateProvCB.setItems(ListManager.usDivisionNames.sorted());

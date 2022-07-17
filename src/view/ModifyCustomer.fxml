@@ -73,7 +73,7 @@
                         <Insets right="400.0" />
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="countryCB" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <ComboBox fx:id="countryCB" onAction="#onSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <ComboBox fx:id="stateProvCB" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 <TextField fx:id="phoneTF" GridPane.columnIndex="1" GridPane.rowIndex="6">
                     <GridPane.margin>
