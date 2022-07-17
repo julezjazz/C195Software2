@@ -26,6 +26,7 @@ public class ContactDao {
                     String contactName = rs.getString("Contact_Name");
                     Contact newContact = new Contact(contactId, contactName);
                     ListManager.allContacts.add(newContact);
+                    ListManager.allContactNames.add(contactName);
                 }
 
             } catch (SQLException throwables) {
