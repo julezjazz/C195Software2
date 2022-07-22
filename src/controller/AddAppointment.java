@@ -1,5 +1,6 @@
 package controller;
 
+import dao.AppointmentDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,8 @@ import model.Contact;
 import model.ListManager;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -51,7 +54,9 @@ public class AddAppointment implements Initializable {
     public String endMinute;
     public String startTime;
     public String endTime;
-       public String createdBy;
+    public Timestamp startDateTime;
+    public Timestamp endDateTime;
+    public String createdBy;
     public int customerId;
     public int userId;
     public int contactId;
@@ -90,7 +95,8 @@ public class AddAppointment implements Initializable {
         LocalDateTime startLDT = startZDT.toLocalDateTime();
         ZonedDateTime userStartZDT = ZonedDateTime.of(startLDT, userZI);
         startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
-
+        startLDT = startZDT.toLocalDateTime();
+        startDateTime = Timestamp.valueOf(startLDT);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
@@ -101,9 +107,9 @@ public class AddAppointment implements Initializable {
         LocalDateTime endLDT = endZDT.toLocalDateTime();
         ZonedDateTime userEndZDT = ZonedDateTime.of(endLDT, userZI);
         endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
-
-
-
+        endLDT = endZDT.toLocalDateTime();
+        endDateTime = Timestamp.valueOf(endLDT);
+        System.out.println(endDateTime);
 
         createdBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
@@ -115,8 +121,8 @@ public class AddAppointment implements Initializable {
             }
         }
 
-
-
+       AppointmentDao.insert(title, description, location, type, startDateTime, endDateTime, createdBy, customerId,
+                userId, contactId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
