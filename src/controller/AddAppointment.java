@@ -38,6 +38,12 @@ public class AddAppointment implements Initializable {
     public String type;
     public String startDate;
     public String endDate;
+    public String startHour;
+    public String endHour;
+    public String startMinute;
+    public String endMinute;
+    public String startTime;
+    public String endTime;
     //insert start DATETIME here
     //insert end DATETIME here
     public String createdBy;
