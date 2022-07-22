@@ -16,6 +16,7 @@ import model.ListManager;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -50,10 +51,7 @@ public class AddAppointment implements Initializable {
     public String endMinute;
     public String startTime;
     public String endTime;
-    public LocalDateTime startLDT;
-    public LocalDateTime endLDT;
-
-    public String createdBy;
+       public String createdBy;
     public int customerId;
     public int userId;
     public int contactId;
@@ -85,11 +83,28 @@ public class AddAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
-        startLDT = LocalDateTime.parse(startDate + startTime, formatter);
+
+
+        //Converts start time from user's time zone to UTC
+        ZonedDateTime startZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
+        LocalDateTime startLDT = startZDT.toLocalDateTime();
+        ZonedDateTime userStartZDT = ZonedDateTime.of(startLDT, userZI);
+        startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
+
+
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
-        endLDT = LocalDateTime.parse(endDate + endTime, formatter);
+
+        //Converts start time from user's time zone to UTC
+        ZonedDateTime endZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
+        LocalDateTime endLDT = endZDT.toLocalDateTime();
+        ZonedDateTime userEndZDT = ZonedDateTime.of(endLDT, userZI);
+        endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
+
+
+
+
         createdBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
@@ -99,7 +114,9 @@ public class AddAppointment implements Initializable {
                 contactId = contact.getContactId();
             }
         }
-        System.out.println(contactId);
+
+
+
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
