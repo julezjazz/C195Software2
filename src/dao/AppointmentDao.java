@@ -103,4 +103,26 @@ public class AppointmentDao {
 
         ps.execute();
     }
+
+    public static void update(String title, String description, String location, String type, Timestamp start,
+                              Timestamp end, String updatedBy, int customerId, int userId, int contactId)
+            throws SQLException {
+        String sql = "update appointments set title = ?, description = ?, location = ?, type = ?, start = ?, " +
+                "end = ?, last_update = NOW(), last_updated_by = ?, customer_id = ?, user_id = ?, contact_id = ?";
+
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, title);
+        ps.setString(2, description);
+        ps.setString(3, location);
+        ps.setString(4, type);
+        ps.setTimestamp(5, start);
+        ps.setTimestamp(6, end);
+        ps.setString(7, updatedBy);
+        ps.setInt(8, customerId);
+        ps.setInt(9, userId);
+        ps.setInt(10, contactId);
+
+        ps.execute();
+    }
+
 }
