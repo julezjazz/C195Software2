@@ -8,13 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contact;
 import model.ListManager;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import static controller.LogIn.currentUser;
 
 public class AddAppointment implements Initializable {
 
@@ -35,6 +40,7 @@ public class AddAppointment implements Initializable {
     public String title;
     public String description;
     public String location;
+    public String contactName;
     public String type;
     public String startDate;
     public String endDate;
@@ -44,12 +50,19 @@ public class AddAppointment implements Initializable {
     public String endMinute;
     public String startTime;
     public String endTime;
-    //insert start DATETIME here
-    //insert end DATETIME here
+    public LocalDateTime startLDT;
+    public LocalDateTime endLDT;
+
     public String createdBy;
     public int customerId;
     public int userId;
     public int contactId;
+
+    ZoneId utcZI = ZoneId.of("UTC");
+    ZoneId userZI = ZoneId.systemDefault();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +74,33 @@ public class AddAppointment implements Initializable {
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
+
+        title = titleTF.getText();
+        description = descriptionTF.getText();
+        location = locationTF.getText();
+        contactName = contactCB.getSelectionModel().getSelectedItem().toString();
+        type = typeTF.getText();
+        startDate = startDateDP.getValue().toString();
+        endDate = endDateDP.getValue().toString();
+        startHour = startHourCB.getValue().toString();
+        startMinute = startMinuteCB.getValue().toString();
+        startTime = " " + startHour + ":" + startMinute + ":00";
+        startLDT = LocalDateTime.parse(startDate + startTime, formatter);
+        endHour = endHourCB.getValue().toString();
+        endMinute = endMinuteCB.getValue().toString();
+        endTime = " " + endHour + ":" + endMinute + ":00";
+        endLDT = LocalDateTime.parse(endDate + endTime, formatter);
+        createdBy = currentUser;
+        customerId = Integer.parseInt(customerIdTF.getText());
+        userId = Integer.parseInt(userIdTF.getText());
+
+        for(Contact contact : ListManager.allContacts) {
+            if(contact.getContactName().equals(contactName)){
+                contactId = contact.getContactId();
+            }
+        }
+        System.out.println(contactId);
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
