@@ -68,15 +68,20 @@ public class ModifyAppointment implements Initializable {
         titleTF.setText(selectedAppointment.getTitle());
         descriptionTF.setText(selectedAppointment.getDescription());
         locationTF.setText(selectedAppointment.getLocation());
+        contactCB.setItems(ListManager.allContactNames);
         contactCB.getSelectionModel().select(selectedAppointment.getContactName());
         typeTF.setText(selectedAppointment.getType());
         startDateDP.setValue(LocalDate.parse(selectedAppointment.getStartDate()));
         endDateDP.setValue(LocalDate.parse(selectedAppointment.getEndDate()));
         //add time parts here
-        startHourCB.setValue(selectedAppointment.getStartTime().substring(0,2));
-        startMinuteCB.setValue(selectedAppointment.getStartTime().substring(3,5));
-        endHourCB.setValue(selectedAppointment.getEndTime().substring(0,2));
-        endMinuteCB.setValue(selectedAppointment.getEndTime().substring(3,5));
+        startHourCB.setItems(ListManager.hours);
+        startHourCB.getSelectionModel().select(selectedAppointment.getStartTime().substring(0,2));
+        startMinuteCB.setItems(ListManager.minutes);
+        startMinuteCB.getSelectionModel().select(selectedAppointment.getStartTime().substring(3,5));
+        endHourCB.setItems(ListManager.hours);
+        endHourCB.getSelectionModel().select(selectedAppointment.getEndTime().substring(0,2));
+        endMinuteCB.setItems(ListManager.minutes);
+        endMinuteCB.getSelectionModel().select(selectedAppointment.getEndTime().substring(3,5));
         customerIdTF.setText(String.valueOf(selectedAppointment.getCustomerId()));
         userIdTF.setText(String.valueOf(selectedAppointment.getUserId()));
     }
