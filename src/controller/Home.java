@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import dao.CustomerDao;
+import model.Appointment;
 import model.Customer;
 
 import java.net.URL;
@@ -44,6 +45,7 @@ public class Home implements Initializable {
     public TableColumn userIdCol;
 
     public static Customer selectedCustomer;
+    public static Appointment selectedAppointment;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,20 +73,23 @@ public class Home implements Initializable {
 
     }
 
-    public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyAppointment.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 900, 600);
-        stage.setTitle("Modify Appointment");
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void onAddAppointmentBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/AddAppointment.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 600);
         stage.setTitle("Add Appointment");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
+
+        selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
+
+        Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyAppointment.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 900, 600);
+        stage.setTitle("Modify Appointment");
         stage.setScene(scene);
         stage.show();
     }
