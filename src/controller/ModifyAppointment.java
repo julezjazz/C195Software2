@@ -1,5 +1,6 @@
 package controller;
 
+import dao.AppointmentDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,16 +11,20 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contact;
 import model.ListManager;
 
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static controller.Home.selectedAppointment;
+import static controller.LogIn.currentUser;
 
 public class ModifyAppointment implements Initializable {
 
@@ -53,7 +58,7 @@ public class ModifyAppointment implements Initializable {
     public String endTime;
     public Timestamp startDateTime;
     public Timestamp endDateTime;
-    public String createdBy;
+    public String updatedBy;
     public int customerId;
     public int userId;
     public int contactId;
@@ -73,7 +78,7 @@ public class ModifyAppointment implements Initializable {
         typeTF.setText(selectedAppointment.getType());
         startDateDP.setValue(LocalDate.parse(selectedAppointment.getStartDate()));
         endDateDP.setValue(LocalDate.parse(selectedAppointment.getEndDate()));
-        //add time parts here
+
         startHourCB.setItems(ListManager.hours);
         startHourCB.getSelectionModel().select(selectedAppointment.getStartTime().substring(0,2));
         startMinuteCB.setItems(ListManager.minutes);
@@ -82,11 +87,59 @@ public class ModifyAppointment implements Initializable {
         endHourCB.getSelectionModel().select(selectedAppointment.getEndTime().substring(0,2));
         endMinuteCB.setItems(ListManager.minutes);
         endMinuteCB.getSelectionModel().select(selectedAppointment.getEndTime().substring(3,5));
+
         customerIdTF.setText(String.valueOf(selectedAppointment.getCustomerId()));
         userIdTF.setText(String.valueOf(selectedAppointment.getUserId()));
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
+
+        title = titleTF.getText();
+        description = descriptionTF.getText();
+        location = locationTF.getText();
+        contactName = contactCB.getSelectionModel().getSelectedItem().toString();
+        type = typeTF.getText();
+        startDate = startDateDP.getValue().toString();
+        endDate = endDateDP.getValue().toString();
+        startHour = startHourCB.getValue().toString();
+        startMinute = startMinuteCB.getValue().toString();
+        startTime = " " + startHour + ":" + startMinute + ":00";
+
+
+        //Converts start time from user's time zone to UTC
+        ZonedDateTime startZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
+        LocalDateTime startLDT = startZDT.toLocalDateTime();
+        ZonedDateTime userStartZDT = ZonedDateTime.of(startLDT, userZI);
+        startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
+        startLDT = startZDT.toLocalDateTime();
+        startDateTime = Timestamp.valueOf(startLDT);
+
+        endHour = endHourCB.getValue().toString();
+        endMinute = endMinuteCB.getValue().toString();
+        endTime = " " + endHour + ":" + endMinute + ":00";
+
+        //Converts start time from user's time zone to UTC
+        ZonedDateTime endZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
+        LocalDateTime endLDT = endZDT.toLocalDateTime();
+        ZonedDateTime userEndZDT = ZonedDateTime.of(endLDT, userZI);
+        endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
+        endLDT = endZDT.toLocalDateTime();
+        endDateTime = Timestamp.valueOf(endLDT);
+        System.out.println(endDateTime);
+
+        updatedBy = currentUser;
+        customerId = Integer.parseInt(customerIdTF.getText());
+        userId = Integer.parseInt(userIdTF.getText());
+
+        for(Contact contact : ListManager.allContacts) {
+            if(contact.getContactName().equals(contactName)){
+                contactId = contact.getContactId();
+            }
+        }
+
+        AppointmentDao.update(title, description, location, type, startDateTime, endDateTime, updatedBy, customerId,
+                userId, contactId);
+
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
