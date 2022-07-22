@@ -82,7 +82,7 @@
                         <Insets left="75.0" />
                     </GridPane.margin>
                 </Label>
-                <TextField GridPane.columnIndex="1">
+                <TextField disable="true" editable="false" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets right="400.0" />
                     </GridPane.margin>
