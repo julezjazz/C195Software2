@@ -57,9 +57,7 @@ public class AppointmentDao {
                     String startDate = appointmentStartZdt.toLocalDate().toString();
                     String startTime = appointmentStartZdt.toLocalTime().toString();
 
-
                     ZonedDateTime appointmentEndZdt = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZi));
-
 
                     LocalDateTime appointmentEndLdt = appointmentEndZdt.toLocalDateTime();
                     ZonedDateTime utcEndZdt = ZonedDateTime.of(appointmentEndLdt, utcZi);
@@ -67,8 +65,6 @@ public class AppointmentDao {
 
                     String endDate = appointmentEndZdt.toLocalDate().toString();
                     String endTime = appointmentEndZdt.toLocalTime().toString();
-
-
 
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
                             startDate, startTime, endDate, endTime, customerId, userId, contactName);
@@ -109,8 +105,8 @@ public class AppointmentDao {
                               int appointmentId)
             throws SQLException {
         String sql = "update appointments set title = ?, description = ?, location = ?, type = ?, start = ?, " +
-                "end = ?, last_update = NOW(), last_updated_by = ?, customer_id = ?, user_id = ?, contact_id = ? where " +
-                "appointment_id = ?";
+                "end = ?, last_update = NOW(), last_updated_by = ?, customer_id = ?, user_id = ?, contact_id = ? " +
+                "where appointment_id = ?";
 
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setString(1, title);
@@ -127,5 +123,4 @@ public class AppointmentDao {
 
         ps.execute();
     }
-
 }
