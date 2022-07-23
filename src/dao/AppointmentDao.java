@@ -105,10 +105,12 @@ public class AppointmentDao {
     }
 
     public static void update(String title, String description, String location, String type, Timestamp start,
-                              Timestamp end, String updatedBy, int customerId, int userId, int contactId)
+                              Timestamp end, String updatedBy, int customerId, int userId, int contactId,
+                              int appointmentId)
             throws SQLException {
         String sql = "update appointments set title = ?, description = ?, location = ?, type = ?, start = ?, " +
-                "end = ?, last_update = NOW(), last_updated_by = ?, customer_id = ?, user_id = ?, contact_id = ?";
+                "end = ?, last_update = NOW(), last_updated_by = ?, customer_id = ?, user_id = ?, contact_id = ? where " +
+                "appointment_id = ?";
 
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setString(1, title);
@@ -121,6 +123,7 @@ public class AppointmentDao {
         ps.setInt(8, customerId);
         ps.setInt(9, userId);
         ps.setInt(10, contactId);
+        ps.setInt(11, appointmentId);
 
         ps.execute();
     }

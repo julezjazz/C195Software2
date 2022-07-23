@@ -62,6 +62,7 @@ public class ModifyAppointment implements Initializable {
     public int customerId;
     public int userId;
     public int contactId;
+    public int appointmentId;
 
     ZoneId utcZI = ZoneId.of("UTC");
     ZoneId userZI = ZoneId.systemDefault();
@@ -94,6 +95,7 @@ public class ModifyAppointment implements Initializable {
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
 
+        appointmentId = Integer.parseInt(appointmentIdTF.getText());
         title = titleTF.getText();
         description = descriptionTF.getText();
         location = locationTF.getText();
@@ -138,7 +140,7 @@ public class ModifyAppointment implements Initializable {
         }
 
         AppointmentDao.update(title, description, location, type, startDateTime, endDateTime, updatedBy, customerId,
-                userId, contactId);
+                userId, contactId, appointmentId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
