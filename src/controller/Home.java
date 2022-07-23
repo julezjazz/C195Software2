@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import dao.CustomerDao;
 import model.Appointment;
@@ -44,6 +45,7 @@ public class Home implements Initializable {
     public TableColumn endTimeCol;
     public TableColumn customerIdCol;
     public TableColumn userIdCol;
+    public Text messageText;
 
     public static Customer selectedCustomer;
     public static Appointment selectedAppointment;
@@ -99,7 +101,22 @@ public class Home implements Initializable {
         int appointmentId = selectedAppointment.getAppointmentId();
         String type = selectedAppointment.getType();
         AppointmentDao.delete(appointmentId);
-        System.out.println("Appointment with ID: " + appointmentId + " and with type: " + type + " has been canceled.");
+        messageText.setText("Appointment with ID: " + appointmentId + " and with type: " + type + " has been " +
+                "canceled.");
+
+        appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
+        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
     }
 
