@@ -99,7 +99,7 @@ public class AddAppointment implements Initializable {
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
 
-        //Converts start time from user's time zone to UTC
+        //Converts end time from user's time zone to UTC
         ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
         ZonedDateTime endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
         LocalDateTime endLDT = endZDT.toLocalDateTime();
