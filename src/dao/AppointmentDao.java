@@ -48,20 +48,14 @@ public class AppointmentDao {
                     ZoneId userZI = ZoneId.systemDefault();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-                    ZonedDateTime startZDT = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZI));
-
-                    LocalDateTime startLDT = startZDT.toLocalDateTime();
-                    ZonedDateTime utcStartZDT = ZonedDateTime.of(startLDT, utcZI);
-                    startZDT = ZonedDateTime.ofInstant(utcStartZDT.toInstant(), userZI);
+                    ZonedDateTime utcStartZDT = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZI));
+                    ZonedDateTime startZDT = ZonedDateTime.ofInstant(utcStartZDT.toInstant(), userZI);
 
                     String startDate = startZDT.toLocalDate().toString();
                     String startTime = startZDT.toLocalTime().toString();
 
-                    ZonedDateTime endZDT = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZI));
-
-                    LocalDateTime endLDT = endZDT.toLocalDateTime();
-                    ZonedDateTime utcEndZDT = ZonedDateTime.of(endLDT, utcZI);
-                    endZDT = ZonedDateTime.ofInstant(utcEndZDT.toInstant(), userZI);
+                    ZonedDateTime utcEndZDT = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZI));
+                    ZonedDateTime endZDT = ZonedDateTime.ofInstant(utcEndZDT.toInstant(), userZI);
 
                     String endDate = endZDT.toLocalDate().toString();
                     String endTime = endZDT.toLocalTime().toString();
