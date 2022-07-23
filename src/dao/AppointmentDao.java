@@ -44,27 +44,27 @@ public class AppointmentDao {
                     int userId = rs.getInt("User_ID");
                     String contactName = rs.getString("Contact_Name");
 
-                    ZoneId utcZi = ZoneId.of("UTC");
-                    ZoneId userZi = ZoneId.systemDefault();
+                    ZoneId utcZI = ZoneId.of("UTC");
+                    ZoneId userZI = ZoneId.systemDefault();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-                    ZonedDateTime appointmentStartZdt = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZi));
+                    ZonedDateTime startZDT = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZI));
 
-                    LocalDateTime appointmentStartLdt = appointmentStartZdt.toLocalDateTime();
-                    ZonedDateTime utcStartZdt = ZonedDateTime.of(appointmentStartLdt, utcZi);
-                    appointmentStartZdt = ZonedDateTime.ofInstant(utcStartZdt.toInstant(), userZi);
+                    LocalDateTime startLDT = startZDT.toLocalDateTime();
+                    ZonedDateTime utcStartZDT = ZonedDateTime.of(startLDT, utcZI);
+                    startZDT = ZonedDateTime.ofInstant(utcStartZDT.toInstant(), userZI);
 
-                    String startDate = appointmentStartZdt.toLocalDate().toString();
-                    String startTime = appointmentStartZdt.toLocalTime().toString();
+                    String startDate = startZDT.toLocalDate().toString();
+                    String startTime = startZDT.toLocalTime().toString();
 
-                    ZonedDateTime appointmentEndZdt = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZi));
+                    ZonedDateTime endZDT = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZI));
 
-                    LocalDateTime appointmentEndLdt = appointmentEndZdt.toLocalDateTime();
-                    ZonedDateTime utcEndZdt = ZonedDateTime.of(appointmentEndLdt, utcZi);
-                    appointmentEndZdt = ZonedDateTime.ofInstant(utcEndZdt.toInstant(), userZi);
+                    LocalDateTime endLDT = endZDT.toLocalDateTime();
+                    ZonedDateTime utcEndZDT = ZonedDateTime.of(endLDT, utcZI);
+                    endZDT = ZonedDateTime.ofInstant(utcEndZDT.toInstant(), userZI);
 
-                    String endDate = appointmentEndZdt.toLocalDate().toString();
-                    String endTime = appointmentEndZdt.toLocalTime().toString();
+                    String endDate = endZDT.toLocalDate().toString();
+                    String endTime = endZDT.toLocalTime().toString();
 
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
                             startDate, startTime, endDate, endTime, customerId, userId, contactName);
