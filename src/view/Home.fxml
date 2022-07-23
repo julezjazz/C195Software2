@@ -34,7 +34,7 @@
                         </TableView>
                         <Button layoutX="294.0" layoutY="500.0" mnemonicParsing="false" onAction="#onAddAppointmentBtn" text="Add Appointment" />
                         <Button layoutX="155.0" layoutY="500.0" mnemonicParsing="false" onAction="#onModAppointmentBtn" text="Modify Appointment" />
-                        <Button layoutX="14.0" layoutY="500.0" mnemonicParsing="false" text="Delete Appointment" />
+                        <Button layoutX="14.0" layoutY="500.0" mnemonicParsing="false" onAction="#onDelAppointmentBtn" text="Delete Appointment" />
                         <RadioButton layoutX="40.0" layoutY="24.0" mnemonicParsing="false" selected="true" text="Week View" />
                         <RadioButton layoutX="132.0" layoutY="24.0" mnemonicParsing="false" text="Month View" />
                      </children>

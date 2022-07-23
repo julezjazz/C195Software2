@@ -117,4 +117,13 @@ public class AppointmentDao {
 
         ps.execute();
     }
+
+    public static void delete(int appointmentId) throws SQLException {
+        String sql = "delete from appointments where appointment_id = ?";
+
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setInt(1, appointmentId);
+
+        ps.execute();
+    }
 }

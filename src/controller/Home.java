@@ -18,6 +18,7 @@ import model.Appointment;
 import model.Customer;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Home implements Initializable {
@@ -83,7 +84,6 @@ public class Home implements Initializable {
     }
 
     public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
-
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyAppointment.fxml"));
@@ -92,6 +92,15 @@ public class Home implements Initializable {
         stage.setTitle("Modify Appointment");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onDelAppointmentBtn(ActionEvent actionEvent) throws SQLException {
+        selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
+        int appointmentId = selectedAppointment.getAppointmentId();
+        String type = selectedAppointment.getType();
+        AppointmentDao.delete(appointmentId);
+        System.out.println("Appointment with ID: " + appointmentId + " and with type: " + type + " has been canceled.");
+
     }
 
     public void onAddCustomerBtn(ActionEvent actionEvent) throws Exception {
