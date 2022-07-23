@@ -10,16 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Contact;
 import model.ListManager;
 
 import java.net.URL;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -40,6 +38,7 @@ public class AddAppointment implements Initializable {
     public ComboBox endMinuteCB;
     public TextField customerIdTF;
     public TextField userIdTF;
+    public Text errorText;
 
     public String title;
     public String description;
@@ -64,9 +63,10 @@ public class AddAppointment implements Initializable {
     ZoneId utcZI = ZoneId.of("UTC");
     ZoneId userZI = ZoneId.systemDefault();
     ZoneId estZI = ZoneId.of("America/New_York");
+    LocalTime businessOpen = LocalTime.parse("08:00:00");
+    LocalTime businessClose = LocalTime.parse("22:00:00");
+    int comparisonValue;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,10 +75,11 @@ public class AddAppointment implements Initializable {
         endHourCB.setItems(ListManager.hours);
         startMinuteCB.setItems(ListManager.minutes);
         endMinuteCB.setItems(ListManager.minutes);
+        errorText.setText(" ");
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
-
+        errorText.setText(" ");
         title = titleTF.getText();
         description = descriptionTF.getText();
         location = locationTF.getText();
@@ -90,9 +91,23 @@ public class AddAppointment implements Initializable {
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
 
-        //Converts start time from user's time zone to UTC
+
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
         ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
+
+        LocalTime estStartLT = estStartZDT.toLocalTime();
+        comparisonValue = estStartLT.compareTo(businessOpen);
+
+        if(comparisonValue < 0) {
+            errorText.setText("Start time must be within business hours.");
+            return;
+        }
+
+        if(comparisonValue > 0) {
+            errorText.setText("End time must be within business hours.");
+            return;
+        }
+
         ZonedDateTime startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
         LocalDateTime startLDT = startZDT.toLocalDateTime();
         startDateTime = Timestamp.valueOf(startLDT);
@@ -104,6 +119,23 @@ public class AddAppointment implements Initializable {
         //Converts end time from user's time zone to UTC
         ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
         ZonedDateTime endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
+        ZonedDateTime estEndZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), estZI);
+
+        LocalTime estEndLT = estEndZDT.toLocalTime();
+
+        comparisonValue = estEndLT.compareTo(businessOpen);
+
+        if(comparisonValue < 0) {
+            errorText.setText("End time must be within business hours.");
+            return;
+        }
+
+        comparisonValue = estEndLT.compareTo(businessClose);
+
+        if(comparisonValue > 0) {
+            errorText.setText("End time must be within business hours.");
+            return;
+        }
         LocalDateTime endLDT = endZDT.toLocalDateTime();
         endDateTime = Timestamp.valueOf(endLDT);
 

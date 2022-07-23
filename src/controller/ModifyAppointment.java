@@ -10,16 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Contact;
 import model.ListManager;
 
 import java.net.URL;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -42,6 +40,7 @@ public class ModifyAppointment implements Initializable {
     public ComboBox endMinuteCB;
     public TextField customerIdTF;
     public TextField userIdTF;
+    public Text errorText;
 
     public String title;
     public String description;
@@ -67,6 +66,9 @@ public class ModifyAppointment implements Initializable {
     ZoneId utcZI = ZoneId.of("UTC");
     ZoneId userZI = ZoneId.systemDefault();
     ZoneId estZI = ZoneId.of("America/New_York");
+    LocalTime businessOpen = LocalTime.parse("08:00:00");
+    LocalTime businessClose = LocalTime.parse("22:00:00");
+    int comparisonValue;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
@@ -80,6 +82,7 @@ public class ModifyAppointment implements Initializable {
         typeTF.setText(selectedAppointment.getType());
         startDateDP.setValue(LocalDate.parse(selectedAppointment.getStartDate()));
         endDateDP.setValue(LocalDate.parse(selectedAppointment.getEndDate()));
+        errorText.setText(" ");
 
         startHourCB.setItems(ListManager.hours);
         startHourCB.getSelectionModel().select(selectedAppointment.getStartTime().substring(0,2));
@@ -95,7 +98,7 @@ public class ModifyAppointment implements Initializable {
     }
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
-
+        errorText.setText(" ");
         appointmentId = Integer.parseInt(appointmentIdTF.getText());
         title = titleTF.getText();
         description = descriptionTF.getText();
@@ -109,10 +112,26 @@ public class ModifyAppointment implements Initializable {
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
 
-
         //Converts start time from user's time zone to UTC
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
         ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
+
+        LocalTime estStartLT = estStartZDT.toLocalTime();
+
+        comparisonValue = estStartLT.compareTo(businessOpen);
+
+        if(comparisonValue < 0) {
+            errorText.setText("Start time must be within business hours.");
+            return;
+        }
+
+        comparisonValue = estStartLT.compareTo(businessClose);
+
+        if(comparisonValue > 0) {
+            errorText.setText("Start time must be within business hours.");
+            return;
+        }
+
         ZonedDateTime startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
         LocalDateTime startLDT = startZDT.toLocalDateTime();
         startDateTime = Timestamp.valueOf(startLDT);
@@ -124,6 +143,24 @@ public class ModifyAppointment implements Initializable {
         //Converts end time from user's time zone to UTC
         ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
         ZonedDateTime endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
+        ZonedDateTime estEndZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), estZI);
+
+        LocalTime estEndLT = estEndZDT.toLocalTime();
+
+        comparisonValue = estEndLT.compareTo(businessOpen);
+
+        if(comparisonValue < 0) {
+            errorText.setText("End time must be within business hours.");
+            return;
+        }
+
+        comparisonValue = estEndLT.compareTo(businessClose);
+
+        if(comparisonValue > 0) {
+            errorText.setText("End time must be within business hours.");
+            return;
+        }
+
         LocalDateTime endLDT = endZDT.toLocalDateTime();
         endDateTime = Timestamp.valueOf(endLDT);
 
