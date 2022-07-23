@@ -89,13 +89,10 @@ public class AddAppointment implements Initializable {
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
 
-
         //Converts start time from user's time zone to UTC
-        ZonedDateTime startZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
+        ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
+        ZonedDateTime startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
         LocalDateTime startLDT = startZDT.toLocalDateTime();
-        ZonedDateTime userStartZDT = ZonedDateTime.of(startLDT, userZI);
-        startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
-        startLDT = startZDT.toLocalDateTime();
         startDateTime = Timestamp.valueOf(startLDT);
 
         endHour = endHourCB.getValue().toString();
@@ -103,13 +100,10 @@ public class AddAppointment implements Initializable {
         endTime = " " + endHour + ":" + endMinute + ":00";
 
         //Converts start time from user's time zone to UTC
-        ZonedDateTime endZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
+        ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
+        ZonedDateTime endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
         LocalDateTime endLDT = endZDT.toLocalDateTime();
-        ZonedDateTime userEndZDT = ZonedDateTime.of(endLDT, userZI);
-        endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
-        endLDT = endZDT.toLocalDateTime();
         endDateTime = Timestamp.valueOf(endLDT);
-        System.out.println(endDateTime);
 
         createdBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
