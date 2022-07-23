@@ -66,6 +66,7 @@ public class ModifyAppointment implements Initializable {
 
     ZoneId utcZI = ZoneId.of("UTC");
     ZoneId userZI = ZoneId.systemDefault();
+    ZoneId estZI = ZoneId.of("America/New_York");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
@@ -111,6 +112,7 @@ public class ModifyAppointment implements Initializable {
 
         //Converts start time from user's time zone to UTC
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
+        ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
         ZonedDateTime startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
         LocalDateTime startLDT = startZDT.toLocalDateTime();
         startDateTime = Timestamp.valueOf(startLDT);
