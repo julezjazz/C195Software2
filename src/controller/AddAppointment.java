@@ -103,6 +103,8 @@ public class AddAppointment implements Initializable {
             return;
         }
 
+        comparisonValue = estStartLT.compareTo(businessClose);
+
         if(comparisonValue > 0) {
             errorText.setText("End time must be within business hours.");
             return;
