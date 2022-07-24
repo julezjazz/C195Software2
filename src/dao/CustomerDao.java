@@ -78,4 +78,16 @@ public class CustomerDao {
 
         ps.execute();
     }
+
+    public static void delete(int customerId) throws SQLException {
+        String sql = "delete from appointments where customer_id = ?";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setInt(1, customerId);
+        ps.execute();
+
+        sql = "delete from customers where customer_id = ?";
+        ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setInt(1, customerId);
+        ps.execute();
+    }
 }

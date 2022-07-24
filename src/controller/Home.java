@@ -46,6 +46,7 @@ public class Home implements Initializable {
     public TableColumn customerIdCol;
     public TableColumn userIdCol;
     public Text messageText;
+    public Text customerMessageText;
 
     public static Customer selectedCustomer;
     public static Appointment selectedAppointment;
@@ -139,6 +140,40 @@ public class Home implements Initializable {
         stage.setTitle("Modify Customer");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onDelCustomerBtn(ActionEvent actionEvent) throws Exception {
+
+        selectedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
+
+        int customerId = selectedCustomer.getCustomerId();
+        String customerName = selectedCustomer.getCustomerName();
+
+        CustomerDao.delete(customerId);
+
+        customerMessageText.setText("Customer, " + customerName + ", has been deleted.");
+
+        customersTable.setItems(CustomerDao.populateCustomerList());
+        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
+        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+        appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
+        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
 
 

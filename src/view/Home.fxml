@@ -52,7 +52,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="customersTable" layoutY="10.0" prefHeight="485.0" prefWidth="900.0">
+                        <TableView fx:id="customersTable" layoutY="40.0" prefHeight="455.0" prefWidth="900.0">
                            <columns>
                               <TableColumn fx:id="customerCol" prefWidth="84.00000154972076" text="Customer ID" />
                               <TableColumn fx:id="nameCol" prefWidth="116.80001068115234" text="Name" />
@@ -62,9 +62,14 @@
                               <TableColumn fx:id="phoneCol" prefWidth="155.0" text="Phone Number" />
                            </columns>
                         </TableView>
-                        <Button layoutX="14.0" layoutY="517.0" mnemonicParsing="false" text="Delete Customer" />
+                        <Button layoutX="14.0" layoutY="517.0" mnemonicParsing="false" onAction="#onDelCustomerBtn" text="Delete Customer" />
                         <Button layoutX="129.0" layoutY="517.0" mnemonicParsing="false" onAction="#onAddCustomerBtn" text="Add Customer" />
                         <Button layoutX="231.0" layoutY="517.0" mnemonicParsing="false" onAction="#onModCustomerBtn" text="Modify Customer" />
+                        <Text fx:id="customerMessageText" layoutX="164.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
                      </children></AnchorPane>
             </content>
           </Tab>
