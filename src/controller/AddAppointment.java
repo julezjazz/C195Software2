@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Contact;
 import model.ListManager;
 
@@ -90,6 +91,15 @@ public class AddAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
+        createdBy = currentUser;
+        customerId = Integer.parseInt(customerIdTF.getText());
+        userId = Integer.parseInt(userIdTF.getText());
+
+        for(Contact contact : ListManager.allContacts) {
+            if(contact.getContactName().equals(contactName)){
+                contactId = contact.getContactId();
+            }
+        }
 
 
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
@@ -141,13 +151,29 @@ public class AddAppointment implements Initializable {
         LocalDateTime endLDT = endZDT.toLocalDateTime();
         endDateTime = Timestamp.valueOf(endLDT);
 
-        createdBy = currentUser;
-        customerId = Integer.parseInt(customerIdTF.getText());
-        userId = Integer.parseInt(userIdTF.getText());
+        LocalDateTime estStartLDT = estStartZDT.toLocalDateTime();
+        LocalDateTime estEndLDT = estEndZDT.toLocalDateTime();
 
-        for(Contact contact : ListManager.allContacts) {
-            if(contact.getContactName().equals(contactName)){
-                contactId = contact.getContactId();
+        for (Appointment appointment : AppointmentDao.allAppointments){
+            if (customerId == appointment.getCustomerId()){
+                LocalDateTime existingStartTime = LocalDateTime.parse(appointment.getStartDate() + " "
+                        + appointment.getStartTime() + ":00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                System.out.println(existingStartTime);
+                comparisonValue = estStartLDT.compareTo(existingStartTime);
+                System.out.println(comparisonValue);
+                if(comparisonValue >= 0) {
+                    LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
+                            + appointment.getEndTime() + ":00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    System.out.println(existingEndTime);
+                    comparisonValue = estStartLDT.compareTo(existingEndTime);
+                    System.out.println(comparisonValue);
+                    if(comparisonValue <= 0) {
+                        errorText.setText("Appointment start time conflicts with another appointment for selected" +
+                                " customer");
+                        return;
+                    }
+                }
+
             }
         }
 
