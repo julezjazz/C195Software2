@@ -37,23 +37,24 @@ public class AddCustomer implements Initializable {
     public int divisionId;
     public String divisionName;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        countryCB.setItems(ListManager.allCountryNames);
+        stateProvCB.setItems(ListManager.usDivisionNames.sorted());
+    }
 
     public void onSelectCountry(ActionEvent actionEvent) throws Exception {
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
         if(countrySelection.equals("U.S")) {
             stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-            stateProvCB.getSelectionModel().selectFirst();
         }
         if(countrySelection.equals("UK")) {
             stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-            stateProvCB.getSelectionModel().selectFirst();
         }
         if(countrySelection.equals("Canada")) {
             stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-            stateProvCB.getSelectionModel().selectFirst();
         }
     }
-
 
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
 
@@ -88,17 +89,4 @@ public class AddCustomer implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        countryCB.setItems(ListManager.allCountryNames);
-        countryCB.getSelectionModel().selectFirst();
-
-        stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-        stateProvCB.getSelectionModel().selectFirst();
-
-    }
-
-
 }

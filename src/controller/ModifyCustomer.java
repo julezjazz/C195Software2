@@ -76,15 +76,12 @@ public class ModifyCustomer implements Initializable {
 
         if(countrySelection.equals("U.S")) {
             stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-            stateProvCB.getSelectionModel().selectFirst();
         }
         if(countrySelection.equals("UK")) {
             stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-            stateProvCB.getSelectionModel().selectFirst();
         }
         if(countrySelection.equals("Canada")) {
             stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-            stateProvCB.getSelectionModel().selectFirst();
         }
     }
 
@@ -122,6 +119,4 @@ public class ModifyCustomer implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
