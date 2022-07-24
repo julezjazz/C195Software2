@@ -179,6 +179,9 @@ public class ModifyAppointment implements Initializable {
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
+                if(appointment.getAppointmentId() == appointmentId) {
+                    continue;
+                }
                 LocalDateTime existingStartTime = LocalDateTime.parse(appointment.getStartDate() + " "
                         + appointment.getStartTime() + ":00", formatter);
                 comparisonValue = userStartLDT.compareTo(existingStartTime);
