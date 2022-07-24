@@ -153,29 +153,29 @@ public class AddAppointment implements Initializable {
         LocalDateTime endLDT = endZDT.toLocalDateTime();
         endDateTime = Timestamp.valueOf(endLDT);
 
-        LocalDateTime estStartLDT = estStartZDT.toLocalDateTime();
-        LocalDateTime estEndLDT = estEndZDT.toLocalDateTime();
+        LocalDateTime userStartLDT = userStartZDT.toLocalDateTime();
+        LocalDateTime userEndLDT = userEndZDT.toLocalDateTime();
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
                 LocalDateTime existingStartTime = LocalDateTime.parse(appointment.getStartDate() + " "
                         + appointment.getStartTime() + ":00", formatter);
-                comparisonValue = estStartLDT.compareTo(existingStartTime);
+                comparisonValue = userStartLDT.compareTo(existingStartTime);
                 if (comparisonValue >= 0) {
                     LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
                             + appointment.getEndTime() + ":00", formatter);
-                    comparisonValue = estStartLDT.compareTo(existingEndTime);
+                    comparisonValue = userStartLDT.compareTo(existingEndTime);
                     if (comparisonValue <= 0) {
                         errorText.setText("Appointment start time conflicts with another appointment for selected" +
                                 " customer");
                         return;
                     }
                 }
-                comparisonValue = estEndLDT.compareTo(existingStartTime);
+                comparisonValue = userEndLDT.compareTo(existingStartTime);
                 if (comparisonValue >= 0) {
                     LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
                             + appointment.getEndTime() + ":00", formatter);
-                    comparisonValue = estEndLDT.compareTo(existingEndTime);
+                    comparisonValue = userEndLDT.compareTo(existingEndTime);
                     if (comparisonValue <= 0) {
                         errorText.setText("Appointment end time conflicts with another appointment for selected" +
                                 " customer");
