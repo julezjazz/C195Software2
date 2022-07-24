@@ -107,6 +107,15 @@ public class ModifyAppointment implements Initializable {
         type = typeTF.getText();
         startDate = startDateDP.getValue().toString();
         endDate = endDateDP.getValue().toString();
+        updatedBy = currentUser;
+        customerId = Integer.parseInt(customerIdTF.getText());
+        userId = Integer.parseInt(userIdTF.getText());
+
+        for(Contact contact : ListManager.allContacts) {
+            if(contact.getContactName().equals(contactName)){
+                contactId = contact.getContactId();
+            }
+        }
 
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
@@ -164,15 +173,7 @@ public class ModifyAppointment implements Initializable {
         LocalDateTime endLDT = endZDT.toLocalDateTime();
         endDateTime = Timestamp.valueOf(endLDT);
 
-        updatedBy = currentUser;
-        customerId = Integer.parseInt(customerIdTF.getText());
-        userId = Integer.parseInt(userIdTF.getText());
 
-        for(Contact contact : ListManager.allContacts) {
-            if(contact.getContactName().equals(contactName)){
-                contactId = contact.getContactId();
-            }
-        }
 
         AppointmentDao.update(title, description, location, type, startDateTime, endDateTime, updatedBy, customerId,
                 userId, contactId, appointmentId);

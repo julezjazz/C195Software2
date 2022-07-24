@@ -88,9 +88,6 @@ public class AddAppointment implements Initializable {
         type = typeTF.getText();
         startDate = startDateDP.getValue().toString();
         endDate = endDateDP.getValue().toString();
-        startHour = startHourCB.getValue().toString();
-        startMinute = startMinuteCB.getValue().toString();
-        startTime = " " + startHour + ":" + startMinute + ":00";
         createdBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
@@ -100,6 +97,11 @@ public class AddAppointment implements Initializable {
                 contactId = contact.getContactId();
             }
         }
+
+        startHour = startHourCB.getValue().toString();
+        startMinute = startMinuteCB.getValue().toString();
+        startTime = " " + startHour + ":" + startMinute + ":00";
+
 
 
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
