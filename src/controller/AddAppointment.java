@@ -95,8 +95,8 @@ public class AddAppointment implements Initializable {
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
 
-        for(Contact contact : ListManager.allContacts) {
-            if(contact.getContactName().equals(contactName)){
+        for (Contact contact : ListManager.allContacts) {
+            if (contact.getContactName().equals(contactName)) {
                 contactId = contact.getContactId();
             }
         }
@@ -108,14 +108,14 @@ public class AddAppointment implements Initializable {
         LocalTime estStartLT = estStartZDT.toLocalTime();
         comparisonValue = estStartLT.compareTo(businessOpen);
 
-        if(comparisonValue < 0) {
+        if (comparisonValue < 0) {
             errorText.setText("Start time must be within business hours.");
             return;
         }
 
         comparisonValue = estStartLT.compareTo(businessClose);
 
-        if(comparisonValue > 0) {
+        if (comparisonValue > 0) {
             errorText.setText("End time must be within business hours.");
             return;
         }
@@ -137,14 +137,14 @@ public class AddAppointment implements Initializable {
 
         comparisonValue = estEndLT.compareTo(businessOpen);
 
-        if(comparisonValue < 0) {
+        if (comparisonValue < 0) {
             errorText.setText("End time must be within business hours.");
             return;
         }
 
         comparisonValue = estEndLT.compareTo(businessClose);
 
-        if(comparisonValue > 0) {
+        if (comparisonValue > 0) {
             errorText.setText("End time must be within business hours.");
             return;
         }
@@ -154,31 +154,37 @@ public class AddAppointment implements Initializable {
         LocalDateTime estStartLDT = estStartZDT.toLocalDateTime();
         LocalDateTime estEndLDT = estEndZDT.toLocalDateTime();
 
-        for (Appointment appointment : AppointmentDao.allAppointments){
-            if (customerId == appointment.getCustomerId()){
+        for (Appointment appointment : AppointmentDao.allAppointments) {
+            if (customerId == appointment.getCustomerId()) {
                 LocalDateTime existingStartTime = LocalDateTime.parse(appointment.getStartDate() + " "
-                        + appointment.getStartTime() + ":00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                System.out.println(existingStartTime);
+                        + appointment.getStartTime() + ":00", formatter);
                 comparisonValue = estStartLDT.compareTo(existingStartTime);
-                System.out.println(comparisonValue);
-                if(comparisonValue >= 0) {
+                if (comparisonValue >= 0) {
                     LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
-                            + appointment.getEndTime() + ":00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                    System.out.println(existingEndTime);
+                            + appointment.getEndTime() + ":00", formatter);
                     comparisonValue = estStartLDT.compareTo(existingEndTime);
-                    System.out.println(comparisonValue);
-                    if(comparisonValue <= 0) {
+                    if (comparisonValue <= 0) {
                         errorText.setText("Appointment start time conflicts with another appointment for selected" +
                                 " customer");
                         return;
                     }
                 }
-
+                comparisonValue = estEndLDT.compareTo(existingStartTime);
+                if (comparisonValue >= 0) {
+                    LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
+                            + appointment.getEndTime() + ":00", formatter);
+                    comparisonValue = estEndLDT.compareTo(existingEndTime);
+                    if (comparisonValue <= 0) {
+                        errorText.setText("Appointment end time conflicts with another appointment for selected" +
+                                " customer");
+                        return;
+                    }
+                }
             }
         }
 
-       AppointmentDao.insert(title, description, location, type, startDateTime, endDateTime, createdBy, customerId,
-                userId, contactId);
+        AppointmentDao.insert(title, description, location, type, startDateTime, endDateTime, createdBy, customerId,
+                        userId, contactId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -187,8 +193,7 @@ public class AddAppointment implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void onCancelBtn(ActionEvent actionEvent) throws Exception {
+    public void onCancelBtn (ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
@@ -197,3 +202,4 @@ public class AddAppointment implements Initializable {
         stage.show();
     }
 }
+
