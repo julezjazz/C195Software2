@@ -1,6 +1,5 @@
 package helper;
 
-import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -16,15 +15,15 @@ public class TimeConversion {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         int comparisonValue;
 
-        ZonedDateTime userStartZDT = ZonedDateTime.parse(date + time, formatter.withZone(userZI));
-        ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
-        LocalTime estStartLT = estStartZDT.toLocalTime();
+        ZonedDateTime userZDT = ZonedDateTime.parse(date + time, formatter.withZone(userZI));
+        ZonedDateTime estZDT = ZonedDateTime.ofInstant(userZDT.toInstant(), estZI);
+        LocalTime estLT = estZDT.toLocalTime();
 
-        comparisonValue = estStartLT.compareTo(businessOpen);
+        comparisonValue = estLT.compareTo(businessOpen);
         if (comparisonValue < 0) {
             return true;
         }
-        comparisonValue = estStartLT.compareTo(businessClose);
+        comparisonValue = estLT.compareTo(businessClose);
         if (comparisonValue > 0) {
             return true;
         }
