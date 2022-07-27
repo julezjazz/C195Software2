@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
+import helper.TimeComparison;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,10 +17,8 @@ import model.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static controller.LogIn.currentUser;
@@ -29,14 +28,13 @@ public class AppointmentAlert implements Initializable {
     public Text messageText;
 
     public int userId;
-    LocalDate currentDate;
-    LocalTime currentTime;
-    LocalDateTime currentDateTime;
-    LocalDateTime windowDateTime;
-    LocalDateTime appointmentStartDateTime;
-    LocalDateTime appointmentEndDateTime;
-    int comparisonValue;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime currentDT;
+    Timestamp currentTS;
+    LocalDateTime windowDT;
+    Timestamp windowTS;
+    Timestamp appointmentStartDateTime;
+
+    boolean boolVal;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,27 +44,25 @@ public class AppointmentAlert implements Initializable {
             }
         }
 
-        currentDateTime = LocalDateTime.now();
-        windowDateTime = currentDateTime.plusMinutes(16);
+        currentDT = LocalDateTime.now();
+        currentTS = Timestamp.valueOf(currentDT);
+        windowDT = currentDT.plusMinutes(16);
+        windowTS = Timestamp.valueOf(windowDT);
 
-       messageText.setText("Please Note: You have no appointments at this time.");
+        messageText.setText("Please Note: You have no appointments at this time.");
 
         AppointmentDao.populateAppointmentList();
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (appointment.getUserId() == userId) {
-                appointmentStartDateTime = LocalDateTime.parse(appointment.getStartDate() + " "
-                        + appointment.getStartTime() + ":00", formatter);
-                //appointmentEndDateTime = LocalDateTime.parse(appointment.getEndDate() + " " + appointment.getEndTime());
+                appointmentStartDateTime = Timestamp.valueOf(appointment.getStartDate() + " "
+                        + appointment.getStartTime() + ":00");
 
-                comparisonValue = appointmentStartDateTime.compareTo(currentDateTime);
-                if (comparisonValue >= 0) {
-                    comparisonValue = appointmentStartDateTime.compareTo(windowDateTime);
-                    if (comparisonValue < 0) {
-                        messageText.setText("Please Note: Appointment " + appointment.getAppointmentId() + " begins" +
-                                " on " + appointment.getStartDate() + " at " + appointment.getStartTime() + ".");
-                        return;
-                    }
+                boolVal = TimeComparison.compareWindow(appointmentStartDateTime, currentTS, windowTS);
+
+                if (boolVal == true) {
+                    messageText.setText("Please Note: Appointment " + appointment.getAppointmentId() + " begins on " +
+                            appointment.getStartDate() + " at " + appointment.getStartTime() + ".");
                 }
             }
         }
