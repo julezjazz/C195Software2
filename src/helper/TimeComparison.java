@@ -1,5 +1,6 @@
 package helper;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -31,13 +32,13 @@ public class TimeComparison {
 
         return false;
     }
-    public static boolean compareWindow(LocalDateTime dateTime, LocalDateTime windowStartDT, LocalDateTime windowEndDT){
+    public static boolean compareWindow(Timestamp dateTime, Timestamp windowStartDT, Timestamp windowEndDT){
         int comparisonValue;
 
         comparisonValue = dateTime.compareTo(windowStartDT);
         if (comparisonValue >= 0) {
             comparisonValue = dateTime.compareTo(windowEndDT);
-            if (comparisonValue < 0) {
+            if (comparisonValue <= 0) {
                 return true;
             }
         }
