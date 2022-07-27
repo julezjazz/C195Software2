@@ -9,11 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class AppointmentDao {
 
@@ -38,27 +33,18 @@ public class AppointmentDao {
                     String location = rs.getString("Location");
                     String type = rs.getString("Type");
                     //NEED TO CHANGE TYPE FOR NEXT TWO
-                    String startDateTime = rs.getString("Start");
-                    String endDateTime = rs.getString("End");
+                    Timestamp startDateTime = rs.getTimestamp("Start");
+                    Timestamp endDateTime = rs.getTimestamp("End");
                     int customerId = rs.getInt("Customer_ID");
                     int userId = rs.getInt("User_ID");
                     String contactName = rs.getString("Contact_Name");
 
-                    ZoneId utcZI = ZoneId.of("UTC");
-                    ZoneId userZI = ZoneId.systemDefault();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String startDate = startDateTime.toLocalDateTime().toLocalDate().toString();
+                    String startTime = startDateTime.toLocalDateTime().toLocalTime().toString();
 
-                    ZonedDateTime utcStartZDT = ZonedDateTime.parse(startDateTime, formatter.withZone(utcZI));
-                    ZonedDateTime startZDT = ZonedDateTime.ofInstant(utcStartZDT.toInstant(), userZI);
+                    String endDate = endDateTime.toLocalDateTime().toLocalDate().toString();
+                    String endTime = endDateTime.toLocalDateTime().toLocalTime().toString();
 
-                    String startDate = startZDT.toLocalDate().toString();
-                    String startTime = startZDT.toLocalTime().toString();
-
-                    ZonedDateTime utcEndZDT = ZonedDateTime.parse(endDateTime, formatter.withZone(utcZI));
-                    ZonedDateTime endZDT = ZonedDateTime.ofInstant(utcEndZDT.toInstant(), userZI);
-
-                    String endDate = endZDT.toLocalDate().toString();
-                    String endTime = endZDT.toLocalTime().toString();
 
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
                             startDate, startTime, endDate, endTime, customerId, userId, contactName);

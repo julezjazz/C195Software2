@@ -105,7 +105,12 @@ public class AddAppointment implements Initializable {
 
 
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
+        //DELETE TEST
+        System.out.println("userStartZDT is " + userStartZDT);
+
         ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
+        //DELETE TEST
+        System.out.println("estStartZDT is " + estStartZDT);
 
         LocalTime estStartLT = estStartZDT.toLocalTime();
         comparisonValue = estStartLT.compareTo(businessOpen);
@@ -122,9 +127,14 @@ public class AddAppointment implements Initializable {
             return;
         }
 
-        ZonedDateTime startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
-        LocalDateTime startLDT = startZDT.toLocalDateTime();
+        ZonedDateTime utcStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
+        //DELTE TEST
+        System.out.println("utcStartZDT is " + utcStartZDT);
+        LocalDateTime startLDT = utcStartZDT.toLocalDateTime();
         startDateTime = Timestamp.valueOf(startLDT);
+
+        //DELETE TEST
+        System.out.println("startDateTime is " + startDateTime);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
@@ -132,7 +142,7 @@ public class AddAppointment implements Initializable {
 
         //Converts end time from user's time zone to UTC
         ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
-        ZonedDateTime endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
+        ZonedDateTime utcEndZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
         ZonedDateTime estEndZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), estZI);
 
         LocalTime estEndLT = estEndZDT.toLocalTime();
@@ -150,8 +160,8 @@ public class AddAppointment implements Initializable {
             errorText.setText("End time must be within business hours.");
             return;
         }
-        LocalDateTime endLDT = endZDT.toLocalDateTime();
-        endDateTime = Timestamp.valueOf(endLDT);
+        LocalDateTime utcEndLDT = utcEndZDT.toLocalDateTime();
+        endDateTime = Timestamp.valueOf(utcEndLDT);
 
         LocalDateTime userStartLDT = userStartZDT.toLocalDateTime();
         LocalDateTime userEndLDT = userEndZDT.toLocalDateTime();
@@ -184,6 +194,9 @@ public class AddAppointment implements Initializable {
                 }
             }
         }
+        //DELETE TEST
+        System.out.println("startDateTime is " + startDateTime);
+        System.out.println("endDateTime is " + endDateTime);
 
         AppointmentDao.insert(title, description, location, type, startDateTime, endDateTime, createdBy, customerId,
                         userId, contactId);

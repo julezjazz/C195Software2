@@ -21,6 +21,7 @@ import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import static controller.Home.selectedAppointment;
 import static controller.LogIn.currentUser;
@@ -111,6 +112,8 @@ public class ModifyAppointment implements Initializable {
         updatedBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
+
+        System.out.println(TimeZone.getDefault());
 
         for(Contact contact : ListManager.allContacts) {
             if(contact.getContactName().equals(contactName)){
