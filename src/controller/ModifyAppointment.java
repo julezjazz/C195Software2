@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
+import helper.TimeConversion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,13 +66,9 @@ public class ModifyAppointment implements Initializable {
     public int contactId;
     public int appointmentId;
 
-    ZoneId utcZI = ZoneId.of("UTC");
-    ZoneId userZI = ZoneId.systemDefault();
-    ZoneId estZI = ZoneId.of("America/New_York");
-    LocalTime businessOpen = LocalTime.parse("08:00:00");
-    LocalTime businessClose = LocalTime.parse("22:00:00");
     int comparisonValue;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    boolean boolValue;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -113,8 +110,6 @@ public class ModifyAppointment implements Initializable {
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
 
-        System.out.println(TimeZone.getDefault());
-
         for(Contact contact : ListManager.allContacts) {
             if(contact.getContactName().equals(contactName)){
                 contactId = contact.getContactId();
@@ -124,85 +119,46 @@ public class ModifyAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
+        startDateTime = Timestamp.valueOf(startDate + startTime);
 
-        //Converts start time from user's time zone to UTC
-        ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
-        ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
-
-        LocalTime estStartLT = estStartZDT.toLocalTime();
-
-        comparisonValue = estStartLT.compareTo(businessOpen);
-
-        if(comparisonValue < 0) {
-            errorText.setText("Start time must be within business hours.");
-            return;
-        }
-
-        comparisonValue = estStartLT.compareTo(businessClose);
-
-        if(comparisonValue > 0) {
-            errorText.setText("Start time must be within business hours.");
-            return;
-        }
-
-        ZonedDateTime startZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), utcZI);
-        LocalDateTime startLDT = startZDT.toLocalDateTime();
-        startDateTime = Timestamp.valueOf(startLDT);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
+        endDateTime = Timestamp.valueOf(endDate + endTime);
 
-        //Converts end time from user's time zone to UTC
-        ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
-        ZonedDateTime endZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), utcZI);
-        ZonedDateTime estEndZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), estZI);
-
-        LocalTime estEndLT = estEndZDT.toLocalTime();
-
-        comparisonValue = estEndLT.compareTo(businessOpen);
-
-        if(comparisonValue < 0) {
-            errorText.setText("End time must be within business hours.");
+        boolValue = TimeConversion.checkBusinessHours(startDate, startTime);
+        if (boolValue == true) {
+            errorText.setText("Start time must be within business hours.");
             return;
         }
 
-        comparisonValue = estEndLT.compareTo(businessClose);
-
-        if(comparisonValue > 0) {
+        boolValue = TimeConversion.checkBusinessHours(endDate, endTime);
+        if (boolValue == true) {
             errorText.setText("End time must be within business hours.");
             return;
         }
-
-        LocalDateTime endLDT = endZDT.toLocalDateTime();
-        endDateTime = Timestamp.valueOf(endLDT);
-
-        LocalDateTime userStartLDT = userStartZDT.toLocalDateTime();
-        LocalDateTime userEndLDT = userEndZDT.toLocalDateTime();
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
-                if(appointment.getAppointmentId() == appointmentId) {
-                    continue;
-                }
-                LocalDateTime existingStartTime = LocalDateTime.parse(appointment.getStartDate() + " "
-                        + appointment.getStartTime() + ":00", formatter);
-                comparisonValue = userStartLDT.compareTo(existingStartTime);
+                Timestamp existingStartTime = Timestamp.valueOf(appointment.getStartDate() + " "
+                        + appointment.getStartTime() + ":00");
+                comparisonValue = startDateTime.compareTo(existingStartTime);
                 if (comparisonValue >= 0) {
-                    LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
-                            + appointment.getEndTime() + ":00", formatter);
-                    comparisonValue = userStartLDT.compareTo(existingEndTime);
+                    Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
+                            + appointment.getEndTime() + ":00");
+                    comparisonValue = startDateTime.compareTo(existingEndTime);
                     if (comparisonValue <= 0) {
                         errorText.setText("Appointment start time conflicts with another appointment for selected" +
                                 " customer");
                         return;
                     }
                 }
-                comparisonValue = userEndLDT.compareTo(existingStartTime);
+                comparisonValue = endDateTime.compareTo(existingStartTime);
                 if (comparisonValue >= 0) {
-                    LocalDateTime existingEndTime = LocalDateTime.parse(appointment.getEndDate() + " "
-                            + appointment.getEndTime() + ":00", formatter);
-                    comparisonValue = userEndLDT.compareTo(existingEndTime);
+                    Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
+                            + appointment.getEndTime() + ":00");
+                    comparisonValue = endDateTime.compareTo(existingEndTime);
                     if (comparisonValue <= 0) {
                         errorText.setText("Appointment end time conflicts with another appointment for selected" +
                                 " customer");
