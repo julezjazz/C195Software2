@@ -64,7 +64,6 @@ public class ModifyAppointment implements Initializable {
     public int contactId;
     public int appointmentId;
 
-    int comparisonValue;
     boolean boolValue;
 
 
@@ -141,27 +140,20 @@ public class ModifyAppointment implements Initializable {
             if (customerId == appointment.getCustomerId()) {
                 Timestamp existingStartTime = Timestamp.valueOf(appointment.getStartDate() + " "
                         + appointment.getStartTime() + ":00");
-                comparisonValue = startDateTime.compareTo(existingStartTime);
-                if (comparisonValue >= 0) {
-                    Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
-                            + appointment.getEndTime() + ":00");
-                    comparisonValue = startDateTime.compareTo(existingEndTime);
-                    if (comparisonValue <= 0) {
-                        errorText.setText("Appointment start time conflicts with another appointment for selected" +
-                                " customer");
-                        return;
-                    }
+                Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
+                        + appointment.getEndTime() + ":00");
+
+                boolValue = TimeComparison.compareWindow(startDateTime, existingStartTime, existingEndTime);
+                if (boolValue == true) {
+                    errorText.setText("Appointment start time conflicts with another appointment for selected" +
+                            " customer");
+                    return;
                 }
-                comparisonValue = endDateTime.compareTo(existingStartTime);
-                if (comparisonValue >= 0) {
-                    Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
-                            + appointment.getEndTime() + ":00");
-                    comparisonValue = endDateTime.compareTo(existingEndTime);
-                    if (comparisonValue <= 0) {
-                        errorText.setText("Appointment end time conflicts with another appointment for selected" +
-                                " customer");
-                        return;
-                    }
+                boolValue = TimeComparison.compareWindow(endDateTime, existingStartTime, existingEndTime);
+                if (boolValue == true) {
+                    errorText.setText("Appointment end time conflicts with another appointment for selected" +
+                            " customer");
+                    return;
                 }
             }
         }
