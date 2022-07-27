@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
+import helper.TimeConversion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -66,6 +67,7 @@ public class AddAppointment implements Initializable {
     LocalTime businessOpen = LocalTime.parse("08:00:00");
     LocalTime businessClose = LocalTime.parse("22:00:00");
     int comparisonValue;
+    boolean boolValue;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
@@ -101,49 +103,27 @@ public class AddAppointment implements Initializable {
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
 
-        //Converts user input into EST just to compare it to EST business hours
-        ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
-        ZonedDateTime estStartZDT = ZonedDateTime.ofInstant(userStartZDT.toInstant(), estZI);
-        LocalTime estStartLT = estStartZDT.toLocalTime();
-
-        comparisonValue = estStartLT.compareTo(businessOpen);
-
-        if (comparisonValue < 0) {
-            errorText.setText("Start time must be within business hours.");
-            return;
-        }
-
-        comparisonValue = estStartLT.compareTo(businessClose);
-
-        if (comparisonValue > 0) {
-            errorText.setText("End time must be within business hours.");
-            return;
-        }
-
         startDateTime = Timestamp.valueOf(startDate + startTime);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
 
-        ZonedDateTime userEndZDT = ZonedDateTime.parse(endDate + endTime, formatter.withZone(userZI));
-        ZonedDateTime estEndZDT = ZonedDateTime.ofInstant(userEndZDT.toInstant(), estZI);
-        LocalTime estEndLT = estEndZDT.toLocalTime();
-        comparisonValue = estEndLT.compareTo(businessOpen);
-
-        if (comparisonValue < 0) {
-            errorText.setText("End time must be within business hours.");
-            return;
-        }
-
-        comparisonValue = estEndLT.compareTo(businessClose);
-
-        if (comparisonValue > 0) {
-            errorText.setText("End time must be within business hours.");
-            return;
-        }
-
         endDateTime = Timestamp.valueOf(endDate + endTime);
+
+        //Converts user input into EST just to compare it to EST business hours
+
+        boolValue = TimeConversion.checkBusinessHours(startDate, startTime);
+        if (boolValue == true) {
+            errorText.setText("Start time must be within business hours.");
+            return;
+        }
+
+        boolValue = TimeConversion.checkBusinessHours(endDate, endTime);
+        if (boolValue == true) {
+            errorText.setText("End time must be within business hours.");
+            return;
+        }
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
