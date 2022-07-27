@@ -61,7 +61,6 @@ public class AddAppointment implements Initializable {
     public int userId;
     public int contactId;
 
-    ZoneId utcZI = ZoneId.of("UTC");
     ZoneId userZI = ZoneId.systemDefault();
     ZoneId estZI = ZoneId.of("America/New_York");
     LocalTime businessOpen = LocalTime.parse("08:00:00");
@@ -101,7 +100,6 @@ public class AddAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
-
 
         //Converts user input into EST just to compare it to EST business hours
         ZonedDateTime userStartZDT = ZonedDateTime.parse(startDate + startTime, formatter.withZone(userZI));
