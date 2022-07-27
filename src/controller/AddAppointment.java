@@ -62,13 +62,9 @@ public class AddAppointment implements Initializable {
     public int userId;
     public int contactId;
 
-    ZoneId userZI = ZoneId.systemDefault();
-    ZoneId estZI = ZoneId.of("America/New_York");
-    LocalTime businessOpen = LocalTime.parse("08:00:00");
-    LocalTime businessClose = LocalTime.parse("22:00:00");
     int comparisonValue;
     boolean boolValue;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,16 +98,12 @@ public class AddAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
-
         startDateTime = Timestamp.valueOf(startDate + startTime);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
-
         endDateTime = Timestamp.valueOf(endDate + endTime);
-
-        //Converts user input into EST just to compare it to EST business hours
 
         boolValue = TimeConversion.checkBusinessHours(startDate, startTime);
         if (boolValue == true) {
