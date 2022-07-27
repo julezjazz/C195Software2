@@ -138,6 +138,9 @@ public class ModifyAppointment implements Initializable {
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
+                if(appointment.getAppointmentId() == appointmentId) {
+                    continue;
+                }
                 Timestamp existingStartTime = Timestamp.valueOf(appointment.getStartDate() + " "
                         + appointment.getStartTime() + ":00");
                 Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
