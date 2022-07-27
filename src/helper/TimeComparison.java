@@ -38,7 +38,7 @@ public class TimeComparison {
         comparisonValue = dateTime.compareTo(windowStartDT);
         if (comparisonValue >= 0) {
             comparisonValue = dateTime.compareTo(windowEndDT);
-            if (comparisonValue <= 0) {
+            if (comparisonValue < 0) {
                 return true;
             }
         }
