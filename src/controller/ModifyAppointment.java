@@ -1,7 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
-import helper.TimeConversion;
+import helper.TimeComparison;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,9 +20,7 @@ import model.ListManager;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.TimeZone;
 
 import static controller.Home.selectedAppointment;
 import static controller.LogIn.currentUser;
@@ -127,13 +125,13 @@ public class ModifyAppointment implements Initializable {
         endTime = " " + endHour + ":" + endMinute + ":00";
         endDateTime = Timestamp.valueOf(endDate + endTime);
 
-        boolValue = TimeConversion.checkBusinessHours(startDate, startTime);
+        boolValue = TimeComparison.checkBusinessHours(startDate, startTime);
         if (boolValue == true) {
             errorText.setText("Start time must be within business hours.");
             return;
         }
 
-        boolValue = TimeConversion.checkBusinessHours(endDate, endTime);
+        boolValue = TimeComparison.checkBusinessHours(endDate, endTime);
         if (boolValue == true) {
             errorText.setText("End time must be within business hours.");
             return;

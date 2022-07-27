@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TimeConversion {
+public class TimeComparison {
 
     public static boolean checkBusinessHours (String date, String time) {
         ZoneId userZI = ZoneId.systemDefault();
