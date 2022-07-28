@@ -1,4 +1,7 @@
 package model;
+
+import java.time.LocalDateTime;
+
 /** Represents an appointment. */
 public class Appointment {
     private int appointmentId;
@@ -6,26 +9,26 @@ public class Appointment {
     private String description;
     private String location;
     private String type;
-    private String startDate;
-    private String startTime;
-    private String endDate;
-    private String endTime;
+    private LocalDateTime startDateTime;
+    //private String startTime;
+    private LocalDateTime endDateTime;
+    //private String endTime;
     private int customerId;
     private int userId;
     private String contactName;
 /** Class constructor. */
     public Appointment(int appointmentId, String title, String description, String location, String type,
-                       String startDate, String startTime, String endDate, String endTime, int customerId,
+                       LocalDateTime startDateTime, LocalDateTime endDateTime, int customerId,
                        int userId, String contactName) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
         this.type = type;
-        this.startDate = startDate;
+       /* this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
-        this.endTime = endTime;
+        this.endTime = endTime; */
         this.customerId = customerId;
         this.userId = userId;
         this.contactName = contactName;
@@ -50,20 +53,20 @@ public class Appointment {
     public void setType(String type) {
         this.type = type;
     }
-    /** Setter for appointment start date. */
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    /** Setter for appointment start date and time. */
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
-    /** Setter for appointment start time. */
-    public void setStartTime(String startTime) {this.startTime = startTime;}
-    /** Setter for appointment end date. */
-    public void setEndDate(String endDateTime) {
-        this.endDate = endDate;
+    ///** Setter for appointment start time. */
+    //public void setStartTime(String startTime) {this.startTime = startTime;}
+    /** Setter for appointment end date and time. */
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
-    /** Setter for appointment end time */
-    public void setEndTime(String endTime) {
+    ///** Setter for appointment end time */
+    /*public void setEndTime(String endTime) {
         this.endTime = endTime;
-    }
+    } */
 
     /** Setter for customer ID. */
     public void setCustomerId(int customerId) {
@@ -97,22 +100,22 @@ public class Appointment {
     public String getType() {
         return type;
     }
-    /** Getter for appointment start date. */
-    public String getStartDate() {
-        return startDate;
+    /** Getter for appointment start date and time. */
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
-    /** Getter for appointment start time. */
-    public String getStartTime() {
+   // /** Getter for appointment start time. */
+  /*  public String getStartTime() {
         return startTime;
+    } */
+    /** Getter for appointment end date and time. */
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
-    /** Getter for appointment end time and end date. */
-    public String getEndDate() {
-        return endDate;
-    }
-    /** Getter for appointment end time. */
-    public String getEndTime() {
+    ///** Getter for appointment end time. */
+    /*public String getEndTime() {
         return endTime;
-    }
+    }*/
 
     /** Getter for customer ID. */
     public int getCustomerId() {
