@@ -48,14 +48,14 @@ public class ModifyAppointment implements Initializable {
     public String location;
     public String contactName;
     public String type;
-    public String startDate;
-    public String endDate;
+    public LocalDate startDate;
+    public LocalDate endDate;
     public String startHour;
     public String endHour;
     public String startMinute;
     public String endMinute;
-    public String startTime;
-    public String endTime;
+    public LocalTime startTime;
+    public LocalTime endTime;
     public LocalDateTime startLDT;
     public LocalDateTime endLDT;
     public Timestamp startTS;
@@ -103,8 +103,8 @@ public class ModifyAppointment implements Initializable {
         location = locationTF.getText();
         contactName = contactCB.getSelectionModel().getSelectedItem().toString();
         type = typeTF.getText();
-        startDate = startDateDP.getValue().toString();
-        endDate = endDateDP.getValue().toString();
+        startDate = startDateDP.getValue();
+        endDate = endDateDP.getValue();
         updatedBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
@@ -117,13 +117,13 @@ public class ModifyAppointment implements Initializable {
 
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
-        startTime = " " + startHour + ":" + startMinute + ":00";
-        startLDT = LocalDateTime.parse(startDate + startTime);
+        startTime = LocalTime.parse(startHour + ":" + startMinute);
+        startLDT = LocalDateTime.of(startDate, startTime);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
-        endTime = " " + endHour + ":" + endMinute + ":00";
-        endLDT = LocalDateTime.parse(endDate + endTime);
+        endTime = LocalTime.parse(endHour + ":" + endMinute);
+        endLDT = LocalDateTime.of(endDate, endTime);
 
         boolValue = TimeComparison.checkBusinessHours(startLDT);
         if (boolValue == true) {
@@ -139,6 +139,9 @@ public class ModifyAppointment implements Initializable {
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
+                if(appointment.getAppointmentId() == appointmentId) {
+                    continue;
+                }
                 LocalDateTime existingStartTime = appointment.getStartDT();
                 LocalDateTime existingEndTime = appointment.getEndDT();
 
