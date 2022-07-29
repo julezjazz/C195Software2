@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class AppointmentDao {
 
@@ -32,22 +33,18 @@ public class AppointmentDao {
                     String description = rs.getString("Description");
                     String location = rs.getString("Location");
                     String type = rs.getString("Type");
-                    //NEED TO CHANGE TYPE FOR NEXT TWO
                     Timestamp startDateTime = rs.getTimestamp("Start");
                     Timestamp endDateTime = rs.getTimestamp("End");
                     int customerId = rs.getInt("Customer_ID");
                     int userId = rs.getInt("User_ID");
                     String contactName = rs.getString("Contact_Name");
 
-                    String startDate = startDateTime.toLocalDateTime().toLocalDate().toString();
-                    String startTime = startDateTime.toLocalDateTime().toLocalTime().toString();
-
-                    String endDate = endDateTime.toLocalDateTime().toLocalDate().toString();
-                    String endTime = endDateTime.toLocalDateTime().toLocalTime().toString();
+                    LocalDateTime startDT = startDateTime.toLocalDateTime();
+                    LocalDateTime endDT = endDateTime.toLocalDateTime();
 
 
                     Appointment newAppointment = new Appointment(appointmentId, title, description, location, type,
-                            startDate, startTime, endDate, endTime, customerId, userId, contactName);
+                            startDT, endDT, customerId, userId, contactName);
                     allAppointments.add(newAppointment);
                 }
 
