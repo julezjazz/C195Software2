@@ -39,10 +39,8 @@ public class Home implements Initializable {
     public TableColumn locationCol;
     public TableColumn contactCol;
     public TableColumn typeCol;
-    public TableColumn startDateCol;
-    public TableColumn startTimeCol;
-    public TableColumn endDateCol;
-    public TableColumn endTimeCol;
+    public TableColumn startCol;
+    public TableColumn endCol;
     public TableColumn customerIdCol;
     public TableColumn userIdCol;
     public Text messageText;
@@ -68,13 +66,10 @@ public class Home implements Initializable {
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
-
     }
 
     public void onAddAppointmentBtn(ActionEvent actionEvent) throws Exception {
@@ -112,13 +107,10 @@ public class Home implements Initializable {
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
-
     }
 
     public void onAddCustomerBtn(ActionEvent actionEvent) throws Exception {
@@ -168,15 +160,9 @@ public class Home implements Initializable {
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startDateCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        startTimeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        endDateCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        endTimeCol.setCellValueFactory(new PropertyValueFactory<>("endTime"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-
-
-
-
 }
