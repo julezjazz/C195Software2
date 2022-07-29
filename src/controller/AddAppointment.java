@@ -19,6 +19,7 @@ import model.ListManager;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static controller.LogIn.currentUser;
@@ -53,8 +54,10 @@ public class AddAppointment implements Initializable {
     public String endMinute;
     public String startTime;
     public String endTime;
-    public Timestamp startDateTime;
-    public Timestamp endDateTime;
+    public LocalDateTime startLDT;
+    public LocalDateTime endLDT;
+    public Timestamp startTS;
+    public Timestamp endTS;
     public String createdBy;
     public int customerId;
     public int userId;
@@ -95,20 +98,20 @@ public class AddAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
-        startDateTime = Timestamp.valueOf(startDate + startTime);
+        startLDT = LocalDateTime.parse(startDate + startTime);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
-        endDateTime = Timestamp.valueOf(endDate + endTime);
+        endLDT = LocalDateTime.parse(endDate + endTime);
 
-        boolValue = TimeComparison.checkBusinessHours(startDate, startTime);
+        boolValue = TimeComparison.checkBusinessHours(startLDT);
         if (boolValue == true) {
             errorText.setText("Start time must be within business hours.");
             return;
         }
 
-        boolValue = TimeComparison.checkBusinessHours(endDate, endTime);
+        boolValue = TimeComparison.checkBusinessHours(endLDT);
         if (boolValue == true) {
             errorText.setText("End time must be within business hours.");
             return;
@@ -116,18 +119,16 @@ public class AddAppointment implements Initializable {
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
-                Timestamp existingStartTime = Timestamp.valueOf(appointment.getStartDate() + " "
-                        + appointment.getStartTime() + ":00");
-                Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
-                        + appointment.getEndTime() + ":00");
+                LocalDateTime existingStartTime = appointment.getStartDT();
+                LocalDateTime existingEndTime = appointment.getEndDT();
 
-                boolValue = TimeComparison.compareWindow(startDateTime, existingStartTime, existingEndTime);
+                boolValue = TimeComparison.compareWindow(startLDT, existingStartTime, existingEndTime);
                 if (boolValue == true) {
                     errorText.setText("Appointment start time conflicts with another appointment for selected" +
                             " customer");
                     return;
                     }
-                boolValue = TimeComparison.compareWindow(endDateTime, existingStartTime, existingEndTime);
+                boolValue = TimeComparison.compareWindow(endLDT, existingStartTime, existingEndTime);
                 if (boolValue == true) {
                     errorText.setText("Appointment end time conflicts with another appointment for selected" +
                             " customer");
@@ -136,7 +137,10 @@ public class AddAppointment implements Initializable {
             }
         }
 
-        AppointmentDao.insert(title, description, location, type, startDateTime, endDateTime, createdBy, customerId,
+        startTS = Timestamp.valueOf(startLDT);
+        endTS = Timestamp.valueOf(endLDT);
+
+        AppointmentDao.insert(title, description, location, type, startTS, endTS, createdBy, customerId,
                         userId, contactId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));

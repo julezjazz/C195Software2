@@ -28,11 +28,9 @@ public class AppointmentAlert implements Initializable {
     public Text messageText;
 
     public int userId;
-    LocalDateTime currentDT;
-    Timestamp currentTS;
-    LocalDateTime windowDT;
-    Timestamp windowTS;
-    Timestamp appointmentStartDateTime;
+    LocalDateTime currentLDT;
+    LocalDateTime windowLDT;
+    LocalDateTime appointmentStartLDT;
 
     boolean boolVal;
 
@@ -44,10 +42,8 @@ public class AppointmentAlert implements Initializable {
             }
         }
 
-        currentDT = LocalDateTime.now();
-        currentTS = Timestamp.valueOf(currentDT);
-        windowDT = currentDT.plusMinutes(16);
-        windowTS = Timestamp.valueOf(windowDT);
+        currentLDT = LocalDateTime.now();
+        windowLDT = currentLDT.plusMinutes(16);
 
         messageText.setText("Please Note: You have no appointments at this time.");
 
@@ -55,14 +51,14 @@ public class AppointmentAlert implements Initializable {
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (appointment.getUserId() == userId) {
-                appointmentStartDateTime = Timestamp.valueOf(appointment.getStartDate() + " "
-                        + appointment.getStartTime() + ":00");
+                appointmentStartLDT = appointment.getStartDT();
 
-                boolVal = TimeComparison.compareWindow(appointmentStartDateTime, currentTS, windowTS);
+                boolVal = TimeComparison.compareWindow(appointmentStartLDT, currentLDT, windowLDT);
 
                 if (boolVal == true) {
                     messageText.setText("Please Note: Appointment " + appointment.getAppointmentId() + " begins on " +
-                            appointment.getStartDate() + " at " + appointment.getStartTime() + ".");
+                            appointment.getStartDT().toLocalDate() + " at " + appointment.getStartDT().toLocalTime()
+                            + ".");
                 }
             }
         }

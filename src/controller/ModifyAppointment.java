@@ -56,8 +56,10 @@ public class ModifyAppointment implements Initializable {
     public String endMinute;
     public String startTime;
     public String endTime;
-    public Timestamp startDateTime;
-    public Timestamp endDateTime;
+    public LocalDateTime startLDT;
+    public LocalDateTime endLDT;
+    public Timestamp startTS;
+    public Timestamp endTS;
     public String updatedBy;
     public int customerId;
     public int userId;
@@ -76,18 +78,18 @@ public class ModifyAppointment implements Initializable {
         contactCB.setItems(ListManager.allContactNames);
         contactCB.getSelectionModel().select(selectedAppointment.getContactName());
         typeTF.setText(selectedAppointment.getType());
-        startDateDP.setValue(LocalDate.parse(selectedAppointment.getStartDate()));
-        endDateDP.setValue(LocalDate.parse(selectedAppointment.getEndDate()));
+        startDateDP.setValue(selectedAppointment.getStartDT().toLocalDate());
+        endDateDP.setValue(selectedAppointment.getEndDT().toLocalDate());
         errorText.setText(" ");
 
         startHourCB.setItems(ListManager.hours);
-        startHourCB.getSelectionModel().select(selectedAppointment.getStartTime().substring(0,2));
+        startHourCB.getSelectionModel().select(selectedAppointment.getStartDT().toLocalTime().toString().substring(0,2));
         startMinuteCB.setItems(ListManager.minutes);
-        startMinuteCB.getSelectionModel().select(selectedAppointment.getStartTime().substring(3,5));
+        startMinuteCB.getSelectionModel().select(selectedAppointment.getStartDT().toLocalTime().toString().substring(3,5));
         endHourCB.setItems(ListManager.hours);
-        endHourCB.getSelectionModel().select(selectedAppointment.getEndTime().substring(0,2));
+        endHourCB.getSelectionModel().select(selectedAppointment.getEndDT().toLocalTime().toString().substring(0,2));
         endMinuteCB.setItems(ListManager.minutes);
-        endMinuteCB.getSelectionModel().select(selectedAppointment.getEndTime().substring(3,5));
+        endMinuteCB.getSelectionModel().select(selectedAppointment.getEndDT().toLocalTime().toString().substring(3,5));
 
         customerIdTF.setText(String.valueOf(selectedAppointment.getCustomerId()));
         userIdTF.setText(String.valueOf(selectedAppointment.getUserId()));
@@ -116,21 +118,20 @@ public class ModifyAppointment implements Initializable {
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = " " + startHour + ":" + startMinute + ":00";
-        startDateTime = Timestamp.valueOf(startDate + startTime);
-
+        startLDT = LocalDateTime.parse(startDate + startTime);
 
         endHour = endHourCB.getValue().toString();
         endMinute = endMinuteCB.getValue().toString();
         endTime = " " + endHour + ":" + endMinute + ":00";
-        endDateTime = Timestamp.valueOf(endDate + endTime);
+        endLDT = LocalDateTime.parse(endDate + endTime);
 
-        boolValue = TimeComparison.checkBusinessHours(startDate, startTime);
+        boolValue = TimeComparison.checkBusinessHours(startLDT);
         if (boolValue == true) {
             errorText.setText("Start time must be within business hours.");
             return;
         }
 
-        boolValue = TimeComparison.checkBusinessHours(endDate, endTime);
+        boolValue = TimeComparison.checkBusinessHours(endLDT);
         if (boolValue == true) {
             errorText.setText("End time must be within business hours.");
             return;
@@ -138,21 +139,16 @@ public class ModifyAppointment implements Initializable {
 
         for (Appointment appointment : AppointmentDao.allAppointments) {
             if (customerId == appointment.getCustomerId()) {
-                if(appointment.getAppointmentId() == appointmentId) {
-                    continue;
-                }
-                Timestamp existingStartTime = Timestamp.valueOf(appointment.getStartDate() + " "
-                        + appointment.getStartTime() + ":00");
-                Timestamp existingEndTime = Timestamp.valueOf(appointment.getEndDate() + " "
-                        + appointment.getEndTime() + ":00");
+                LocalDateTime existingStartTime = appointment.getStartDT();
+                LocalDateTime existingEndTime = appointment.getEndDT();
 
-                boolValue = TimeComparison.compareWindow(startDateTime, existingStartTime, existingEndTime);
+                boolValue = TimeComparison.compareWindow(startLDT, existingStartTime, existingEndTime);
                 if (boolValue == true) {
                     errorText.setText("Appointment start time conflicts with another appointment for selected" +
                             " customer");
                     return;
                 }
-                boolValue = TimeComparison.compareWindow(endDateTime, existingStartTime, existingEndTime);
+                boolValue = TimeComparison.compareWindow(endLDT, existingStartTime, existingEndTime);
                 if (boolValue == true) {
                     errorText.setText("Appointment end time conflicts with another appointment for selected" +
                             " customer");
@@ -161,7 +157,10 @@ public class ModifyAppointment implements Initializable {
             }
         }
 
-        AppointmentDao.update(title, description, location, type, startDateTime, endDateTime, updatedBy, customerId,
+        startTS = Timestamp.valueOf(startLDT);
+        endTS = Timestamp.valueOf(endLDT);
+
+        AppointmentDao.update(title, description, location, type, startTS, endTS, updatedBy, customerId,
                 userId, contactId, appointmentId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
