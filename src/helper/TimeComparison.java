@@ -11,9 +11,9 @@ public class TimeComparison {
     public static boolean checkBusinessHours (LocalDateTime dateTime) {
         ZoneId userZI = ZoneId.systemDefault();
         ZoneId estZI = ZoneId.of("America/New_York");
-        LocalTime businessOpen = LocalTime.parse("08:00:00");
-        LocalTime businessClose = LocalTime.parse("22:00:00");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalTime businessOpen = LocalTime.parse("08:00");
+        LocalTime businessClose = LocalTime.parse("22:00");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         int comparisonValue;
 
         ZonedDateTime userZDT = ZonedDateTime.of(dateTime, userZI);
