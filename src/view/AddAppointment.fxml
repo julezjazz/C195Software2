@@ -143,7 +143,7 @@
       </Label>
       <Button layoutX="33.0" layoutY="538.0" mnemonicParsing="false" onAction="#onSaveReturnBtn" text="Save and Return" />
       <Button layoutX="693.0" layoutY="538.0" mnemonicParsing="false" onAction="#onCancelBtn" text="Cancel" />
-      <Text fx:id="errorText" layoutX="256.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0">
+      <Text fx:id="errorText" layoutX="256.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="500.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
