@@ -147,14 +147,18 @@ public class ModifyAppointment implements Initializable {
 
                 boolValue = TimeComparison.compareWindow(startLDT, existingStartTime, existingEndTime);
                 if (boolValue == true) {
-                    errorText.setText("Appointment start time conflicts with another appointment for selected" +
-                            " customer");
+                    errorText.setText("Appointment conflicts with another appointment starting on "
+                            + appointment.getStartDT().toLocalDate() + " at " + appointment.getStartDT().toLocalTime()
+                            + " and ending on " + appointment.getEndDT().toLocalDate() + " at "
+                            + appointment.getEndDT().toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(endLDT, existingStartTime, existingEndTime);
                 if (boolValue == true) {
-                    errorText.setText("Appointment end time conflicts with another appointment for selected" +
-                            " customer");
+                    errorText.setText("Appointment conflicts with another appointment starting on "
+                            + appointment.getStartDT().toLocalDate() + " at " + appointment.getStartDT().toLocalTime()
+                            + " and ending on " + appointment.getEndDT().toLocalDate() + " at "
+                            + appointment.getEndDT().toLocalTime() + ".");
                     return;
                 }
             }
