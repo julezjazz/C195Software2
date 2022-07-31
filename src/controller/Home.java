@@ -1,7 +1,6 @@
 package controller;
 
 import dao.AppointmentDao;
-import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +15,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import dao.CustomerDao;
 import model.Appointment;
+import model.Contact;
 import model.Customer;
+import model.ListManager;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,7 +38,8 @@ public class Home implements Initializable {
     public TableColumn titleCol;
     public TableColumn descriptionCol;
     public TableColumn locationCol;
-    public TableColumn contactCol;
+    public TableColumn contactNameCol;
+    public TableColumn contactIdCol;
     public TableColumn typeCol;
     public TableColumn startCol;
     public TableColumn endCol;
@@ -64,7 +66,7 @@ public class Home implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
@@ -105,7 +107,7 @@ public class Home implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
@@ -158,7 +160,7 @@ public class Home implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
