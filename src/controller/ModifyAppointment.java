@@ -184,7 +184,7 @@ public class ModifyAppointment implements Initializable {
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1000, 600);
+        Scene scene = new Scene(root, 1100, 600);
         stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
@@ -193,7 +193,7 @@ public class ModifyAppointment implements Initializable {
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1000, 600);
+        Scene scene = new Scene(root, 1100, 600);
         stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
