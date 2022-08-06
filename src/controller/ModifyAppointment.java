@@ -137,7 +137,7 @@ public class ModifyAppointment implements Initializable {
             return;
         }
 
-        for (Appointment appointment : AppointmentDao.allAppointments) {
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 if(appointment.getAppointmentId() == appointmentId) {
                     continue;

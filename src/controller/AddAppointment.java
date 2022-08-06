@@ -119,7 +119,7 @@ public class AddAppointment implements Initializable {
             return;
         }
 
-        for (Appointment appointment : AppointmentDao.allAppointments) {
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 LocalDateTime otherStart = appointment.getStartDT();
                 LocalDateTime otherEnd = appointment.getEndDT();

@@ -47,9 +47,7 @@ public class AppointmentAlert implements Initializable {
 
         messageText.setText("Please Note: You have no appointments at this time.");
 
-        AppointmentDao.populateAppointmentList();
-
-        for (Appointment appointment : AppointmentDao.allAppointments) {
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (appointment.getUserId() == userId) {
                 appointmentStartLDT = appointment.getStartDT();
 
