@@ -31,7 +31,7 @@ public class AppointmentDao {
                     String title = rs.getString("Title");
                     String description = rs.getString("Description");
                     String location = rs.getString("Location");
-                    int contactId = rs.getInt("Contact_ID")
+                    int contactId = rs.getInt("Contact_ID");
                     String type = rs.getString("Type");
                     Timestamp startDateTime = rs.getTimestamp("Start");
                     Timestamp endDateTime = rs.getTimestamp("End");
