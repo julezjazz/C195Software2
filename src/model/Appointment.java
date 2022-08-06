@@ -8,12 +8,12 @@ public class Appointment {
     private String title;
     private String description;
     private String location;
+    private int contactId;
     private String type;
     private LocalDateTime startDT;
     private LocalDateTime endDT;
     private int customerId;
     private int userId;
-    private String contactName;
 /** Class constructor. */
     public Appointment(int appointmentId, String title, String description, String location, String type,
                        LocalDateTime startDT, LocalDateTime endDT, int customerId,
