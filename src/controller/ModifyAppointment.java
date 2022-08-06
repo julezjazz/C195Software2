@@ -22,7 +22,7 @@ import java.sql.Timestamp;
 import java.time.*;
 import java.util.ResourceBundle;
 
-import static controller.Home.selectedAppointment;
+import static controller.Appointments.selectedAppointment;
 import static controller.LogIn.currentUser;
 
 public class ModifyAppointment implements Initializable {
@@ -182,19 +182,19 @@ public class ModifyAppointment implements Initializable {
         AppointmentDao.update(title, description, location, type, startTS, endTS, updatedBy, customerId,
                 userId, contactId, appointmentId);
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Home");
+        stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Home");
+        stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
     }

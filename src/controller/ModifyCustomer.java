@@ -14,7 +14,7 @@ import model.Customer;
 import model.Division;
 import model.ListManager;
 
-import static controller.Home.*;
+import static controller.Customers.*;
 import static controller.LogIn.currentUser;
 
 
@@ -103,19 +103,19 @@ public class ModifyCustomer implements Initializable {
 
         CustomerDao.update(customerName, address, postalCode, phone, updatedBy, divisionId, customerId);
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Home");
+        stage.setTitle("Customers");
         stage.setScene(scene);
         stage.show();
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Home");
+        stage.setTitle("Customers");
         stage.setScene(scene);
         stage.show();
     }

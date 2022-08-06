@@ -42,7 +42,7 @@
                             <Font name="System Bold" size="14.0" />
                         </font>
                     </Text>
-                    <Button layoutX="471.0" layoutY="548.0" mnemonicParsing="false" text="Go to Home Menu" />
+                    <Button layoutX="471.0" layoutY="548.0" mnemonicParsing="false" onAction="#onCustomers" text="Go to Customers" />
             <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments">
                <font>
                   <Font name="System Bold" size="14.0" />

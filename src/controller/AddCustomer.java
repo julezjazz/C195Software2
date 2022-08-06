@@ -73,19 +73,19 @@ public class AddCustomer implements Initializable {
 
         CustomerDao.insert(customerName, address, postalCode, phone, createdBy, divisionId);
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Home");
+        stage.setTitle("Customers");
         stage.setScene(scene);
         stage.show();
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
-        stage.setTitle("Home");
+        stage.setTitle("Customers");
         stage.setScene(scene);
         stage.show();
     }
