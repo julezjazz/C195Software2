@@ -1,6 +1,8 @@
 package controller;
 
 import dao.AppointmentDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.stage.Stage;
 import model.Appointment;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Appointments implements Initializable {
@@ -32,11 +35,21 @@ public class Appointments implements Initializable {
     public TableColumn userIdCol;
     public Text messageText;
 
+    public LocalDate curDate;
+    public LocalDate oneWeek;
+    public LocalDate oneMonth;
+
     public static Appointment selectedAppointment;
+
+    public ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         messageText.setText(" ");
+
+      //  for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
+
+        //}
 
         appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
