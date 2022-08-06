@@ -36,7 +36,7 @@
                             <ToggleGroup fx:id="toggleGroup" />
                         </toggleGroup>
             </RadioButton>
-                    <RadioButton layoutX="133.0" layoutY="51.0" mnemonicParsing="false" selected="true" text="Month View" toggleGroup="$toggleGroup" />
+                    <RadioButton layoutX="133.0" layoutY="51.0" mnemonicParsing="false" onAction="#onMonthView" selected="true" text="Month View" toggleGroup="$toggleGroup" />
                     <Text fx:id="messageText" layoutX="270.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" ">
                         <font>
                             <Font name="System Bold" size="14.0" />
