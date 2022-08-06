@@ -53,6 +53,7 @@ public class Appointments implements Initializable {
 
         curDate = LocalDate.now();
         oneMonth = curDate.plusDays(30);
+        oneWeek = curDate.plusDays(7);
 
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             LocalDate compDate = appointment.getStartDT().toLocalDate();
@@ -60,8 +61,11 @@ public class Appointments implements Initializable {
             if(boolVal == true) {
                 appointmentsByMonth.add(appointment);
             }
+            boolVal = TimeComparison.compareDates(curDate, oneWeek, compDate);
+            if(boolVal == true) {
+                appointmentsByWeek.add(appointment);
+            }
         }
-
         appointmentsTable.setItems(appointmentsByMonth);
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -75,7 +79,34 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-
+   public void onMonthView(ActionEvent actionEvent) {
+        appointmentsTable.setItems(appointmentsByMonth);
+        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+    }
+    public void onWeekView(ActionEvent actionEvent) {
+        appointmentsTable.setItems(appointmentsByWeek);
+        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+    }
     public void onAddAppointmentBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/AddAppointment.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -84,7 +115,6 @@ public class Appointments implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
 
@@ -95,7 +125,6 @@ public class Appointments implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onDelAppointmentBtn(ActionEvent actionEvent) throws SQLException {
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
         int appointmentId = selectedAppointment.getAppointmentId();
@@ -117,7 +146,6 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-
     public void onCustomers(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -126,5 +154,4 @@ public class Appointments implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }
