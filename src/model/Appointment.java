@@ -106,7 +106,7 @@ public class Appointment {
     /** Getter for appointment contact name. */
     public String getContactName() {
         for(Contact contact : ListManager.allContacts) {
-            if(contact.getContactId() == customerId) {
+            if(contact.getContactId() == contactId) {
                 return contact.getContactName();
             }
         }

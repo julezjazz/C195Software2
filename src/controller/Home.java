@@ -67,6 +67,7 @@ public class Home implements Initializable {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
@@ -108,6 +109,7 @@ public class Home implements Initializable {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
@@ -161,6 +163,7 @@ public class Home implements Initializable {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
         contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
