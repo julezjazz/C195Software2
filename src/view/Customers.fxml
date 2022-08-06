@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customers">
+    <children>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1020.0">
+                <children>
+                    <TableView fx:id="customersTable" layoutX="-2.0" layoutY="44.0" prefHeight="455.0" prefWidth="1020.0">
+                        <columns>
+                            <TableColumn fx:id="customerCol" prefWidth="84.00000154972076" text="Customer ID" />
+                            <TableColumn fx:id="nameCol" prefWidth="166.0" text="Name" />
+                            <TableColumn fx:id="addressCol" prefWidth="237.0" text="Address" />
+                            <TableColumn fx:id="stateCol" prefWidth="171.0" text="State/Province" />
+                            <TableColumn fx:id="postalCol" prefWidth="131.0" text="Postal Code" />
+                            <TableColumn fx:id="phoneCol" prefWidth="220.00006103515625" text="Phone Number" />
+                        </columns>
+                    </TableView>
+                    <Button layoutX="14.0" layoutY="517.0" mnemonicParsing="false" onAction="#onDelCustomerBtn" text="Delete Customer" />
+                    <Button layoutX="129.0" layoutY="517.0" mnemonicParsing="false" onAction="#onAddCustomerBtn" text="Add Customer" />
+                    <Button layoutX="222.0" layoutY="517.0" mnemonicParsing="false" onAction="#onModCustomerBtn" text="Modify Customer" />
+                    <Text fx:id="messageText" layoutX="164.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Text>
+                    <Button layoutX="456.0" layoutY="517.0" mnemonicParsing="false" text="Go to Reports" />
+            <Text layoutX="3.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+                </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

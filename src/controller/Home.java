@@ -53,6 +53,8 @@ public class Home implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        messageText.setText(" ");
+        customerMessageText.setText(" ");
         customersTable.setItems(CustomerDao.populateCustomerList());
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
