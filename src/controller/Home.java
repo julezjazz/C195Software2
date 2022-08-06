@@ -101,7 +101,7 @@ public class Home implements Initializable {
         String type = selectedAppointment.getType();
         AppointmentDao.delete(appointmentId);
         messageText.setText("Appointment with ID: " + appointmentId + " and with type: " + type + " has been " +
-                "canceled.");
+                "deleted.");
 
         appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
