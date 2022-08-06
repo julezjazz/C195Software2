@@ -15,8 +15,7 @@ public class CustomerDao {
     public static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
     public static ObservableList<Customer> populateCustomerList(){
-        String sql = "select * from customers left join first_level_divisions on customers.division_id = " +
-                "first_level_divisions.division_id";
+        String sql = "select * from customers";
 
         PreparedStatement ps;
 
@@ -33,8 +32,8 @@ public class CustomerDao {
                     String postalCode = rs.getString("Postal_Code");
                     String phone = rs.getString("Phone");
                     int divisionId = rs.getInt("Division_ID");
-                    String division = rs.getString("Division");
-                    Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone, divisionId, division);
+                    Customer newCustomer = new Customer(customerId, customerName, address, postalCode, phone,
+                            divisionId);
                     allCustomers.add(newCustomer);
                 }
                 return allCustomers;

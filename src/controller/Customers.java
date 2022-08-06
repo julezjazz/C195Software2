@@ -36,7 +36,7 @@ public class Customers implements Initializable {
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
     }
@@ -77,7 +77,7 @@ public class Customers implements Initializable {
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        stateCol.setCellValueFactory(new PropertyValueFactory<>("division"));
+        stateCol.setCellValueFactory(new PropertyValueFactory<>("divisionName"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
     }

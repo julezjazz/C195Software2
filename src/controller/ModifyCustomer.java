@@ -51,20 +51,20 @@ public class ModifyCustomer implements Initializable {
 
         if(selectedCustomer.getDivisionId() < 55){
             stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-            stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
+            stateProvCB.getSelectionModel().select(selectedCustomer.getDivisionName());
             countryCB.getSelectionModel().select("U.S");
         }
         if(selectedCustomer.getDivisionId() >= 60){
             if(selectedCustomer.getDivisionId() <= 72) {
                 stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-                stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
+                stateProvCB.getSelectionModel().select(selectedCustomer.getDivisionName());
                 countryCB.getSelectionModel().select("Canada");
             }
         }
         if(selectedCustomer.getDivisionId() >= 101){
             if(selectedCustomer.getDivisionId() <= 104) {
                 stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-                stateProvCB.getSelectionModel().select(selectedCustomer.getDivision());
+                stateProvCB.getSelectionModel().select(selectedCustomer.getDivisionName());
                 countryCB.getSelectionModel().select("UK");
             }
         }
