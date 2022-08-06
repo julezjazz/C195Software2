@@ -15,19 +15,19 @@ public class Appointment {
     private int customerId;
     private int userId;
 /** Class constructor. */
-    public Appointment(int appointmentId, String title, String description, String location, String type,
+    public Appointment(int appointmentId, String title, String description, String location, int contactId, String type,
                        LocalDateTime startDT, LocalDateTime endDT, int customerId,
-                       int userId, String contactName) {
+                       int userId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
+        this.contactId = contactId;
         this.type = type;
         this.startDT = startDT;
         this.endDT = endDT;
         this.customerId = customerId;
         this.userId = userId;
-        this.contactName = contactName;
     }
 /** Setter for appointment ID. */
     public void setAppointmentId(int appointmentId) {
@@ -45,6 +45,8 @@ public class Appointment {
     public void setLocation(String location) {
         this.location = location;
     }
+    /** Setter for contact ID. */
+    public void setContactId(int contactId) { this.contactId = contactId; }
     /** Setter for appointment type. */
     public void setType(String type) {
         this.type = type;
@@ -53,12 +55,10 @@ public class Appointment {
     public void setStartDT(LocalDateTime startDT) {
         this.startDT = startDT;
     }
-
     /** Setter for appointment end date and time. */
     public void setEndDT(LocalDateTime endDateTime) {
         this.endDT = endDT;
     }
-
     /** Setter for customer ID. */
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
@@ -66,10 +66,6 @@ public class Appointment {
     /** Setter for user ID. */
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-    /** Setter for appointment contact ID. */
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
     }
     /** Getter for appointment ID. */
     public int getAppointmentId() {
@@ -87,6 +83,8 @@ public class Appointment {
     public String getLocation() {
         return location;
     }
+    /** Getter for contact ID. */
+    public int getContactId() { return contactId; }
     /** Getter for appointment type. */
     public String getType() {
         return type;
@@ -96,9 +94,7 @@ public class Appointment {
         return startDT;
     }
     /** Getter for appointment end date and time. */
-    public LocalDateTime getEndDT() {
-        return endDT;
-    }
+    public LocalDateTime getEndDT() { return endDT; }
     /** Getter for customer ID. */
     public int getCustomerId() {
         return customerId;
@@ -109,6 +105,11 @@ public class Appointment {
     }
     /** Getter for appointment contact name. */
     public String getContactName() {
-        return contactName;
+        for(Contact contact : ListManager.allContacts) {
+            if(contact.getContactId() == customerId) {
+                return contact.getContactName();
+            }
+        }
+        return null;
     }
 }
