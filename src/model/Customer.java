@@ -8,23 +8,19 @@ public class Customer {
     private String postalCode;
     private String phone;
     private int divisionId;
-    private String division;
 
     /** Class constructor. */
     public Customer(int customerId, String customerName, String address, String postalCode, String phone,
-                         int divisionId, String division){
+                         int divisionId){
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
         this.divisionId = divisionId;
-        this.division = division;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
+    public void setCustomerId(int customerId) { this.customerId = customerId; }
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
@@ -46,13 +42,7 @@ public class Customer {
         this.divisionId = divisionId;
     }
 
-    public void setDivision(String division) {
-        this.division = division;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
+    public int getCustomerId() { return customerId; }
 
     public String getCustomerName() {
         return customerName;
@@ -74,7 +64,12 @@ public class Customer {
         return divisionId;
     }
 
-    public String getDivision() {
-        return division;
+    public String getDivisionName() {
+        for(Division division : ListManager.allDivisions) {
+            if (division.getDivisionId() == divisionId) {
+                return division.getDivisionName();
+            }
+        }
+        return null;
     }
 }
