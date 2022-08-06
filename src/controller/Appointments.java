@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
+import helper.TimeComparison;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,22 +37,32 @@ public class Appointments implements Initializable {
     public Text messageText;
 
     public LocalDate curDate;
-    public LocalDate oneWeek;
     public LocalDate oneMonth;
+    public LocalDate oneWeek;
+
+    public Boolean boolVal;
 
     public static Appointment selectedAppointment;
 
+    public ObservableList<Appointment> appointmentsByMonth = FXCollections.observableArrayList();
     public ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         messageText.setText(" ");
 
-      //  for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
+        curDate = LocalDate.now();
+        oneMonth = curDate.plusDays(30);
 
-        //}
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
+            LocalDate compDate = appointment.getStartDT().toLocalDate();
+            boolVal = TimeComparison.compareDates(curDate, oneMonth, compDate);
+            if(boolVal == true) {
+                appointmentsByMonth.add(appointment);
+            }
+        }
 
-        appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
+        appointmentsTable.setItems(appointmentsByMonth);
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));

@@ -1,9 +1,6 @@
 package helper;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class TimeComparison {
@@ -38,6 +35,18 @@ public class TimeComparison {
         if (comparisonValue >= 0) {
             comparisonValue = dateTime.compareTo(windowEndLDT);
             if (comparisonValue < 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean compareDates(LocalDate startDate, LocalDate endDate, LocalDate compDate) {
+        int comparisonValue;
+
+        comparisonValue = compDate.compareTo(startDate);
+        if (comparisonValue >= 0){
+            comparisonValue = compDate.compareTo(endDate);
+            if (comparisonValue <= 0) {
                 return true;
             }
         }
