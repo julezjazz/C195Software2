@@ -12,14 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Division;
 import model.ListManager;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import static controller.LogIn.currentUser;
 
 public class AddCustomer implements Initializable {
-
     public TextField nameTF;
     public TextField addressTF;
     public TextField postalCodeTF;
@@ -40,7 +37,6 @@ public class AddCustomer implements Initializable {
         countryCB.setItems(ListManager.allCountryNames);
         stateProvCB.setItems(ListManager.usDivisionNames.sorted());
     }
-
     public void onSelectCountry(ActionEvent actionEvent) throws Exception {
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
         if(countrySelection.equals("U.S")) {
@@ -53,9 +49,7 @@ public class AddCustomer implements Initializable {
             stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
         }
     }
-
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
-
         customerName = nameTF.getText();
         address = addressTF.getText();
         postalCode = postalCodeTF.getText();
@@ -68,7 +62,6 @@ public class AddCustomer implements Initializable {
                 divisionId = division.getDivisionId();
             }
         }
-
         CustomerDao.insert(customerName, address, postalCode, phone, createdBy, divisionId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
@@ -78,7 +71,6 @@ public class AddCustomer implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

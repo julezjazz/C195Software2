@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
 import model.ListManager;
-
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.*;
@@ -26,7 +25,6 @@ import static controller.Appointments.selectedAppointment;
 import static controller.LogIn.currentUser;
 
 public class ModifyAppointment implements Initializable {
-
     public TextField appointmentIdTF;
     public TextField titleTF;
     public TextField descriptionTF;
@@ -68,7 +66,6 @@ public class ModifyAppointment implements Initializable {
 
     boolean boolValue;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         appointmentIdTF.setText(String.valueOf(selectedAppointment.getAppointmentId()));
@@ -94,7 +91,6 @@ public class ModifyAppointment implements Initializable {
         customerIdTF.setText(String.valueOf(selectedAppointment.getCustomerId()));
         userIdTF.setText(String.valueOf(selectedAppointment.getUserId()));
     }
-
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         errorText.setText(" ");
         appointmentId = Integer.parseInt(appointmentIdTF.getText());
@@ -114,7 +110,6 @@ public class ModifyAppointment implements Initializable {
                 contactId = contact.getContactId();
             }
         }
-
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = LocalTime.parse(startHour + ":" + startMinute);
@@ -130,13 +125,11 @@ public class ModifyAppointment implements Initializable {
             errorText.setText("Start time must be within business hours.");
             return;
         }
-
         boolValue = TimeComparison.checkBusinessHours(endLDT);
         if (boolValue == true) {
             errorText.setText("End time must be within business hours.");
             return;
         }
-
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 if(appointment.getAppointmentId() == appointmentId) {
@@ -175,7 +168,6 @@ public class ModifyAppointment implements Initializable {
                 }
             }
         }
-
         startTS = Timestamp.valueOf(startLDT);
         endTS = Timestamp.valueOf(endLDT);
 
@@ -189,7 +181,6 @@ public class ModifyAppointment implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

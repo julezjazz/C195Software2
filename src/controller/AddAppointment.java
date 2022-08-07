@@ -16,18 +16,15 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
 import model.ListManager;
-
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
-
 import static controller.LogIn.currentUser;
 
 public class AddAppointment implements Initializable {
-
     public TextField titleTF;
     public TextField descriptionTF;
     public TextField locationTF;
@@ -67,7 +64,6 @@ public class AddAppointment implements Initializable {
 
     boolean boolValue;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCB.setItems(ListManager.allContactNames);
@@ -77,7 +73,6 @@ public class AddAppointment implements Initializable {
         endMinuteCB.setItems(ListManager.minutes);
         errorText.setText(" ");
     }
-
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         errorText.setText(" ");
         title = titleTF.getText();
@@ -96,7 +91,6 @@ public class AddAppointment implements Initializable {
                 contactId = contact.getContactId();
             }
         }
-
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = LocalTime.parse(startHour + ":" + startMinute);
@@ -112,18 +106,15 @@ public class AddAppointment implements Initializable {
             errorText.setText("Start time must be within business hours.");
             return;
         }
-
         boolValue = TimeComparison.checkBusinessHours(endLDT);
         if (boolValue == true) {
             errorText.setText("End time must be within business hours.");
             return;
         }
-
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 LocalDateTime otherStart = appointment.getStartDT();
                 LocalDateTime otherEnd = appointment.getEndDT();
-
                 boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
                 if (boolValue == true) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
@@ -154,7 +145,6 @@ public class AddAppointment implements Initializable {
                 }
             }
         }
-
         startTS = Timestamp.valueOf(startLDT);
         endTS = Timestamp.valueOf(endLDT);
 

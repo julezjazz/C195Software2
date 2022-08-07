@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Customers implements Initializable {
-
     public TableView customersTable;
     public TableColumn customerCol;
     public TableColumn nameCol;
@@ -40,7 +39,6 @@ public class Customers implements Initializable {
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
     }
-
     public void onAddCustomerBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/AddCustomer.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -49,7 +47,6 @@ public class Customers implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onModCustomerBtn(ActionEvent actionEvent) throws Exception {
 
         selectedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
@@ -61,7 +58,6 @@ public class Customers implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onDelCustomerBtn(ActionEvent actionEvent) throws Exception {
 
         selectedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();

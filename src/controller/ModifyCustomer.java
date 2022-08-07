@@ -10,19 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Customer;
 import model.Division;
 import model.ListManager;
-
 import static controller.Customers.*;
 import static controller.LogIn.currentUser;
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ModifyCustomer implements Initializable {
-
     public TextField customerIdTF;
     public TextField nameTF;
     public TextField addressTF;
@@ -69,7 +64,6 @@ public class ModifyCustomer implements Initializable {
             }
         }
     }
-
     public void onSelectCountry(ActionEvent actionEvent) throws Exception {
 
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
@@ -84,9 +78,7 @@ public class ModifyCustomer implements Initializable {
             stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
         }
     }
-
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
-
         customerId = selectedCustomer.getCustomerId();
         customerName = nameTF.getText();
         address = addressTF.getText();
@@ -100,7 +92,6 @@ public class ModifyCustomer implements Initializable {
                 divisionId = division.getDivisionId();
             }
         }
-
         CustomerDao.update(customerName, address, postalCode, phone, updatedBy, divisionId, customerId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
@@ -110,7 +101,6 @@ public class ModifyCustomer implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

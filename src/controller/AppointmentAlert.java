@@ -8,26 +8,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.ListManager;
 import model.User;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
-
 import static controller.LogIn.currentUser;
 
 public class AppointmentAlert implements Initializable {
-
     public Text messageText;
 
     public int userId;
+
     LocalDateTime currentLDT;
     LocalDateTime windowLDT;
     LocalDateTime appointmentStartLDT;
@@ -41,7 +37,6 @@ public class AppointmentAlert implements Initializable {
                 userId = user.getUserId();
             }
         }
-
         currentLDT = LocalDateTime.now();
         windowLDT = currentLDT.plusMinutes(16);
 
