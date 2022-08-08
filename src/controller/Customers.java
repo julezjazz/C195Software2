@@ -77,4 +77,12 @@ public class Customers implements Initializable {
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
     }
+    public void onReportsBtn(ActionEvent actionEvent) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/ReportsMenu.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setTitle("Reports Menu");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

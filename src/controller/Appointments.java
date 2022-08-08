@@ -146,11 +146,20 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-    public void onCustomers(ActionEvent actionEvent) throws Exception {
+    public void onCustomersBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
         stage.setTitle("Customers");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void onReportsBtn(ActionEvent actionEvent) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/ReportsMenu.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setTitle("Reports Menu");
         stage.setScene(scene);
         stage.show();
     }
