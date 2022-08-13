@@ -20,7 +20,7 @@ public class ListMaker {
         String appointmentType;
         for (Appointment appointment : AppointmentDao.populateAppointmentList()){
             appointmentType = appointment.getType();
-            if (ListManager.allAppointmentTypes.contains(appointmentType){
+            if (ListManager.allAppointmentTypes.contains(appointmentType)){
                 continue;
             }
             ListManager.allAppointmentTypes.add(appointmentType);
