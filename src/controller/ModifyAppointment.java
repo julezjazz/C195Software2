@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
-import model.ListManager;
+import helper.ListManager;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.*;

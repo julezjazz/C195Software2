@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
-import model.ListManager;
+import helper.ListManager;
 import model.User;
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package model;
+package helper;
 
 import dao.ContactDao;
 import dao.CountryDao;
@@ -6,6 +6,8 @@ import dao.DivisionDao;
 import dao.UserDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.*;
+
 /** Creates and manages lists for other class objects.*/
 public class ListManager {
 

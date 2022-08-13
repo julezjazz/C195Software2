@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
+import helper.NameIdConversion;
 import helper.TimeComparison;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
-import model.Contact;
-import model.ListManager;
+import helper.ListManager;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -85,12 +85,8 @@ public class AddAppointment implements Initializable {
         createdBy = currentUser;
         customerId = Integer.parseInt(customerIdTF.getText());
         userId = Integer.parseInt(userIdTF.getText());
+        contactId = NameIdConversion.returnContactID(contactName);
 
-        for (Contact contact : ListManager.allContacts) {
-            if (contact.getContactName().equals(contactName)) {
-                contactId = contact.getContactId();
-            }
-        }
         startHour = startHourCB.getValue().toString();
         startMinute = startMinuteCB.getValue().toString();
         startTime = LocalTime.parse(startHour + ":" + startMinute);

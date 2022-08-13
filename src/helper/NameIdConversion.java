@@ -1,7 +1,6 @@
 package helper;
 
 import model.Contact;
-import model.ListManager;
 
 public class NameIdConversion {
     public static int returnContactID(String contactName) {

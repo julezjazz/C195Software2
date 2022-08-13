@@ -1,5 +1,7 @@
 package model;
 
+import helper.ListManager;
+
 import java.time.LocalDateTime;
 
 /** Represents an appointment. */

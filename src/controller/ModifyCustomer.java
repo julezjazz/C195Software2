@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Division;
-import model.ListManager;
+import helper.ListManager;
 import static controller.Customers.*;
 import static controller.LogIn.currentUser;
 import java.net.URL;

@@ -1,10 +1,8 @@
 package dao;
 
 import helper.JDBC;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.Contact;
-import model.ListManager;
+import helper.ListManager;
 
 
 import java.sql.*;

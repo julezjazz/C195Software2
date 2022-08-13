@@ -2,7 +2,7 @@ package dao;
 
 import helper.JDBC;
 import model.Division;
-import model.ListManager;
+import helper.ListManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
