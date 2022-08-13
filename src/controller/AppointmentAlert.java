@@ -57,10 +57,10 @@ public class AppointmentAlert implements Initializable {
         }
     }
     public void onOkayBtn(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/ReportsMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1100, 600);
-        stage.setTitle("Appointments");
+        Scene scene = new Scene(root, 244, 280);
+        stage.setTitle("Reports Menu");
         stage.setScene(scene);
         stage.show();
     }
