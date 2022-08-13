@@ -10,21 +10,21 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactSchedule">
    <children>
-      <ComboBox layoutX="36.0" layoutY="80.0" prefHeight="26.0" prefWidth="185.0" />
+      <ComboBox fx:id="contactCB" layoutX="36.0" layoutY="80.0" prefHeight="26.0" prefWidth="185.0" />
       <Text layoutX="36.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select a contact to view their schedule.">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <TableView layoutX="278.0" layoutY="80.0" prefHeight="462.0" prefWidth="747.0">
+      <TableView fx:id="scheduleTable" layoutX="278.0" layoutY="80.0" prefHeight="462.0" prefWidth="747.0">
         <columns>
-          <TableColumn prefWidth="106.39996337890625" text="Appointment ID" />
-          <TableColumn prefWidth="84.800048828125" text="Title" />
-            <TableColumn prefWidth="75.199951171875" text="Type" />
-            <TableColumn prefWidth="112.79998779296875" text="Description" />
-            <TableColumn prefWidth="120.79998779296875" text="Start Date &amp; Time" />
-            <TableColumn prefWidth="125.5999755859375" text="End Date &amp; Time" />
-            <TableColumn prefWidth="125.5999755859375" text="Customer ID" />
+          <TableColumn fx:id="appointmentIdCol" prefWidth="106.39996337890625" text="Appointment ID" />
+          <TableColumn fx:id="titleCol" prefWidth="84.800048828125" text="Title" />
+            <TableColumn fx:id="typeCol" prefWidth="75.199951171875" text="Type" />
+            <TableColumn fx:id="descriptionCol" prefWidth="112.79998779296875" text="Description" />
+            <TableColumn fx:id="startCol" prefWidth="120.79998779296875" text="Start Date &amp; Time" />
+            <TableColumn fx:id="endCol" prefWidth="125.5999755859375" text="End Date &amp; Time" />
+            <TableColumn fx:id="customerIdCol" prefWidth="125.5999755859375" text="Customer ID" />
         </columns>
       </TableView>
       <Button layoutX="278.0" layoutY="561.0" mnemonicParsing="false" onAction="#onReportsBtn" text="Go to Reports Menu" />
