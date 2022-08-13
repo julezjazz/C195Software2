@@ -31,4 +31,7 @@ public class AppointmentCountsByType implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void onSelectType(ActionEvent actionEvent) {
+
+    }
 }

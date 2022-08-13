@@ -4,6 +4,8 @@ import dao.AppointmentDao;
 import javafx.collections.ObservableList;
 import model.Appointment;
 
+import java.time.LocalDate;
+
 public class ListMaker {
     public static ObservableList<Appointment> populateContactSchedule (int contactId) {
         ListManager.contactSchedule.clear();
@@ -26,5 +28,32 @@ public class ListMaker {
             ListManager.allAppointmentTypes.add(appointmentType);
         }
         return ListManager.allAppointmentTypes;
+    }
+
+    public static ObservableList<Appointment> populateAppointmentsByMonth(){
+        LocalDate curDate = LocalDate.now();
+        LocalDate oneMonth = curDate.plusDays(30);
+        ListManager.appointmentsByMonth.clear();
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
+            LocalDate compDate = appointment.getStartDT().toLocalDate();
+            Boolean boolVal = TimeComparison.compareDates(curDate, oneMonth, compDate);
+            if(boolVal == true) {
+                ListManager.appointmentsByMonth.add(appointment);
+            }
+        }
+        return ListManager.appointmentsByMonth;
+    }
+    public static ObservableList<Appointment> populateAppointmentsByWeek() {
+        LocalDate curDate = LocalDate.now();
+        LocalDate oneWeek = curDate.plusDays(7);
+        ListManager.appointmentsByWeek.clear();
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
+            LocalDate compDate = appointment.getStartDT().toLocalDate();
+            Boolean boolVal = TimeComparison.compareDates(curDate, oneWeek, compDate);
+            if(boolVal == true) {
+                ListManager.appointmentsByWeek.add(appointment);
+            }
+        }
+        return ListManager.appointmentsByWeek;
     }
 }

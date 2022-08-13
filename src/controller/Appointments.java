@@ -1,9 +1,7 @@
 package controller;
 
 import dao.AppointmentDao;
-import helper.TimeComparison;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import helper.ListMaker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,37 +34,13 @@ public class Appointments implements Initializable {
     public TableColumn userIdCol;
     public Text messageText;
 
-    public LocalDate curDate;
-    public LocalDate oneMonth;
-    public LocalDate oneWeek;
-
-    public Boolean boolVal;
-
     public static Appointment selectedAppointment;
-
-    public ObservableList<Appointment> appointmentsByMonth = FXCollections.observableArrayList();
-    public ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         messageText.setText(" ");
 
-        curDate = LocalDate.now();
-        oneMonth = curDate.plusDays(30);
-        oneWeek = curDate.plusDays(7);
-
-        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
-            LocalDate compDate = appointment.getStartDT().toLocalDate();
-            boolVal = TimeComparison.compareDates(curDate, oneMonth, compDate);
-            if(boolVal == true) {
-                appointmentsByMonth.add(appointment);
-            }
-            boolVal = TimeComparison.compareDates(curDate, oneWeek, compDate);
-            if(boolVal == true) {
-                appointmentsByWeek.add(appointment);
-            }
-        }
-        appointmentsTable.setItems(appointmentsByMonth);
+        appointmentsTable.setItems(ListMaker.populateAppointmentsByMonth());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -80,7 +54,7 @@ public class Appointments implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
    public void onMonthView(ActionEvent actionEvent) {
-        appointmentsTable.setItems(appointmentsByMonth);
+        appointmentsTable.setItems(ListMaker.populateAppointmentsByMonth());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -94,7 +68,7 @@ public class Appointments implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
     public void onWeekView(ActionEvent actionEvent) {
-        appointmentsTable.setItems(appointmentsByWeek);
+        appointmentsTable.setItems(ListMaker.populateAppointmentsByWeek());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
