@@ -14,4 +14,17 @@ public class ListMaker {
         }
         return ListManager.contactSchedule;
     }
+
+    public static ObservableList<String> populateAppointmentTypes(){
+        ListManager.allAppointmentTypes.clear();
+        String appointmentType;
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()){
+            appointmentType = appointment.getType();
+            if (ListManager.allAppointmentTypes.contains(appointmentType){
+                continue;
+            }
+            ListManager.allAppointmentTypes.add(appointmentType);
+        }
+        return ListManager.allAppointmentTypes;
+    }
 }

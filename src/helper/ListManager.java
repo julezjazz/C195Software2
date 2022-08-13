@@ -29,6 +29,8 @@ public class ListManager {
     public static ObservableList<Contact> allContacts = FXCollections.observableArrayList();
     public static ObservableList<String> allContactNames = FXCollections.observableArrayList();
 
+    public static ObservableList<String> allAppointmentTypes = FXCollections.observableArrayList();
+
     public static ObservableList<String> hours = FXCollections.observableArrayList("00", "01", "02", "04", "05",
             "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
     public static ObservableList<String> minutes = FXCollections.observableArrayList("00", "15", "30", "45");
