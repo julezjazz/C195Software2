@@ -11,6 +11,14 @@ import java.io.IOException;
 
 public class ReportsMenu {
 
+    public void onAppointmentCountsBtn (ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/AppointmentCountsByType.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 300, 300);
+        stage.setTitle("Customer Appointment Counts by Type");
+        stage.setScene(scene);
+        stage.show();
+    }
     public void onContactSchedBtn (ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/ContactSchedule.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
