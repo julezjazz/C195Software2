@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Appointment;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +33,19 @@ public class AppointmentCountsByType implements Initializable {
         stage.show();
     }
     public void onSelectType(ActionEvent actionEvent) {
-
+        String type = appointmentTypeCB.getSelectionModel().getSelectedItem().toString();
+        int appointmentCount = 0;
+        for (Appointment appointment : ListMaker.populateAppointmentsByMonth()) {
+            if (appointment.getType().equals(type)){
+                appointmentCount = appointmentCount + 1;
+            }
+        }
+        if(appointmentCount == 1){
+            countReport.setText("There is 1 appointment with Type: " + type + " within the next month.");
+        }
+        else {
+            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + " within the " +
+                    "next month.");
+        }
     }
 }
