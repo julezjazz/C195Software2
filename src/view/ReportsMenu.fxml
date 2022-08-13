@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="244.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsMenu">
    <children>
       <GridPane alignment="CENTER" layoutX="35.0" layoutY="30.0" prefHeight="182.0" prefWidth="208.0">
@@ -26,7 +25,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#onAppointmentsBtn" prefHeight="30.0" prefWidth="208.0" text="Appointments Overview" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#onCustomersBtn" prefHeight="30.0" prefWidth="208.0" text="Customers" GridPane.rowIndex="4" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" text="Contact Schedules" textAlignment="CENTER" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onContactSchedBtn" prefHeight="30.0" prefWidth="208.0" text="Contact Schedules" textAlignment="CENTER" GridPane.rowIndex="2" />
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" text="Customer Appointment Counts" textAlignment="CENTER" GridPane.rowIndex="1" />
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="208.0" text="Button" textAlignment="CENTER" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a Report" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
