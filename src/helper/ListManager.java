@@ -19,6 +19,8 @@ public class ListManager {
     public static ObservableList<Appointment> appointmentsByMonth = FXCollections.observableArrayList();
     public static ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
 
+    public static ObservableList<String> allCustomerNames = FXCollections.observableArrayList();
+
     public static ObservableList<Appointment> contactSchedule = FXCollections.observableArrayList();
     /** List for all objects representing first divisions of countries. */
     public static ObservableList<Division> allDivisions = FXCollections.observableArrayList();

@@ -1,12 +1,23 @@
 package helper;
 
 import dao.AppointmentDao;
+import dao.CustomerDao;
 import javafx.collections.ObservableList;
 import model.Appointment;
+import model.Customer;
 
 import java.time.LocalDate;
 
 public class ListMaker {
+
+    public static ObservableList<String> populateAllCustomerNames(){
+        ListManager.allCustomerNames.clear();
+        for (Customer customer : CustomerDao.populateCustomerList()){
+            ListManager.allCustomerNames.add(customer.getCustomerName());
+        }
+        return ListManager.allCustomerNames;
+    }
+
     public static ObservableList<Appointment> populateContactSchedule (int contactId) {
         ListManager.contactSchedule.clear();
         for(Appointment appointment : AppointmentDao.populateAppointmentList()){
