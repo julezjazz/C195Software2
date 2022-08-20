@@ -20,6 +20,7 @@ public class ListManager {
     public static ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
 
     public static ObservableList<String> allCustomerNames = FXCollections.observableArrayList();
+    public static ObservableList<Appointment> appointmentsByCustomer = FXCollections.observableArrayList();
 
     public static ObservableList<Appointment> contactSchedule = FXCollections.observableArrayList();
     /** List for all objects representing first divisions of countries. */

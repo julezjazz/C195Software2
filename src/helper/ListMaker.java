@@ -17,10 +17,19 @@ public class ListMaker {
         }
         return ListManager.allCustomerNames;
     }
+    public static ObservableList<Appointment> populateAppointmentsByCustomers (int customerId) {
+        ListManager.appointmentsByCustomer.clear();
+        for (Appointment appointment : ListMaker.populateAppointmentsByMonth()){
+            if (appointment.getCustomerId() == customerId) {
+                ListManager.appointmentsByCustomer.add(appointment);
+            }
+        }
+        return ListManager.appointmentsByCustomer;
+    }
 
     public static ObservableList<Appointment> populateContactSchedule (int contactId) {
         ListManager.contactSchedule.clear();
-        for(Appointment appointment : AppointmentDao.populateAppointmentList()){
+        for(Appointment appointment : populateAppointmentsByMonth()){
             if (appointment.getContactId() == contactId) {
                 ListManager.contactSchedule.add(appointment);
             }

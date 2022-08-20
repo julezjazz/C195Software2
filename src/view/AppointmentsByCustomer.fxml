@@ -16,7 +16,7 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Text>
-        <TableView fx:id="scheduleTable" layoutX="278.0" layoutY="80.0" prefHeight="462.0" prefWidth="747.0">
+        <TableView fx:id="appointmentTable" layoutX="278.0" layoutY="80.0" prefHeight="462.0" prefWidth="747.0">
             <columns>
                 <TableColumn fx:id="appointmentIdCol" prefWidth="106.39996337890625" text="Appointment ID" />
                 <TableColumn fx:id="titleCol" prefWidth="84.800048828125" text="Title" />
@@ -24,7 +24,7 @@
                 <TableColumn fx:id="descriptionCol" prefWidth="112.79998779296875" text="Description" />
                 <TableColumn fx:id="startCol" prefWidth="120.79998779296875" text="Start Date &amp; Time" />
                 <TableColumn fx:id="endCol" prefWidth="125.5999755859375" text="End Date &amp; Time" />
-                <TableColumn fx:id="customerIdCol" prefWidth="125.5999755859375" text="Contact ID" />
+                <TableColumn fx:id="contactIdCol" prefWidth="125.5999755859375" text="Contact ID" />
             </columns>
         </TableView>
         <Button layoutX="278.0" layoutY="561.0" mnemonicParsing="false" onAction="#onReportsBtn" text="Go to Reports Menu" />
