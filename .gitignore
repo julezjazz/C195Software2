@@ -82,3 +82,6 @@ fabric.properties
 
 # .iml files
 JavaFxApplication.iml
+
+# .txt files
+login_activity.txt
