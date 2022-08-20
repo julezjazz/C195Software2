@@ -17,15 +17,15 @@
                         <columns>
                             <TableColumn fx:id="appointmentIdCol" prefWidth="99.20001375675201" text="Appointment ID" />
                             <TableColumn fx:id="titleCol" prefWidth="74.0" text="Title" />
-                            <TableColumn fx:id="descriptionCol" text="Description" />
-                            <TableColumn fx:id="locationCol" prefWidth="75.0" text="Location" />
-                            <TableColumn fx:id="contactNameCol" prefWidth="99.0" text="Contact Name" />
-                            <TableColumn fx:id="contactIdCol" prefWidth="71.0" text="Contact ID" />
-                            <TableColumn fx:id="typeCol" prefWidth="84.0" text="Type" />
-                            <TableColumn fx:id="startCol" prefWidth="156.0" text="Start Date and Time" />
-                            <TableColumn fx:id="endCol" minWidth="0.0" prefWidth="113.0" text="End Date and Time" />
-                            <TableColumn fx:id="customerIdCol" minWidth="4.0" prefWidth="133.0" text="Customer ID" />
-                            <TableColumn fx:id="userIdCol" minWidth="0.0" prefWidth="113.0" text="User ID" />
+                            <TableColumn fx:id="descriptionCol" prefWidth="123.0" text="Description" />
+                            <TableColumn fx:id="locationCol" prefWidth="92.0" text="Location" />
+                            <TableColumn fx:id="contactNameCol" prefWidth="136.0" text="Contact Name" />
+                            <TableColumn fx:id="contactIdCol" prefWidth="79.0" text="Contact ID" />
+                            <TableColumn fx:id="typeCol" prefWidth="94.0" text="Type" />
+                            <TableColumn fx:id="startCol" prefWidth="121.0" text="Start Date &amp; Time" />
+                            <TableColumn fx:id="endCol" minWidth="0.0" prefWidth="121.0" text="End Date &amp; Time" />
+                            <TableColumn fx:id="customerIdCol" minWidth="4.0" prefWidth="91.0" text="Customer ID" />
+                            <TableColumn fx:id="userIdCol" minWidth="0.0" prefWidth="67.0" text="User ID" />
                         </columns>
                     </TableView>
                     <Button layoutX="298.0" layoutY="548.0" mnemonicParsing="false" onAction="#onAddAppointmentBtn" text="Add Appointment" />
