@@ -52,7 +52,7 @@ public class ListMaker {
 
     public static ObservableList<Appointment> populateAppointmentsByMonth(){
         LocalDate curDate = LocalDate.now();
-        LocalDate oneMonth = curDate.plusDays(30);
+        LocalDate oneMonth = curDate.plusDays(29);
         ListManager.appointmentsByMonth.clear();
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             LocalDate compDate = appointment.getStartDT().toLocalDate();
@@ -65,7 +65,7 @@ public class ListMaker {
     }
     public static ObservableList<Appointment> populateAppointmentsByWeek() {
         LocalDate curDate = LocalDate.now();
-        LocalDate oneWeek = curDate.plusDays(7);
+        LocalDate oneWeek = curDate.plusDays(6);
         ListManager.appointmentsByWeek.clear();
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             LocalDate compDate = appointment.getStartDT().toLocalDate();
