@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AppointmentsByCustomer">
     <children>
-        <ComboBox fx:id="customerCB" layoutX="37.0" layoutY="99.0" onAction="#onSelectContact" prefHeight="26.0" prefWidth="185.0" />
+        <ComboBox fx:id="customerCB" layoutX="37.0" layoutY="99.0" onAction="#onSelectCustomer" prefHeight="26.0" prefWidth="185.0" />
         <Text layoutX="37.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select a customer to view their upcoming appointments." textAlignment="CENTER" wrappingWidth="185.0">
             <font>
                 <Font name="System Bold" size="12.0" />

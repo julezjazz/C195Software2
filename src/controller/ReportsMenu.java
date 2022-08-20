@@ -27,6 +27,14 @@ public class ReportsMenu {
         stage.setScene(scene);
         stage.show();
     }
+    public void onAppsByCustomerBtn (ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../view/AppointmentsByCustomer.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1065, 600);
+        stage.setTitle("Appointments by Customer");
+        stage.setScene(scene);
+        stage.show();
+    }
     public void onAppointmentsBtn (ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
