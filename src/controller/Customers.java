@@ -48,8 +48,12 @@ public class Customers implements Initializable {
         stage.show();
     }
     public void onModCustomerBtn(ActionEvent actionEvent) throws Exception {
-
         selectedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
+
+        if(selectedCustomer == null){
+            messageText.setText("Please select a customer to modify.");
+            return;
+        }
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyCustomer.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -59,8 +63,12 @@ public class Customers implements Initializable {
         stage.show();
     }
     public void onDelCustomerBtn(ActionEvent actionEvent) throws Exception {
-
         selectedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
+
+        if(selectedCustomer == null){
+            messageText.setText("Please select a customer to delete.");
+            return;
+        }
 
         int customerId = selectedCustomer.getCustomerId();
         String customerName = selectedCustomer.getCustomerName();
