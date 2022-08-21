@@ -77,23 +77,29 @@ public class AddAppointment implements Initializable {
         title = titleTF.getText();
         description = descriptionTF.getText();
         location = locationTF.getText();
-        if(contactCB.getSelectionModel().getSelectedItem() == null){
+
+        try{contactName = contactCB.getSelectionModel().getSelectedItem().toString();}
+        catch (NullPointerException e){
             errorText.setText("Please select a contact.");
             return;
         }
-        contactName = contactCB.getSelectionModel().getSelectedItem().toString();
+
         type = typeTF.getText();
-        if(startDateDP.getValue() == null){
+
+        try{startDate = startDateDP.getValue();}
+        catch (NullPointerException e){
             errorText.setText("Please select a start date.");
             return;
         }
-        startDate = startDateDP.getValue();
-        if(endDateDP.getValue() == null){
+
+        try {endDate = endDateDP.getValue();}
+        catch (NullPointerException e) {
             errorText.setText("Please select an end date.");
             return;
         }
-        endDate = endDateDP.getValue();
+
         createdBy = currentUser;
+
         try {
             customerId = Integer.parseInt(customerIdTF.getText());
         }
@@ -101,6 +107,7 @@ public class AddAppointment implements Initializable {
             errorText.setText("Please enter a valid customer ID");
             return;
         }
+
         try {
             userId = Integer.parseInt(userIdTF.getText());
         }
@@ -111,29 +118,32 @@ public class AddAppointment implements Initializable {
 
         contactId = NameIdConversion.returnContactID(contactName);
 
-        if(startHourCB.getValue() == null){
+        try{startHour = startHourCB.getValue().toString();}
+        catch (NullPointerException e) {
             errorText.setText("Please select a start time.");
             return;
         }
-        startHour = startHourCB.getValue().toString();
-        if(startMinuteCB.getValue() == null){
+
+        try{startMinute = startMinuteCB.getValue().toString();}
+        catch (NullPointerException e) {
             errorText.setText("Please select a start time.");
             return;
         }
-        startMinute = startMinuteCB.getValue().toString();
+
+        try{endHour = endHourCB.getValue().toString();}
+        catch (NullPointerException e){
+           errorText.setText("Please select an end time.");
+           return;
+        }
+        try{endMinute = endMinuteCB.getValue().toString();}
+        catch (NullPointerException e){
+            errorText.setText("Please select an end time.");
+            return;
+        }
+
         startTime = LocalTime.parse(startHour + ":" + startMinute);
         startLDT = LocalDateTime.of(startDate, startTime);
 
-        if(endHourCB.getValue() == null){
-            errorText.setText("Please select an end time.");
-            return;
-        }
-        endHour = endHourCB.getValue().toString();
-        if(endMinuteCB.getValue() == null){
-            errorText.setText("Please select an end time.");
-            return;
-        }
-        endMinute = endMinuteCB.getValue().toString();
         endTime = LocalTime.parse(endHour + ":" + endMinute);
         endLDT = LocalDateTime.of(endDate, endTime);
 
