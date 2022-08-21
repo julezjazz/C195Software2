@@ -86,18 +86,17 @@ public class AddAppointment implements Initializable {
 
         type = typeTF.getText();
 
-        try{startDate = startDateDP.getValue();}
-        catch (NullPointerException e){
+        if(startDateDP.getValue() == null){
             errorText.setText("Please select a start date.");
             return;
         }
-
-        try {endDate = endDateDP.getValue();}
-        catch (NullPointerException e) {
+        startDate = startDateDP.getValue();
+        if(endDateDP.getValue() == null){
             errorText.setText("Please select an end date.");
             return;
         }
 
+        endDate = endDateDP.getValue();
         createdBy = currentUser;
 
         try {
@@ -130,19 +129,20 @@ public class AddAppointment implements Initializable {
             return;
         }
 
+        startTime = LocalTime.parse(startHour + ":" + startMinute);
+        startLDT = LocalDateTime.of(startDate, startTime);
+
         try{endHour = endHourCB.getValue().toString();}
         catch (NullPointerException e){
            errorText.setText("Please select an end time.");
            return;
         }
+
         try{endMinute = endMinuteCB.getValue().toString();}
         catch (NullPointerException e){
             errorText.setText("Please select an end time.");
             return;
         }
-
-        startTime = LocalTime.parse(startHour + ":" + startMinute);
-        startLDT = LocalDateTime.of(startDate, startTime);
 
         endTime = LocalTime.parse(endHour + ":" + endMinute);
         endLDT = LocalDateTime.of(endDate, endTime);
