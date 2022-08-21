@@ -90,13 +90,16 @@ public class AddAppointment implements Initializable {
             errorText.setText("Please select a start date.");
             return;
         }
+
         startDate = startDateDP.getValue();
+
         if(endDateDP.getValue() == null){
             errorText.setText("Please select an end date.");
             return;
         }
 
         endDate = endDateDP.getValue();
+
         createdBy = currentUser;
 
         try {
