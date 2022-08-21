@@ -74,25 +74,65 @@ public class AddAppointment implements Initializable {
         errorText.setText(" ");
     }
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
-        errorText.setText(" ");
         title = titleTF.getText();
         description = descriptionTF.getText();
         location = locationTF.getText();
+        if(contactCB.getSelectionModel().getSelectedItem() == null){
+            errorText.setText("Please select a contact.");
+            return;
+        }
         contactName = contactCB.getSelectionModel().getSelectedItem().toString();
         type = typeTF.getText();
+        if(startDateDP.getValue() == null){
+            errorText.setText("Please select a start date.");
+            return;
+        }
         startDate = startDateDP.getValue();
+        if(endDateDP.getValue() == null){
+            errorText.setText("Please select an end date.");
+            return;
+        }
         endDate = endDateDP.getValue();
         createdBy = currentUser;
-        customerId = Integer.parseInt(customerIdTF.getText());
-        userId = Integer.parseInt(userIdTF.getText());
+        try {
+            customerId = Integer.parseInt(customerIdTF.getText());
+        }
+        catch (NumberFormatException e){
+            errorText.setText("Please enter a valid customer ID");
+            return;
+        }
+        try {
+            userId = Integer.parseInt(userIdTF.getText());
+        }
+        catch (NumberFormatException e){
+            errorText.setText("Please enter a valid user ID");
+            return;
+        }
+
         contactId = NameIdConversion.returnContactID(contactName);
 
+        if(startHourCB.getValue() == null){
+            errorText.setText("Please select a start time.");
+            return;
+        }
         startHour = startHourCB.getValue().toString();
+        if(startMinuteCB.getValue() == null){
+            errorText.setText("Please select a start time.");
+            return;
+        }
         startMinute = startMinuteCB.getValue().toString();
         startTime = LocalTime.parse(startHour + ":" + startMinute);
         startLDT = LocalDateTime.of(startDate, startTime);
 
+        if(endHourCB.getValue() == null){
+            errorText.setText("Please select an end time.");
+            return;
+        }
         endHour = endHourCB.getValue().toString();
+        if(endMinuteCB.getValue() == null){
+            errorText.setText("Please select an end time.");
+            return;
+        }
         endMinute = endMinuteCB.getValue().toString();
         endTime = LocalTime.parse(endHour + ":" + endMinute);
         endLDT = LocalDateTime.of(endDate, endTime);
