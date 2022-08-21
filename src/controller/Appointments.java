@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import model.Appointment;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Appointments implements Initializable {
@@ -91,6 +90,10 @@ public class Appointments implements Initializable {
     }
     public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
+        if (selectedAppointment == null){
+            messageText.setText("Please select an appointment to modify.");
+            return;
+        }
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/ModifyAppointment.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -101,10 +104,15 @@ public class Appointments implements Initializable {
     }
     public void onDelAppointmentBtn(ActionEvent actionEvent) throws SQLException {
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
+        if (selectedAppointment == null){
+            messageText.setText("Please select an appointment to delete.");
+            return;
+        }
+
         int appointmentId = selectedAppointment.getAppointmentId();
         String type = selectedAppointment.getType();
         AppointmentDao.delete(appointmentId);
-        messageText.setText("Appointment with ID: " + appointmentId + " and with type: " + type + " has been " +
+        messageText.setText("Appointment with ID " + appointmentId + " and of type " + type + " has been " +
                 "deleted.");
 
         appointmentsTable.setItems(AppointmentDao.populateAppointmentList());
