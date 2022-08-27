@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -16,6 +17,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
 import helper.ListManager;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -39,6 +42,8 @@ public class AddAppointment implements Initializable {
     public TextField customerIdTF;
     public TextField userIdTF;
     public Text errorText;
+
+    public Button cancelBtn;
 
     public String title;
     public String description;
@@ -72,6 +77,20 @@ public class AddAppointment implements Initializable {
         startMinuteCB.setItems(ListManager.minutes);
         endMinuteCB.setItems(ListManager.minutes);
         errorText.setText(" ");
+        //Lambda below
+        cancelBtn.setOnAction(e -> {
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1100, 600);
+            stage.setTitle("Appointments");
+            stage.setScene(scene);
+            stage.show();
+        });
     }
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         title = titleTF.getText();
@@ -208,13 +227,13 @@ public class AddAppointment implements Initializable {
         stage.show();
     }
 
-    public void onCancelBtn (ActionEvent actionEvent) throws Exception {
+   /* public void onCancelBtn (ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1100, 600);
         stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
-    }
+    } */
 }
 
