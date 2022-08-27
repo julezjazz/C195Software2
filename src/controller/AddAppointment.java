@@ -27,7 +27,9 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
-/** Collects user input and adds a new appointment to the Appointments table in the database. */
+/** A class for controlling <code>../view/AddAppointment.fxml</code>.
+ * @author Julez Hudson
+ */
 public class AddAppointment implements Initializable {
     public TextField titleTF;
     public TextField descriptionTF;

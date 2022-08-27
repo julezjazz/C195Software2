@@ -21,7 +21,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
-/** Collects user input and adds a new customer to the Customers table in the database. */
+/**
+ * A class for controlling <code>../view/AddCustomer.fxml</code>.
+ * @author Julez Hudson
+ */
 public class AddCustomer implements Initializable {
     public TextField nameTF;
     public TextField addressTF;

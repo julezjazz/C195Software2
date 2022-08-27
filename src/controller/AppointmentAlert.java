@@ -19,6 +19,10 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
+/**
+ *  A class for controlling <code>view.AppointmentAlert.fxml</code>
+ * @author Julez Hudson
+ */
 public class AppointmentAlert implements Initializable {
     public Text messageText;
 
@@ -30,6 +34,12 @@ public class AppointmentAlert implements Initializable {
 
     boolean boolVal;
 
+    /**
+     * Sets alert text to indicate if there are any appointments scheduled for the current user within 15 minutes of
+     * logging in.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for (User user : ListManager.allUsers) {
@@ -48,7 +58,7 @@ public class AppointmentAlert implements Initializable {
 
                 boolVal = TimeComparison.compareWindow(appointmentStartLDT, currentLDT, windowLDT);
 
-                if (boolVal == true) {
+                if (boolVal) {
                     messageText.setText("Please Note: Appointment " + appointment.getAppointmentId() + " begins on " +
                             appointment.getStartDT().toLocalDate() + " at " + appointment.getStartDT().toLocalTime()
                             + ".");
@@ -56,6 +66,12 @@ public class AppointmentAlert implements Initializable {
             }
         }
     }
+
+    /**
+     * Navigates to Reports Menu page.
+     * @param actionEvent Clicking the okay button.
+     * @throws IOException In case of input or output exception.
+     */
     public void onOkayBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/ReportsMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
