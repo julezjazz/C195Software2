@@ -15,10 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Division;
 import helper.ListManager;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
+/** Collects user input and adds a new customer to the Customers table in the database. */
 public class AddCustomer implements Initializable {
     public TextField nameTF;
     public TextField addressTF;
@@ -36,6 +39,12 @@ public class AddCustomer implements Initializable {
     public int divisionId;
     public String divisionName;
 
+    /**
+     * Sets combo box with list of country names and uses lambda expression to clear the entire form when the clear
+     * button is clicked. Lambda is used to avoid writing a complete, separate method.
+      * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryCB.setItems(ListManager.allCountryNames);
@@ -49,7 +58,12 @@ public class AddCustomer implements Initializable {
             stateProvCB.setValue(null);
         });
     }
-    public void onSelectCountry(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Sets combo box for division info with list based on selected country. If the country combo box is set to null,
+     * this method returns without making any changes.
+     */
+    public void onSelectCountry() {
         if (countryCB.getSelectionModel().getSelectedItem() == null){
             return;
         }
@@ -57,6 +71,13 @@ public class AddCustomer implements Initializable {
         int countryId = NameIdConversion.returnCountryID(countrySelection);
         stateProvCB.setItems(ListMaker.populateDivisionsBySelectCountry(countryId));
     }
+
+    /**
+     * Adds a new customer to the Customer table of the database. User input is collected and used to add this new
+     * customer. This method then navigates to the main customers page.
+     * @param actionEvent Clicking the save and return button.
+     * @throws Exception In case of an input or output or sql error.
+     */
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         customerName = nameTF.getText();
         address = addressTF.getText();
@@ -79,7 +100,13 @@ public class AddCustomer implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void onCancelBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the main customers page.
+     * @param actionEvent Clicking the cancel button.
+     * @throws IOException In the case of an input or output exception.
+     */
+    public void onCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);

@@ -27,7 +27,7 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
-/** Takes user input and adds a new appointment to the Appointments table in the database. */
+/** Collects user input and adds a new appointment to the Appointments table in the database. */
 public class AddAppointment implements Initializable {
     public TextField titleTF;
     public TextField descriptionTF;
@@ -69,7 +69,8 @@ public class AddAppointment implements Initializable {
 
     boolean boolValue;
 
-    /** Sets all combo boxes with appropriate lists and uses a lambda expression to navigate back to Appointments page
+    /**
+     * Sets all combo boxes with appropriate lists and uses a lambda expression to navigate back to Appointments page
      * upon clicking the cancel button. Lambda is used to avoid creating another method.
      * @param url
      * @param resourceBundle
@@ -101,8 +102,8 @@ public class AddAppointment implements Initializable {
     /**
      * Gets all user input, tests time input for errors, uses input to add a new appointment to the Appointment table of
      * the database, and navigates back to Appointments page.
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent Clicking the save and return button.
+     * @throws Exception In case of sql or input or output exception.
      */
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         title = titleTF.getText();
