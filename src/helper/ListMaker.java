@@ -5,6 +5,7 @@ import dao.CustomerDao;
 import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Customer;
+import model.Division;
 
 import java.time.LocalDate;
 
@@ -75,5 +76,15 @@ public class ListMaker {
             }
         }
         return ListManager.appointmentsByWeek;
+    }
+
+    public static ObservableList<String> populateDivisionsBySelectCountry(int countryId) {
+        ListManager.divisionsBySelectCountry.clear();
+        for (Division division : ListManager.allDivisions) {
+            if (division.getCountryId() == countryId) {
+                ListManager.divisionsBySelectCountry.add(division.getDivisionName());
+            }
+        }
+        return ListManager.divisionsBySelectCountry.sorted();
     }
 }

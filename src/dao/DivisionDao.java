@@ -26,15 +26,6 @@ public class DivisionDao {
                     int countryId = rs.getInt("Country_ID");
                     Division newDivision = new Division(divisionId, divisionName, countryId);
                     ListManager.allDivisions.add(newDivision);
-                    if(countryId == 1) {
-                        ListManager.usDivisionNames.add(divisionName);
-                    }
-                    if(countryId == 2) {
-                        ListManager.ukDivisionNames.add(divisionName);
-                    }
-                    if(countryId == 3) {
-                        ListManager.canadaDivisionNames.add(divisionName);
-                    }
                 }
 
             } catch (SQLException throwables) {

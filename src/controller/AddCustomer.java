@@ -1,6 +1,8 @@
 package controller;
 
 import dao.CustomerDao;
+import helper.ListMaker;
+import helper.NameIdConversion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,7 +39,6 @@ public class AddCustomer implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryCB.setItems(ListManager.allCountryNames);
-        stateProvCB.setItems(ListManager.usDivisionNames.sorted());
 
         clearBtn.setOnAction(e ->{
             nameTF.clear();
@@ -49,16 +50,12 @@ public class AddCustomer implements Initializable {
         });
     }
     public void onSelectCountry(ActionEvent actionEvent) throws Exception {
+        if (countryCB.getSelectionModel().getSelectedItem() == null){
+            return;
+        }
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
-        if(countrySelection.equals("U.S")) {
-            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-        }
-        if(countrySelection.equals("UK")) {
-            stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-        }
-        if(countrySelection.equals("Canada")) {
-            stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-        }
+        int countryId = NameIdConversion.returnCountryID(countrySelection);
+        stateProvCB.setItems(ListMaker.populateDivisionsBySelectCountry(countryId));
     }
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         customerName = nameTF.getText();

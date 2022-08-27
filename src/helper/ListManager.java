@@ -25,6 +25,7 @@ public class ListManager {
     public static ObservableList<Appointment> contactSchedule = FXCollections.observableArrayList();
     /** List for all objects representing first divisions of countries. */
     public static ObservableList<Division> allDivisions = FXCollections.observableArrayList();
+    public static ObservableList<String> divisionsBySelectCountry = FXCollections.observableArrayList();
     public static ObservableList<String> usDivisionNames = FXCollections.observableArrayList();
     public static ObservableList<String> ukDivisionNames = FXCollections.observableArrayList();
     public static ObservableList<String> canadaDivisionNames = FXCollections.observableArrayList();
