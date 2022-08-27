@@ -27,6 +27,7 @@ import java.time.LocalTime;
 import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
+/** Takes user input and adds a new appointment to the Appointments table in the database. */
 public class AddAppointment implements Initializable {
     public TextField titleTF;
     public TextField descriptionTF;
@@ -42,7 +43,6 @@ public class AddAppointment implements Initializable {
     public TextField customerIdTF;
     public TextField userIdTF;
     public Text errorText;
-
     public Button cancelBtn;
 
     public String title;
@@ -69,6 +69,11 @@ public class AddAppointment implements Initializable {
 
     boolean boolValue;
 
+    /** Sets all combo boxes with appropriate lists and uses a lambda expression to navigate back to Appointments page
+     * upon clicking the cancel button. Lambda is used to avoid creating another method.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCB.setItems(ListManager.allContactNames);
@@ -77,7 +82,7 @@ public class AddAppointment implements Initializable {
         startMinuteCB.setItems(ListManager.minutes);
         endMinuteCB.setItems(ListManager.minutes);
         errorText.setText(" ");
-        //Lambda below
+
         cancelBtn.setOnAction(e -> {
             Parent root = null;
             try {
@@ -92,6 +97,13 @@ public class AddAppointment implements Initializable {
             stage.show();
         });
     }
+
+    /**
+     * Gets all user input, tests time input for errors, uses input to add a new appointment to the Appointment table of
+     * the database, and navigates back to Appointments page.
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         title = titleTF.getText();
         description = descriptionTF.getText();
@@ -118,7 +130,6 @@ public class AddAppointment implements Initializable {
         }
 
         endDate = endDateDP.getValue();
-
         createdBy = currentUser;
 
         try {
@@ -170,42 +181,44 @@ public class AddAppointment implements Initializable {
         endLDT = LocalDateTime.of(endDate, endTime);
 
         boolValue = TimeComparison.checkBusinessHours(startLDT);
-        if (boolValue == true) {
+        if (boolValue) {
             errorText.setText("Start time must be within business hours.");
             return;
         }
+
         boolValue = TimeComparison.checkBusinessHours(endLDT);
-        if (boolValue == true) {
+        if (boolValue) {
             errorText.setText("End time must be within business hours.");
             return;
         }
+
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 LocalDateTime otherStart = appointment.getStartDT();
                 LocalDateTime otherEnd = appointment.getEndDT();
                 boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(endLDT, otherStart, otherEnd);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(otherStart, startLDT, endLDT);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(otherEnd, startLDT, endLDT);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
@@ -213,6 +226,7 @@ public class AddAppointment implements Initializable {
                 }
             }
         }
+
         startTS = Timestamp.valueOf(startLDT);
         endTS = Timestamp.valueOf(endLDT);
 
@@ -226,14 +240,5 @@ public class AddAppointment implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-   /* public void onCancelBtn (ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1100, 600);
-        stage.setTitle("Appointments");
-        stage.setScene(scene);
-        stage.show();
-    } */
 }
 
