@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ public class AddCustomer implements Initializable {
     public TextField phoneTF;
     public ComboBox countryCB;
     public ComboBox stateProvCB;
+    public Button clearBtn;
 
     public String customerName;
     public String address;
@@ -36,6 +38,15 @@ public class AddCustomer implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryCB.setItems(ListManager.allCountryNames);
         stateProvCB.setItems(ListManager.usDivisionNames.sorted());
+
+        clearBtn.setOnAction(e ->{
+            nameTF.clear();
+            addressTF.clear();
+            postalCodeTF.clear();
+            phoneTF.clear();
+            countryCB.setValue(null);
+            stateProvCB.setValue(null);
+        });
     }
     public void onSelectCountry(ActionEvent actionEvent) throws Exception {
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
