@@ -1,6 +1,8 @@
 package controller;
 
 import dao.CustomerDao;
+import helper.ListMaker;
+import helper.NameIdConversion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,13 +12,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Division;
 import helper.ListManager;
 import static controller.Customers.*;
 import static controller.LogIn.currentUser;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * A class for controlling <code>../view/ModifyCustomer.fxml</code>.
+ * @author Julez Hudson
+ */
 public class ModifyCustomer implements Initializable {
     public TextField customerIdTF;
     public TextField nameTF;
@@ -35,6 +40,12 @@ public class ModifyCustomer implements Initializable {
     public int divisionId;
     public String divisionName;
 
+    /**
+     * Fills all the text fields and combo boxes based on the customer that was selected from the
+     * Customers page.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerIdTF.setText(String.valueOf(selectedCustomer.getCustomerId()));
@@ -42,41 +53,22 @@ public class ModifyCustomer implements Initializable {
         addressTF.setText(selectedCustomer.getAddress());
         postalCodeTF.setText(selectedCustomer.getPostalCode());
         phoneTF.setText(selectedCustomer.getPhone());
-        countryCB.setItems(ListManager.allCountryNames);
-
-        if(selectedCustomer.getDivisionId() < 55){
-            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-            stateProvCB.getSelectionModel().select(selectedCustomer.getDivisionName());
-            countryCB.getSelectionModel().select("U.S");
-        }
-        if(selectedCustomer.getDivisionId() >= 60){
-            if(selectedCustomer.getDivisionId() <= 72) {
-                stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-                stateProvCB.getSelectionModel().select(selectedCustomer.getDivisionName());
-                countryCB.getSelectionModel().select("Canada");
-            }
-        }
-        if(selectedCustomer.getDivisionId() >= 101){
-            if(selectedCustomer.getDivisionId() <= 104) {
-                stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-                stateProvCB.getSelectionModel().select(selectedCustomer.getDivisionName());
-                countryCB.getSelectionModel().select("UK");
-            }
-        }
+        divisionId = selectedCustomer.getDivisionId();
+        divisionName = NameIdConversion.convertDivIdToName(divisionId);
+        int countryId = NameIdConversion.convertDivIdToCountryId(divisionId);
+        String countryName = NameIdConversion.convertCountryIdToName(countryId);
+        countryCB.setItems(ListManager.allCountryNames.sorted());
+        countryCB.getSelectionModel().select(countryName);
+        stateProvCB.setItems(ListMaker.populateDivisionsBySelectCountry(countryId));
+        stateProvCB.getSelectionModel().select(divisionName);
     }
-    public void onSelectCountry(ActionEvent actionEvent) throws Exception {
-
+    public void onSelectCountry() {
+        if (countryCB.getSelectionModel().getSelectedItem() == null){
+            return;
+        }
         String countrySelection = countryCB.getSelectionModel().getSelectedItem().toString();
-
-        if(countrySelection.equals("U.S")) {
-            stateProvCB.setItems(ListManager.usDivisionNames.sorted());
-        }
-        if(countrySelection.equals("UK")) {
-            stateProvCB.setItems(ListManager.ukDivisionNames.sorted());
-        }
-        if(countrySelection.equals("Canada")) {
-            stateProvCB.setItems(ListManager.canadaDivisionNames.sorted());
-        }
+        int countryId = NameIdConversion.returnCountryID(countrySelection);
+        stateProvCB.setItems(ListMaker.populateDivisionsBySelectCountry(countryId));
     }
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         customerId = selectedCustomer.getCustomerId();
@@ -86,12 +78,7 @@ public class ModifyCustomer implements Initializable {
         phone = phoneTF.getText();
         updatedBy = currentUser;
         divisionName = stateProvCB.getSelectionModel().getSelectedItem().toString();
-
-        for(Division division : ListManager.allDivisions) {
-            if (division.getDivisionName().equals(divisionName)){
-                divisionId = division.getDivisionId();
-            }
-        }
+        divisionId = NameIdConversion.convertDivNameToId(divisionName);
         CustomerDao.update(customerName, address, postalCode, phone, updatedBy, divisionId, customerId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));

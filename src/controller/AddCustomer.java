@@ -89,11 +89,8 @@ public class AddCustomer implements Initializable {
         createdBy = currentUser;
         divisionName = stateProvCB.getSelectionModel().getSelectedItem().toString();
 
-        for(Division division : ListManager.allDivisions) {
-            if (division.getDivisionName().equals(divisionName)){
-                divisionId = division.getDivisionId();
-            }
-        }
+        divisionId = NameIdConversion.convertDivNameToId(divisionName);
+
         CustomerDao.insert(customerName, address, postalCode, phone, createdBy, divisionId);
 
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
