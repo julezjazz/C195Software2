@@ -15,9 +15,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import helper.ListManager;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * A class for controlling <code>../view/ContactSchedule.fxml</code>.
+ * @author Julez Hudson
+ */
 public class ContactSchedule implements Initializable {
 
     public ComboBox contactCB;
@@ -30,11 +35,20 @@ public class ContactSchedule implements Initializable {
     public TableColumn endCol;
     public TableColumn customerIdCol;
 
+    /**
+     * Fill contact combo box with a list of all the contact names.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactCB.setItems(ListManager.allContactNames);
     }
-    public void onSelectContact(ActionEvent actionEvent) {
+
+    /**
+     * Fills the appointment table with a list of appointments by contact based on the selected contact.
+     */
+    public void onSelectContact() {
         String contactName = contactCB.getSelectionModel().getSelectedItem().toString();
         int contactId = NameIdConversion.returnContactID(contactName);
         scheduleTable.setItems(ListMaker.populateContactSchedule(contactId));
@@ -47,7 +61,13 @@ public class ContactSchedule implements Initializable {
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
     }
-    public void onReportsBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the reports menu.
+     * @param actionEvent Clicking the reports menu button.
+     * @throws IOException In case of input or output exception.
+     */
+    public void onReportsBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/ReportsMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 280, 244);
