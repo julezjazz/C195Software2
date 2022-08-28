@@ -20,6 +20,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * A class for controlling <code>../view/Login.fxml</code>.
+ * @author Julez Hudson
+ */
 public class LogIn implements Initializable {
     public TextField userNameTxt;
     public TextField passwordTxt;
@@ -31,21 +35,46 @@ public class LogIn implements Initializable {
 
     public String tempUsername;
     public String tempPassword;
-
     public static String currentUser;
-    //DOES NOT WORK PROPERLY. NEED BETTER RESOURCES!!!!!!!
-    //FileWriter fileWriter = new FileWriter("login_activity.txt");
+
     PrintWriter pwLogInActivity = new PrintWriter(new FileOutputStream("login_activity.txt", true));
 
-    public LogIn() throws IOException {
+    /**
+     * @throws FileNotFoundException In case of the login activity text file not being found.
+     */
+    public LogIn() throws FileNotFoundException {
     }
 
+    /**
+     * Sets all of the text based on the location and language of the user.
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            userNameLbl.setText(Main.rb.getString("Username"));
+            logInBtn.setText(Main.rb.getString("Login"));
+            passwordLbl.setText(Main.rb.getString("Password"));
+            locationLbl.setText(Locale.getDefault().getDisplayCountry());
+        } catch (NullPointerException e) {
+        }
+    }
+
+    /**
+     * Verifies the username and password and records the time and the results of the login to the
+     * <code>login_activity.txt</code> file. If the login is successful, this method saves the username for later use
+     * and navigates to the Appointment Alert page. If the login fails, an error message displays in the language
+     * of the user.
+     * @param actionEvent Clicking the log in button.
+     * @throws IOException In case of an input or output exception.
+     */
     public void onLogInBtn(ActionEvent actionEvent) throws IOException {
         tempUsername = userNameTxt.getText();
         tempPassword = passwordTxt.getText();
 
         pwLogInActivity.append("Login attempt was made by " + tempUsername + " on " +
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) +  ". Attempt was ");
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ". Attempt was ");
 
         if (UserDao.verifyPassword(tempUsername, tempPassword)) {
             tempPassword = " ";
@@ -64,16 +93,5 @@ public class LogIn implements Initializable {
             pwLogInActivity.append("unsuccessful.\n");
         }
     }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            userNameLbl.setText(Main.rb.getString("Username"));
-            logInBtn.setText(Main.rb.getString("Login"));
-            passwordLbl.setText(Main.rb.getString("Password"));
-            locationLbl.setText(Locale.getDefault().getDisplayCountry());
-
-    //I'M UNSURE of what should be done with this catch, since the text should not be null, as it's not being provided by the user.
-        } catch (NullPointerException e) {
-        }
-    }
 }
+
