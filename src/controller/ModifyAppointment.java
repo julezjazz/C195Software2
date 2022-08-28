@@ -16,6 +16,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
 import helper.ListManager;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.time.*;
@@ -24,6 +26,10 @@ import java.util.ResourceBundle;
 import static controller.Appointments.selectedAppointment;
 import static controller.LogIn.currentUser;
 
+/**
+ * A class for controlling <code>../view/ModifyAppointment.fxml</code>.
+ * @author Julez Hudson
+ */
 public class ModifyAppointment implements Initializable {
     public TextField appointmentIdTF;
     public TextField titleTF;
@@ -66,6 +72,12 @@ public class ModifyAppointment implements Initializable {
 
     boolean boolValue;
 
+    /**
+     * Fills all of the text fields, combo boxes, and date pickers based on the appointment that was selected from the
+     * Appointments page.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         appointmentIdTF.setText(String.valueOf(selectedAppointment.getAppointmentId()));
@@ -91,6 +103,17 @@ public class ModifyAppointment implements Initializable {
         customerIdTF.setText(String.valueOf(selectedAppointment.getCustomerId()));
         userIdTF.setText(String.valueOf(selectedAppointment.getUserId()));
     }
+
+    /**
+     * Changes an appointment in the Appointments table of the database based on the appointment selected to modify and
+     * the data entered by the user. If any vital fields on the form are left blank, the display text is updated to
+     * indicate the information needed and no changes are made until all the vital fields are completed. The dates and
+     * times selected by the user are tested against business hours and existing appointments, and if there are problems
+     * the display text alerts the user and no changes are made until the issues are resolved. Once the appointment has
+     * been modified in the database, this method navigates to the Appointments page.
+     * @param actionEvent Clicking the save button.
+     * @throws Exception In case of a sql, input, or output exception.
+     */
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         errorText.setText(" ");
         appointmentId = Integer.parseInt(appointmentIdTF.getText());
@@ -132,12 +155,12 @@ public class ModifyAppointment implements Initializable {
         endLDT = LocalDateTime.of(endDate, endTime);
 
         boolValue = TimeComparison.checkBusinessHours(startLDT);
-        if (boolValue == true) {
+        if (boolValue) {
             errorText.setText("Start time must be within business hours.");
             return;
         }
         boolValue = TimeComparison.checkBusinessHours(endLDT);
-        if (boolValue == true) {
+        if (boolValue) {
             errorText.setText("End time must be within business hours.");
             return;
         }
@@ -150,28 +173,28 @@ public class ModifyAppointment implements Initializable {
                 LocalDateTime otherEnd = appointment.getEndDT();
 
                 boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(endLDT, otherStart, otherEnd);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(otherStart, startLDT, endLDT);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
                     return;
                 }
                 boolValue = TimeComparison.compareWindow(otherEnd, startLDT, endLDT);
-                if (boolValue == true) {
+                if (boolValue) {
                     errorText.setText("Appointment conflicts with another appointment starting on "
                             + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
                             + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
@@ -192,7 +215,13 @@ public class ModifyAppointment implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void onCancelBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the Appointments page.
+     * @param actionEvent Clicking the cancel button.
+     * @throws IOException In case of input or output exception.
+     */
+    public void onCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Appointments.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1100, 600);
