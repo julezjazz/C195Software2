@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import static controller.LogIn.currentUser;
 
 /**
- *  A class for controlling <code>view.AppointmentAlert.fxml</code>
+ *  A class for controlling <code>../view/AppointmentAlert.fxml</code>
  * @author Julez Hudson
  */
 public class AppointmentAlert implements Initializable {

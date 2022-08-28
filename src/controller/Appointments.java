@@ -14,10 +14,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Appointment;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * A class for controlling <code>../view/Appointments.fxml</code>.
+ * @author Julez Hudson
+ */
 public class Appointments implements Initializable {
     public TableView appointmentsTable;
     public TableColumn appointmentIdCol;
@@ -35,6 +41,11 @@ public class Appointments implements Initializable {
 
     public static Appointment selectedAppointment;
 
+    /**
+     * Fills the table view with the list of appointments by month upon initialization of the page.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         messageText.setText(" ");
@@ -52,7 +63,11 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-   public void onMonthView(ActionEvent actionEvent) {
+
+    /**
+     * Fills the table view with the list of appointments by month upon the Month radio button being clicked.
+      */
+   public void onMonthView() {
         appointmentsTable.setItems(ListMaker.populateAppointmentsByMonth());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -66,7 +81,10 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-    public void onWeekView(ActionEvent actionEvent) {
+    /**
+     * Fills the table view with the list of appointments by week upon the week radio button being clicked.
+     */
+    public void onWeekView() {
         appointmentsTable.setItems(ListMaker.populateAppointmentsByWeek());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -80,7 +98,13 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-    public void onAddAppointmentBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the add appointment page.
+     * @param actionEvent Clicking the add appointment button.
+     * @throws IOException In case of an input or output exception.
+     */
+    public void onAddAppointmentBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/AddAppointment.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 900, 600);
@@ -88,7 +112,14 @@ public class Appointments implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void onModAppointmentBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the modify appointment page. If no appointment is selected, this method changes the display text
+     * to alert the user that they must select an appointment to modify.
+     * @param actionEvent Clicking the modify appointment button.
+     * @throws IOException In case of input or output exception.
+     */
+    public void onModAppointmentBtn(ActionEvent actionEvent) throws IOException {
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
         if (selectedAppointment == null){
             messageText.setText("Please select an appointment to modify.");
@@ -102,7 +133,14 @@ public class Appointments implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void onDelAppointmentBtn(ActionEvent actionEvent) throws SQLException {
+
+    /**
+     * Deletes the selected appointment from the Appointments table of the database and updates the Appointments table
+     * view to reflect the changes. If no appointment is selected when the delete button is clicked, this method updates
+     * the display text to alert the user to select an appointment to delete.
+     * @throws SQLException In case of a sql exception.
+     */
+    public void onDelAppointmentBtn() throws SQLException {
         selectedAppointment = (Appointment) appointmentsTable.getSelectionModel().getSelectedItem();
         if (selectedAppointment == null){
             messageText.setText("Please select an appointment to delete.");
@@ -128,7 +166,13 @@ public class Appointments implements Initializable {
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
-    public void onReportsBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the Reports Menu.
+     * @param actionEvent Clicking the reports menu button.
+     * @throws IOException In case of input or output exception.
+     */
+    public void onReportsBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/ReportsMenu.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 280, 244);
