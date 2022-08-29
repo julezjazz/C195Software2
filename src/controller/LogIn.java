@@ -1,6 +1,6 @@
 package controller;
 
-import dao.UserDao;
+import helper.LoginManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -76,7 +76,7 @@ public class LogIn implements Initializable {
         pwLogInActivity.append("Login attempt was made by " + tempUsername + " on " +
                 LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) + ". Attempt was ");
 
-        if (UserDao.verifyPassword(tempUsername, tempPassword)) {
+        if (LoginManager.verifyPassword(tempUsername, tempPassword)) {
             tempPassword = " ";
             currentUser = tempUsername;
             pwLogInActivity.append("successful.\n");

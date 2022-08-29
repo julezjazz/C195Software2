@@ -38,22 +38,5 @@ public class UserDao {
             }
         }
     }
-
-    /**
-     *
-     * @param username
-     * @param password
-     * @return
-     */
-    public static boolean verifyPassword(String username, String password) {
-        for (User user : ListManager.allUsers) {
-            if (user.getUserName().equals(username)){
-                if (user.getPassword().equals(password)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }
 
