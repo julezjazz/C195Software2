@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import helper.ListManager;
 import static controller.Customers.*;
 import static controller.LogIn.currentUser;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -62,6 +64,11 @@ public class ModifyCustomer implements Initializable {
         stateProvCB.setItems(ListMaker.populateDivisionsBySelectCountry(countryId));
         stateProvCB.getSelectionModel().select(divisionName);
     }
+
+    /**
+     * Fills the division combo box with a list of divisions based on the selected country. If no country is selected
+     * the method returns without filling the division combo box.
+     */
     public void onSelectCountry() {
         if (countryCB.getSelectionModel().getSelectedItem() == null){
             return;
@@ -70,6 +77,14 @@ public class ModifyCustomer implements Initializable {
         int countryId = NameIdConversion.returnCountryID(countrySelection);
         stateProvCB.setItems(ListMaker.populateDivisionsBySelectCountry(countryId));
     }
+
+    /**
+     *Changes a customer in the Customers table of the database based on the customer selected to modify and the data
+     * entered by the user. Once the customer has been modified in the database, this method navigates to the Customers
+     * page.
+     * @param actionEvent Clicking the save button.
+     * @throws Exception In case of a sql, input, or output exception.
+     */
     public void onSaveReturnBtn(ActionEvent actionEvent) throws Exception {
         customerId = selectedCustomer.getCustomerId();
         customerName = nameTF.getText();
@@ -88,7 +103,13 @@ public class ModifyCustomer implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void onCancelBtn(ActionEvent actionEvent) throws Exception {
+
+    /**
+     * Navigates to the Customers page.
+     * @param actionEvent Clicking the cancel button.
+     * @throws IOException In case of input or output exception.
+     */
+    public void onCancelBtn(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../view/Customers.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1000, 600);
