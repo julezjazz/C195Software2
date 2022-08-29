@@ -3,11 +3,18 @@ package dao;
 import helper.JDBC;
 import model.Contact;
 import helper.ListManager;
-
-
 import java.sql.*;
 
+/**
+ * A class for working with the Contacts table in the database.
+ * @author Julez Hudson
+ */
 public class ContactDao {
+
+    /**
+     * Retrieves all rows from the Contacts table of the database and creates a Contact object for each then adds each
+     * to the list for all contacts.
+     */
     public static void populateContactList() {
 
         String sql = "select * from contacts";
@@ -26,20 +33,11 @@ public class ContactDao {
                     ListManager.allContacts.add(newContact);
                     ListManager.allContactNames.add(contactName);
                 }
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
     }
-/* This doesn't work.
-        public static void printContacts () {
-            for (Contact contacts : ListManager.getAllContacts()) {
-                System.out.println(contacts.getContactName());
-            }
-        }
-  */
 }
 
 

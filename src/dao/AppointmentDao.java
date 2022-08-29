@@ -4,7 +4,6 @@ import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 /**
- * A class for working with the Appointment table in the database.
+ * A class for working with the Appointments table in the database.
  * @author Julez Hudson
  */
 public class AppointmentDao {
