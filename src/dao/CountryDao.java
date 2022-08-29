@@ -14,8 +14,8 @@ import java.sql.SQLException;
 public class CountryDao {
 
     /**
-     * Retrieves all rows from the Countries table of the database and creates a Country object for each then adds each
-     * to the list for all contacts.
+     * Retrieves all rows from the Countries table of the database and creates a Country object for each then adds this
+     * object to the list for all contacts.
      */
     public static void populateCountryLists() {
 

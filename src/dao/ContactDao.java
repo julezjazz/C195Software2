@@ -12,8 +12,8 @@ import java.sql.*;
 public class ContactDao {
 
     /**
-     * Retrieves all rows from the Contacts table of the database and creates a Contact object for each then adds each
-     * to the list for all contacts.
+     * Retrieves all rows from the Contacts table of the database and creates a Contact object for each then adds this
+     * object to the list for all contacts.
      */
     public static void populateContactList() {
 

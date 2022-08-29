@@ -3,11 +3,18 @@ package dao;
 import helper.JDBC;
 import helper.ListManager;
 import model.User;
-
 import java.sql.*;
 
+/**
+ * A class for working with the Users table in the database.
+ * @author Julez Hudson
+ */
 public class UserDao {
 
+    /**
+     * Retrieves all rows from the Users table in the database and creates a User object for each then add this object
+     * to the list for all users.
+     */
     public static void populateUserList() {
         String sql = "select * from users";
 
@@ -26,15 +33,18 @@ public class UserDao {
                     User newUser = new User(userId, userName, password);
                     ListManager.allUsers.add(newUser);
                 }
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
     }
 
-    //DELETE sout test statements
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public static boolean verifyPassword(String username, String password) {
         for (User user : ListManager.allUsers) {
             if (user.getUserName().equals(username)){

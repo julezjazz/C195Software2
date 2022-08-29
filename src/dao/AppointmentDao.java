@@ -20,7 +20,7 @@ public class AppointmentDao {
 
     /**
      * Retrieves all rows from the Appointments table of the database and creates an Appointment object for each then
-     * adds each to the list for all appointments.
+     * adds this object to the list for all appointments.
      * @return The list of all appointments.
      */
     public static ObservableList<Appointment> populateAppointmentList(){
@@ -138,7 +138,7 @@ public class AppointmentDao {
     }
 
     /**
-     * Deletes a row from the Appointments table of the database
+     * Deletes a row from the Appointments table of the database.
      * @param appointmentId The ID number of the appointment row that is being deleted.
      * @throws SQLException In case of a sql exception.
      */

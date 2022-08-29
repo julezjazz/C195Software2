@@ -4,16 +4,24 @@ import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customer;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * A class for working with the Customers table in the database.
+ * @author Julez Hudson
+ */
 public class CustomerDao {
 
     /** List for all objects representing customers. */
     public static ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
 
+    /**
+     * Retrieves all rows from the Customers table of hte database and creates a Customer object for each then adds this
+     * object to the list for all Customers.
+     * @return The list of all customers.
+     */
     public static ObservableList<Customer> populateCustomerList(){
         String sql = "select * from customers";
 
@@ -37,15 +45,23 @@ public class CustomerDao {
                     allCustomers.add(newCustomer);
                 }
                 return allCustomers;
-
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
         return null;
     }
 
+    /**
+     * Inserts a new row into the Customers table of the database.
+     * @param customerName The customer's first and last name.
+     * @param address The address where the customer resides.
+     * @param postalCode The postal code for where the customer resides.
+     * @param phone The customer's phone number.
+     * @param createdBy The user who added the row to the table.
+     * @param divisionId The ID number for the first-level division where the customer resides.
+     * @throws SQLException In case of a sql exception.
+     */
      public static void insert(String customerName, String address, String postalCode, String phone,
                                String createdBy, int divisionId) throws SQLException {
 
@@ -62,6 +78,17 @@ public class CustomerDao {
         ps.execute();
     }
 
+    /**
+     * Updates a row in the Customers table of the database.
+     * @param customerName The customer's first and last name.
+     * @param address The address where the customer resides.
+     * @param postalCode The postal code for where the customer resides.
+     * @param phone The customer's phone number.
+     * @param updatedBy The user who modified the row in the table.
+     * @param divisionId The ID number for the first-level division where the customer resides.
+     * @param customerId The ID number of the customer whose row is being modified.
+     * @throws SQLException In case of a sql exception.
+     */
     public static void update(String customerName, String address, String postalCode, String phone, String updatedBy,
                               int divisionId, int customerId) throws SQLException {
         String sql = "update customers set customer_name = ?, address = ?, postal_code = ?, phone = ?, " +
@@ -78,6 +105,11 @@ public class CustomerDao {
         ps.execute();
     }
 
+    /**
+     * Deletes a row from the Customers table of the database.
+     * @param customerId The ID number of the customer row that is being deleted.
+     * @throws SQLException In case of a sql exception.
+     */
     public static void delete(int customerId) throws SQLException {
         String sql = "delete from appointments where customer_id = ?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
