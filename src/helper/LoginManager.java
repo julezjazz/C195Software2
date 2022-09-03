@@ -9,11 +9,11 @@ import model.User;
 public class LoginManager {
 
     /**
-     *Compares username and password parameters to those in the list of all users to verify whether the combination is
+     * Compares username and password parameters to those in the list of all users to verify whether the combination is
      * valid.
-     * @param username The string that was entered into the username text field of the login page.
-     * @param password The string that was entered in the password text field of the login page.
-     * @return A boolean value to indicate whether the parameters were verified as correct or incorrect.
+     * @param username the string that was entered into the username text field of the login page
+     * @param password the string that was entered in the password text field of the login page
+     * @return a boolean value to indicate whether the parameters were verified as correct or incorrect
      */
     public static boolean verifyPassword(String username, String password) {
         for (User user : ListManager.allUsers) {
