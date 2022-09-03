@@ -3,6 +3,10 @@ package helper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * A class for connecting to the MySQL database.
+ * @author Julez Hudson
+ */
 public abstract class JDBC {
 
     private static final String protocol = "jdbc";
@@ -15,6 +19,10 @@ public abstract class JDBC {
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
 
+    /**
+     * Initiates a connection with the database. This method prints a message indicating whether the connection worked
+     * or if there was an exception.
+     */
     public static void openConnection()
     {
         try {
@@ -28,9 +36,18 @@ public abstract class JDBC {
         }
     }
 
+    /**
+     * Allows the connection to the database to be accessed.
+     * @return the connection to the database
+     */
     public static Connection getConnection(){
         return connection;
     }
+
+    /**
+     * Closes the connection to the database. This method prints a message to indicate whether the connection closed or
+     * if there was an exception.
+     */
     public static void closeConnection() {
         try {
             connection.close();
