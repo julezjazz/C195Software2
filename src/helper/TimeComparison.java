@@ -3,8 +3,18 @@ package helper;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A class for storing methods that compare various times.
+ * @author Julez Hudson
+ */
 public class TimeComparison {
 
+    /**
+     * Compares a date-time parameter to established business hours. This method returns true if it is outside of
+     * business hours and false if it inside business hours.
+     * @param dateTime The time that is being compared to business hours.
+     * @return True if dateTime is outside business hours and false if dateTime is inside business hours.
+     */
     public static boolean checkBusinessHours (LocalDateTime dateTime) {
         ZoneId userZI = ZoneId.systemDefault();
         ZoneId estZI = ZoneId.of("America/New_York");
@@ -28,7 +38,17 @@ public class TimeComparison {
 
         return false;
     }
-    public static boolean compareWindow(LocalDateTime dateTime, LocalDateTime windowStartLDT, LocalDateTime windowEndLDT){
+
+    /**
+     * Compares a date-time parameter to two other date-time parameters.
+     * @param dateTime The date-time value that is compared to the other parameters.
+     * @param windowStartLDT The start date-time value that the the dateTime parameter is compared to.
+     * @param windowEndLDT The end date-time value that the dateTime parameter is compared to.
+     * @return True if the dateTime parameter is equal to or greater than the start date-time parameter and less than
+     * the end date-time parameter but returns false if either of those conditions are not met.
+     */
+    public static boolean compareWindow(LocalDateTime dateTime, LocalDateTime windowStartLDT, LocalDateTime
+            windowEndLDT){
         int comparisonValue;
 
         comparisonValue = dateTime.compareTo(windowStartLDT);
@@ -40,6 +60,15 @@ public class TimeComparison {
         }
         return false;
     }
+
+    /**
+     * Compares a date parameter to two other date parameters.
+     * @param startDate A start date that the compDate parameter is compared to.
+     * @param endDate An end date that the compDate parameter is compared to.
+     * @param compDate A date parameter that is compared to the startDate and endDate parameters.
+     * @return True if the compDate parameter at the same time or later than the startDate parameter and at the same
+     * time or earlier than the endDate parameter, but it returns false if either of those conditions are not met.
+     */
     public static boolean compareDates(LocalDate startDate, LocalDate endDate, LocalDate compDate) {
         int comparisonValue;
 
