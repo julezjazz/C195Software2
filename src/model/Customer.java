@@ -80,6 +80,7 @@ public class Customer {
         return divisionId;
     }
 
+    /** Getter for the name of the first-level division where the customer resides. */
     public String getDivisionName() {
         return helper.NameIdConversion.convertDivIdToName(getDivisionId());
     }
