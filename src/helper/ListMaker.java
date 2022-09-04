@@ -87,8 +87,8 @@ public class ListMaker {
         ListManager.appointmentsByMonth.clear();
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             LocalDate compDate = appointment.getStartDT().toLocalDate();
-            Boolean boolVal = TimeComparison.compareDates(curDate, oneMonth, compDate);
-            if(boolVal == true) {
+            boolean boolVal = TimeComparison.compareDates(curDate, oneMonth, compDate);
+            if(boolVal) {
                 ListManager.appointmentsByMonth.add(appointment);
             }
         }
@@ -106,8 +106,8 @@ public class ListMaker {
         ListManager.appointmentsByWeek.clear();
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             LocalDate compDate = appointment.getStartDT().toLocalDate();
-            Boolean boolVal = TimeComparison.compareDates(curDate, oneWeek, compDate);
-            if(boolVal == true) {
+            boolean boolVal = TimeComparison.compareDates(curDate, oneWeek, compDate);
+            if(boolVal) {
                 ListManager.appointmentsByWeek.add(appointment);
             }
         }
