@@ -1,5 +1,8 @@
 package model;
-/** Represents a country. */
+/**
+ * A class to represent a country that a customer could be located in.
+ * @author Julez Hudson
+ */
 public class Country {
     private int countryId;
     private String countryName;

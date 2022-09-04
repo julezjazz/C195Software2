@@ -1,5 +1,8 @@
 package model;
-/** Represents a user. */
+/**
+ * A class to represent a user of the application.
+ * @author Julez Hudson
+ */
 public class User {
 
     private int userId;
@@ -20,10 +23,8 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    /** Setter for the user's password. */
+    public void setPassword(String password) { this.password = password; }
 
     /** Getter for user ID. */
     public int getUserId() {
@@ -33,8 +34,6 @@ public class User {
     public String getUserName() {
         return userName;
     }
-
-    public String getPassword() {
-        return password;
-    }
+    /** Getter for the user's password. */
+    public String getPassword() { return password; }
 }

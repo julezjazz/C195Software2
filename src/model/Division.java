@@ -1,5 +1,8 @@
 package model;
-/** Represents a first level division of a country. */
+/**
+ * A class to represent a first level division of a country where a customer could reside.
+ * @author Julez Hudson
+ */
 public class Division {
 
     private int divisionId;
@@ -15,24 +18,22 @@ public class Division {
     public void setDivisionId(int divisionId) {
         this.divisionId = divisionId;
     }
-    /** Setter for name of division. */
+    /** Setter for name of first level division. */
     public void setDivisionName(String divisionName) {
         this.divisionName = divisionName;
     }
-    /** Setter for countryId */
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
+    /** Setter for the ID number of the country where the first-level division is located. */
+    public void setCountryId(int countryId) { this.countryId = countryId; }
 
     /** Getter for division ID. */
     public int getDivisionId() {
         return divisionId;
     }
-    /** Getter for name of division. */
+    /** Getter for name of first level division. */
     public String getDivisionName() {
         return divisionName;
     }
-    /** Getter for country ID */
+    /** Getter for the ID number of the country where the first-level division is located. */
     public int getCountryId() {
         return countryId;
     }

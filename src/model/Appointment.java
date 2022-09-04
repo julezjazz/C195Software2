@@ -1,10 +1,12 @@
 package model;
 
 import helper.ListManager;
-
 import java.time.LocalDateTime;
 
-/** Represents an appointment. */
+/**
+ * A class to represent appointments.
+ * @author Julez Hudson
+ */
 public class Appointment {
     private int appointmentId;
     private String title;
@@ -47,7 +49,7 @@ public class Appointment {
     public void setLocation(String location) {
         this.location = location;
     }
-    /** Setter for contact ID. */
+    /** Setter for the ID of the contact person for an appointment. */
     public void setContactId(int contactId) { this.contactId = contactId; }
     /** Setter for appointment type. */
     public void setType(String type) {
@@ -61,11 +63,11 @@ public class Appointment {
     public void setEndDT(LocalDateTime endDateTime) {
         this.endDT = endDT;
     }
-    /** Setter for customer ID. */
+    /** Setter for the ID of the customer attending the appointment. */
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
-    /** Setter for user ID. */
+    /** Setter for the ID of the user attending the appointment. */
     public void setUserId(int userId) {
         this.userId = userId;
     }

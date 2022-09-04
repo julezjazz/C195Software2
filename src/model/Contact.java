@@ -1,5 +1,8 @@
 package model;
-/** Represents a contact person for appointments. */
+/**
+ * A class to represent a contact person for appointments.
+ * @author Julez Hudson
+ */
 public class Contact {
     private int contactId;
     private String contactName;
