@@ -79,4 +79,8 @@ public class Customer {
     public int getDivisionId() {
         return divisionId;
     }
+
+    public String getDivisionName() {
+        return helper.NameIdConversion.convertDivIdToName(getDivisionId());
+    }
 }
