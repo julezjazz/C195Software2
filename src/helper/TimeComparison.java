@@ -1,7 +1,6 @@
 package helper;
 
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 
 /**
  * A class for storing methods that compare various times.
@@ -20,7 +19,7 @@ public class TimeComparison {
         ZoneId estZI = ZoneId.of("America/New_York");
         LocalTime businessOpen = LocalTime.parse("08:00");
         LocalTime businessClose = LocalTime.parse("22:00");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
         int comparisonValue;
 
         ZonedDateTime userZDT = ZonedDateTime.of(dateTime, userZI);
