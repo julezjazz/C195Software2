@@ -80,4 +80,20 @@ public class TimeComparison {
         }
         return false;
     }
+
+    /**
+     * Compares a DateTime parameter to another DateTime parameter.
+     * @param start A DateTime parameter representing the start of an appointment which is compared to the end parameter.
+     * @param end A DateTime parameter representing the end of an appointment to which the start parameter is compared.
+     * @return True if the start is after or at the same time as the end and false if the start time is before the end.
+     */
+    public static boolean compareStartAndEnd (LocalDateTime start, LocalDateTime end) {
+        int comparisonValue;
+
+        comparisonValue = start.compareTo(end);
+        if (comparisonValue >= 0){
+            return true;
+        }
+        return false;
+    }
 }
