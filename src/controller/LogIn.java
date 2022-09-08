@@ -16,6 +16,7 @@ import main.Main;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -56,7 +57,7 @@ public class LogIn implements Initializable {
             userNameLbl.setText(Main.rb.getString("Username"));
             logInBtn.setText(Main.rb.getString("Login"));
             passwordLbl.setText(Main.rb.getString("Password"));
-            locationLbl.setText(Locale.getDefault().getDisplayCountry());
+            locationLbl.setText(String.valueOf(ZoneId.systemDefault()));
         } catch (NullPointerException e) {
         }
     }
