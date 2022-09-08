@@ -166,9 +166,16 @@ public class ModifyAppointment implements Initializable {
         }
         boolValue = TimeComparison.compareStartAndEnd(startLDT, endLDT);
         if (boolValue) {
-            errorText.setText("End time must be after start time");
+            errorText.setText("End time must be after start time.");
             return;
         }
+
+        boolValue = TimeComparison.compareStartToCurrent(startLDT);
+        if (boolValue) {
+            errorText.setText("Start time must not be in the past.");
+            return;
+        }
+
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 if(appointment.getAppointmentId() == appointmentId) {
