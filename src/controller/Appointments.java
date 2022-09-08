@@ -42,7 +42,7 @@ public class Appointments implements Initializable {
     public static Appointment selectedAppointment;
 
     /**
-     * Fills the table view with the list of appointments by month upon initialization of the page.
+     * Fills the table view with the list of all appointments upon initialization of the page.
      * @param url
      * @param resourceBundle
      */
@@ -50,7 +50,7 @@ public class Appointments implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         messageText.setText(" ");
 
-        appointmentsTable.setItems(ListMaker.populateAppointmentsByMonth());
+        appointmentsTable.setItems(dao.AppointmentDao.populateAppointmentList());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -86,6 +86,21 @@ public class Appointments implements Initializable {
      */
     public void onWeekView() {
         appointmentsTable.setItems(ListMaker.populateAppointmentsByWeek());
+        appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactNameCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        contactIdCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDT"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDT"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+    }
+
+    public void onAllView() {
+        appointmentsTable.setItems(dao.AppointmentDao.populateAppointmentList());
         appointmentIdCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
