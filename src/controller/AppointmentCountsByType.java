@@ -56,17 +56,16 @@ public class AppointmentCountsByType implements Initializable {
     public void onSelectType() {
         String type = appointmentTypeCB.getSelectionModel().getSelectedItem().toString();
         int appointmentCount = 0;
-        for (Appointment appointment : ListMaker.populateAppointmentsByMonth()) {
+        for (Appointment appointment : dao.AppointmentDao.populateAppointmentList()) {
             if (appointment.getType().equals(type)){
                 appointmentCount = appointmentCount + 1;
             }
         }
         if(appointmentCount == 1){
-            countReport.setText("There is 1 appointment with Type: " + type + " within the next month.");
+            countReport.setText("There is 1 appointment with Type: " + type + ".");
         }
         else {
-            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + " within the " +
-                    "next month.");
+            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + ".");
         }
     }
 }
