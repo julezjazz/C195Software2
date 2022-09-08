@@ -96,4 +96,19 @@ public class TimeComparison {
         }
         return false;
     }
+
+    /**
+     * Compares start DateTime parameter to current time.
+     * @param start A DateTime parameter representing the start of an appointment.
+     * @return True if the start date is before the current time and false if not.
+     */
+    public static boolean compareStartToCurrent (LocalDateTime start) {
+        int comparisonValue;
+
+        comparisonValue = start.compareTo(LocalDateTime.now());
+        if (comparisonValue < 0) {
+            return true;
+        }
+        return false;
+    }
 }
