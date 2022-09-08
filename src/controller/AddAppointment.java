@@ -195,6 +195,12 @@ public class AddAppointment implements Initializable {
             return;
         }
 
+        boolValue = TimeComparison.compareStartAndEnd(startLDT, endLDT);
+        if (boolValue) {
+            errorText.setText("End time must be after start time");
+            return;
+        }
+
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 LocalDateTime otherStart = appointment.getStartDT();

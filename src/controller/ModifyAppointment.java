@@ -164,6 +164,11 @@ public class ModifyAppointment implements Initializable {
             errorText.setText("End time must be within business hours.");
             return;
         }
+        boolValue = TimeComparison.compareStartAndEnd(startLDT, endLDT);
+        if (boolValue) {
+            errorText.setText("End time must be after start time");
+            return;
+        }
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             if (customerId == appointment.getCustomerId()) {
                 if(appointment.getAppointmentId() == appointmentId) {
