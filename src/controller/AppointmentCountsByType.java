@@ -50,8 +50,7 @@ public class AppointmentCountsByType implements Initializable {
     }
 
     /**
-     * Sets text to give the number of appointments of the type, selected by the user, within that day and the next
-     * 30 days.
+     * Sets text to give the number of appointments of the type, selected by the user.
      */
     public void onSelectType() {
         String type = appointmentTypeCB.getSelectionModel().getSelectedItem().toString();
