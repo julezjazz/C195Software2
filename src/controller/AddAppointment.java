@@ -208,37 +208,35 @@ public class AddAppointment implements Initializable {
         }
 
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
-            if (customerId == appointment.getCustomerId()) {
-                LocalDateTime otherStart = appointment.getStartDT();
-                LocalDateTime otherEnd = appointment.getEndDT();
-                boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
-                boolValue = TimeComparison.compareWindow(endLDT, otherStart, otherEnd);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
-                boolValue = TimeComparison.compareWindow(otherStart, startLDT, endLDT);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
-                boolValue = TimeComparison.compareWindow(otherEnd, startLDT, endLDT);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
+            LocalDateTime otherStart = appointment.getStartDT();
+            LocalDateTime otherEnd = appointment.getEndDT();
+            boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
+            }
+            boolValue = TimeComparison.compareWindow(endLDT, otherStart, otherEnd);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
+            }
+            boolValue = TimeComparison.compareWindow(otherStart, startLDT, endLDT);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
+            }
+            boolValue = TimeComparison.compareWindow(otherEnd, startLDT, endLDT);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
             }
         }
 

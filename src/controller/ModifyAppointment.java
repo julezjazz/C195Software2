@@ -177,43 +177,45 @@ public class ModifyAppointment implements Initializable {
         }
 
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
-            if (customerId == appointment.getCustomerId()) {
-                if(appointment.getAppointmentId() == appointmentId) {
-                    continue;
-                }
-                LocalDateTime otherStart = appointment.getStartDT();
-                LocalDateTime otherEnd = appointment.getEndDT();
+            if(appointment.getAppointmentId() == appointmentId) {
+                continue;
+            }
+            LocalDateTime otherStart = appointment.getStartDT();
+            LocalDateTime otherEnd = appointment.getEndDT();
 
-                boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+            boolValue = TimeComparison.compareWindow(startLDT, otherStart, otherEnd);
+            if (boolValue) {
+            errorText.setText("Appointment conflicts with another appointment starting on " + otherStart.toLocalDate()
+                    + " at " + otherStart.toLocalTime() + " and ending on " + otherEnd.toLocalDate() + " at "
+                    + otherEnd.toLocalTime() + ".");
                     return;
                 }
-                boolValue = TimeComparison.compareWindow(endLDT, otherStart, otherEnd);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
-                boolValue = TimeComparison.compareWindow(otherStart, startLDT, endLDT);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
-                boolValue = TimeComparison.compareWindow(otherEnd, startLDT, endLDT);
-                if (boolValue) {
-                    errorText.setText("Appointment conflicts with another appointment starting on "
-                            + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
-                            + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
-                    return;
-                }
+
+            boolValue = TimeComparison.compareWindow(endLDT, otherStart, otherEnd);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
+            }
+
+            boolValue = TimeComparison.compareWindow(otherStart, startLDT, endLDT);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
+            }
+
+            boolValue = TimeComparison.compareWindow(otherEnd, startLDT, endLDT);
+            if (boolValue) {
+                errorText.setText("Appointment conflicts with another appointment starting on "
+                        + otherStart.toLocalDate() + " at " + otherStart.toLocalTime() + " and ending on "
+                        + otherEnd.toLocalDate() + " at " + otherEnd.toLocalTime() + ".");
+                return;
             }
         }
+
         startTS = Timestamp.valueOf(startLDT);
         endTS = Timestamp.valueOf(endLDT);
 
