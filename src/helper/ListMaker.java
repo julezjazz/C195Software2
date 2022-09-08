@@ -27,14 +27,14 @@ public class ListMaker {
     }
 
     /**
-     * Clears then populates the appointments by customer list. Appointments are added based on the appointments by
-     * month list and based on the customer ID provided.
+     * Clears then populates the appointments by customer list. Appointments are added based on the list of all
+     * appointments and based on the customer ID provided.
      * @param customerId the ID number of the customer on which the appointments list being populated is based
      * @return the list of appointments by customer
      */
     public static ObservableList<Appointment> populateAppointmentsByCustomers (int customerId) {
         ListManager.appointmentsByCustomer.clear();
-        for (Appointment appointment : ListMaker.populateAppointmentsByMonth()){
+        for (Appointment appointment : dao.AppointmentDao.populateAppointmentList()){
             if (appointment.getCustomerId() == customerId) {
                 ListManager.appointmentsByCustomer.add(appointment);
             }
@@ -44,13 +44,13 @@ public class ListMaker {
 
     /**
      * Clears then populates the contact schedule list of appointments. Appointments are added to the list based on the
-     * appointments by month list and the contact ID provided.
+     * list of all appointments and the contact ID provided.
      * @param contactId the ID number of the contact on which the appointments being added to the list are based
      * @return the contact schedule list of appointments
      */
     public static ObservableList<Appointment> populateContactSchedule (int contactId) {
         ListManager.contactSchedule.clear();
-        for(Appointment appointment : populateAppointmentsByMonth()){
+        for(Appointment appointment : dao.AppointmentDao.populateAppointmentList()){
             if (appointment.getContactId() == contactId) {
                 ListManager.contactSchedule.add(appointment);
             }
