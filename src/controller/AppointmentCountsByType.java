@@ -55,7 +55,7 @@ public class AppointmentCountsByType implements Initializable {
     public void onSelectType() {
         String type = appointmentTypeCB.getSelectionModel().getSelectedItem().toString();
         int appointmentCount = 0;
-        for (Appointment appointment : dao.AppointmentDao.populateAppointmentList()) {
+        for (Appointment appointment : helper.ListMaker.populateAppointmentsByMonth()) {
             if (appointment.getType().equals(type)){
                 appointmentCount = appointmentCount + 1;
             }
