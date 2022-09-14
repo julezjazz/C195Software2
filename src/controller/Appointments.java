@@ -65,7 +65,7 @@ public class Appointments implements Initializable {
     }
 
     /**
-     * Fills the table view with the list of appointments by month upon the Month radio button being clicked.
+     * Fills the table view with the list of appointments by current month upon the Month radio button being clicked.
       */
    public void onMonthView() {
         appointmentsTable.setItems(ListMaker.populateAppointmentsByMonth());

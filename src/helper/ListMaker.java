@@ -78,7 +78,7 @@ public class ListMaker {
 
     /**
      * Clears then populates the appointments by month list. Adds appointments from the list of all appointments if they
-     * have start dates within a 30 day range starting from the current date and ending 29 days after the current date.
+     * have start dates that share a month and year with the current month and year.
      * @return the appointments by month list
      */
     public static ObservableList<Appointment> populateAppointmentsByMonth(){
