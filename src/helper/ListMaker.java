@@ -82,14 +82,14 @@ public class ListMaker {
      * @return the appointments by month list
      */
     public static ObservableList<Appointment> populateAppointmentsByMonth(){
-        LocalDate curDate = LocalDate.now();
-        LocalDate oneMonth = curDate.plusDays(29);
+        LocalDate curMonth = LocalDate.now();
         ListManager.appointmentsByMonth.clear();
         for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
             LocalDate compDate = appointment.getStartDT().toLocalDate();
-            boolean boolVal = TimeComparison.compareDates(curDate, oneMonth, compDate);
-            if(boolVal) {
-                ListManager.appointmentsByMonth.add(appointment);
+            if (compDate.getMonth() == curMonth.getMonth()){
+                if (compDate.getYear() == curMonth.getYear()) {
+                    ListManager.appointmentsByMonth.add(appointment);
+                }
             }
         }
         return ListManager.appointmentsByMonth;
