@@ -61,10 +61,10 @@ public class AppointmentCountsByType implements Initializable {
             }
         }
         if(appointmentCount == 1){
-            countReport.setText("There is 1 appointment with Type: " + type + ".");
+            countReport.setText("There is 1 appointment with Type: " + type + " this month.");
         }
         else {
-            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + ".");
+            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + " this month.");
         }
     }
 }
