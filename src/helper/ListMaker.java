@@ -2,11 +2,13 @@ package helper;
 
 import dao.AppointmentDao;
 import dao.CustomerDao;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Customer;
 import model.Division;
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 /**
  * A class for populating lists.
@@ -43,18 +45,14 @@ public class ListMaker {
     }
 
     /**
-     * Clears then populates the contact schedule list of appointments. Appointments are added to the list based on the
-     * list of all appointments and the contact ID provided.
+     * Populates the contact schedule list of appointments using a lambda expression to make code clearer and more
+     * compact. Appointments are added to the list based on the list of all appointments and the contact ID provided.
      * @param contactId the ID number of the contact on which the appointments being added to the list are based
      * @return the contact schedule list of appointments
      */
     public static ObservableList<Appointment> populateContactSchedule (int contactId) {
-        ListManager.contactSchedule.clear();
-        for(Appointment appointment : dao.AppointmentDao.populateAppointmentList()){
-            if (appointment.getContactId() == contactId) {
-                ListManager.contactSchedule.add(appointment);
-            }
-        }
+        ListManager.contactSchedule = FXCollections.observableList(dao.AppointmentDao.populateAppointmentList()
+                .stream().filter(appointment -> appointment.getContactId() == contactId).collect(Collectors.toList()));
         return ListManager.contactSchedule;
     }
 
