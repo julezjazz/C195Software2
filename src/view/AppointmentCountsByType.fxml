@@ -16,7 +16,7 @@
       </Text>
       <Text fx:id="countReport" layoutX="100.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="400.0" />
       <Button layoutX="86.0" layoutY="247.0" mnemonicParsing="false" onAction="#onReportsBtn" text="Go to Reports Menu" />
-      <ComboBox fx:id="appointmentTypeCB1" layoutX="375.0" layoutY="66.0" onAction="#onSelectType" prefWidth="150.0" />
+      <ComboBox fx:id="appointmentMonthCB" layoutX="374.0" layoutY="66.0" onAction="#onSelectMonth" prefWidth="150.0" />
       <Text layoutX="354.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select appointment month." textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="12.0" />
