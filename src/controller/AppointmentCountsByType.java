@@ -1,6 +1,7 @@
 package controller;
 
 import helper.ListMaker;
+import helper.ListManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import model.Appointment;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Month;
 import java.util.ResourceBundle;
 
 /**
@@ -22,6 +24,7 @@ import java.util.ResourceBundle;
  */
 public class AppointmentCountsByType implements Initializable {
     public ComboBox appointmentTypeCB;
+    public ComboBox appointmentMonthCB;
     public Text countReport;
 
     /**
@@ -33,6 +36,7 @@ public class AppointmentCountsByType implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countReport.setText("");
         appointmentTypeCB.setItems(ListMaker.populateAppointmentTypes());
+        appointmentMonthCB.setItems(ListManager.months);
     }
 
     /**
@@ -48,6 +52,8 @@ public class AppointmentCountsByType implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void onSelectMonth(){} ;
 
     /**
      * Sets text to give the number of appointments, per current month and year, of the type selected by the user.
