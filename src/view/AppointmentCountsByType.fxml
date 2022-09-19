@@ -22,5 +22,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
+      <Button layoutX="238.0" layoutY="106.0" mnemonicParsing="false" onAction="#onGenerateBtn" text="Generate Report" />
    </children>
 </AnchorPane>
