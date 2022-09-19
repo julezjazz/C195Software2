@@ -1,5 +1,6 @@
 package controller;
 
+import dao.AppointmentDao;
 import helper.ListMaker;
 import helper.ListManager;
 import javafx.event.ActionEvent;
@@ -27,6 +28,9 @@ public class AppointmentCountsByType implements Initializable {
     public ComboBox appointmentMonthCB;
     public Text countReport;
 
+    public Month selectedMonth;
+    public String type;
+
     /**
      * Sets the text for count report to blank and sets the appointment type combo box to the list of appointment types.
      * @param url
@@ -53,24 +57,47 @@ public class AppointmentCountsByType implements Initializable {
         stage.show();
     }
 
-    public void onSelectMonth(){} ;
+    /**
+     * Sets selectedMonth variable to the month chosen by the user.
+     */
+    public void onSelectMonth(){
+        selectedMonth = (Month) appointmentMonthCB.getSelectionModel().getSelectedItem();
+    }
 
     /**
-     * Sets text to give the number of appointments, per current month and year, of the type selected by the user.
+     * Sets type variable to the type selected by the user.
      */
     public void onSelectType() {
-        String type = appointmentTypeCB.getSelectionModel().getSelectedItem().toString();
+        type = appointmentTypeCB.getSelectionModel().getSelectedItem().toString();
+    }
+
+    /**
+     * Sets text to give the number of appointments, within the selected month, of the type selected by the user.
+     */
+    public void onGenerateBtn() {
+        if (selectedMonth == null) {
+            countReport.setText("Please select a month.");
+            return;
+        }
+        if (type == null) {
+            countReport.setText("Please select a type.");
+            return;
+        }
         int appointmentCount = 0;
-        for (Appointment appointment : helper.ListMaker.populateAppointmentsByMonth()) {
-            if (appointment.getType().equals(type)){
-                appointmentCount = appointmentCount + 1;
+        for (Appointment appointment : AppointmentDao.populateAppointmentList()) {
+            if (appointment.getStartDT().getMonth().equals(selectedMonth)){
+                if (appointment.getType().equals(type)){
+                    appointmentCount = appointmentCount + 1;
+                }
             }
         }
         if(appointmentCount == 1){
-            countReport.setText("There is 1 appointment with Type: " + type + " this month.");
+            countReport.setText("There is 1 appointment with Type: " + type + " in " + selectedMonth.toString() +
+                    ".");
         }
         else {
-            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + " this month.");
+            countReport.setText("There are " + appointmentCount + " appointments with Type: " + type + " in " +
+                    selectedMonth.toString() +".");
         }
     }
 }

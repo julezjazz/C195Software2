@@ -1,5 +1,5 @@
 Title: C195 Appointment Manager
-Version: 1.1
+Version: 1.2
 Purpose: To keep track of appointments and customer contact information and to add, modify, and delete appointments and customers, as needed.
 Author: Julez Hudson
 Email Address: jhud158@wgu.edu
@@ -11,7 +11,7 @@ Directions for Use:
 -The application opens with the Log In page. There, you enter your log-in credentials and click the "Log In" button.
 -The following page will tell you if you have an appointment scheduled within the next 15 minutes. Once ready to continue, click the "Okay" button.
 -The next page will be the Reports Menu page where you can click the button that corresponds with the report or page you want to view.
--For the Customer Appointment Counts by Type report, you can either select an appointment type from the drop-down menu to see how many appointment of that type occur (or have occurred) in the current month. You can click the "Go to Reports Menu" button to return to that menu.
+-For the Customer Appointment Counts by Type report, you can select an appointment type and a month from the drop down menus to see how many appointments of that type occur (or have occurred) in the selected month (regardless of the year). You can click the "Go to Reports Menu" button to return to that menu.
 -For the Contact Schedules report, you can select a contact from the drop-down menu to see their schedule populate in the table. You can click the "Go to Reports Menu" to return to that menu.
 -For the Appointments by Customer report, you can select a customer from the drop-down menu to see all their appointments. You can click the "Go to Reports Menu" to return to that menu.
 -For the Customers report, you can delete a customer from the database by clicking on the customer's row then clicking the "Delete Customer" button. You can modify the customer's information in the database by clicking on the customer's row then clicking the "Modify Customer" button. You can add a new customer to the database by clicking the "Add Customer" button. You can return to the Reports Menu page by clicking the "Go to Reports Menu" button.
